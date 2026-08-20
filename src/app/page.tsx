@@ -4,7 +4,6 @@ import {
   Droplet,
   Mail,
   Package,
-  Shield,
   ShieldCheck,
   Sparkles,
   TestTube2,
@@ -138,15 +137,15 @@ export default function Home() {
               Live Confident.
             </h1>
             <p className="text-muted-foreground mt-6 max-w-xl text-lg leading-relaxed">
-              Private, accurate, and easy-to-use health tests, delivered to
-              you.
+              Private, accurate, and easy-to-use health tests&mdash;delivered
+              to you.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-5">
               <Button asChild size="lg">
                 <Link href="#kits">Shop Now</Link>
               </Button>
               <span className="text-muted-foreground flex items-center gap-2 text-sm">
-                <Shield className="text-accent size-4" />
+                <ShieldCheck className="text-accent size-4" />
                 Private. Reliable. Discreet.
               </span>
             </div>
@@ -162,16 +161,32 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mx-auto flex w-full max-w-md items-end justify-center gap-5">
+          <div className="border-border relative mx-auto flex w-full max-w-lg items-end justify-center gap-5 overflow-hidden rounded-[2rem] border p-10">
+            <div
+              aria-hidden
+              className="from-secondary via-accent-subtle to-background pointer-events-none absolute inset-0 bg-gradient-to-br"
+            />
+            <div
+              aria-hidden
+              className="bg-accent-light/40 pointer-events-none absolute -top-16 -left-10 size-56 rounded-full blur-3xl"
+            />
+            <div
+              aria-hidden
+              className="bg-accent-light/30 pointer-events-none absolute -right-10 -bottom-20 size-64 rounded-full blur-3xl"
+            />
+            <div
+              aria-hidden
+              className="bg-foreground/10 pointer-events-none absolute inset-x-10 bottom-8 h-6 rounded-full blur-xl"
+            />
             <ProductBox
               name={tests[0].name}
               subtitle={tests[0].subtitle}
-              className="rotate-[-3deg]"
+              className="relative rotate-[-3deg]"
             />
             <ProductBox
               name={tests[1].name}
               subtitle={tests[1].subtitle}
-              className="mb-8 rotate-[2deg]"
+              className="relative mb-8 rotate-[2deg]"
             />
           </div>
         </div>

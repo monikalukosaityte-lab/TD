@@ -1,14 +1,9 @@
 'use client';
 
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useScroll,
-} from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { Logo } from '@/components/layout/logo';
@@ -100,26 +95,7 @@ const AUTH_ROUTES = ['/login', '/signup'];
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [scrolledPastBanner, setScrolledPastBanner] = useState(false);
-  const { scrollY } = useScroll();
   const isAuthPage = AUTH_ROUTES.includes(pathname);
-  const lastY = useRef(0);
-
-  useMotionValueEvent(scrollY, 'change', (y) => {
-    const delta = y - lastY.current;
-    lastY.current = y;
-    // Show at top, hide on scroll down, reveal on scroll up
-    if (y < 20) {
-      setHidden(false);
-      setScrolledPastBanner(false);
-    } else if (delta > 3) {
-      setHidden(true);
-      setScrolledPastBanner(true);
-    } else if (delta < -3) {
-      setHidden(false);
-    }
-  });
 
   useEffect(() => {
     if (open) {
@@ -139,15 +115,7 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
-        className={cn(
-          'fixed inset-x-0 top-0 z-20 py-4 transition-[margin] duration-300 md:py-5',
-        )}
-        animate={{
-          y: hidden ? '-100%' : '0%',
-        }}
-        transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-      >
+      <nav className="fixed inset-x-0 top-0 z-20 py-4 md:py-5">
         <div className="container flex justify-center">
           <div className="bg-background/90 border-border/30 flex min-w-[175px] items-center justify-between gap-1 rounded-full border px-1.5 py-1 shadow-sm backdrop-blur-2xl md:min-w-fit md:gap-1 md:px-2 md:py-1.5">
             {/* Logo */}
@@ -192,7 +160,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       <AnimatePresence>
         {open && (
