@@ -16,8 +16,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
-const heroTags = ['Discreet packaging', 'Same-day dispatch', 'Confidential results'] as const;
-
 const features = [
   {
     icon: { component: Package },
@@ -112,16 +110,16 @@ const faqs = [
 
 const blogPosts = [
   {
-    title: 'What to expect from a private STI screening',
-    tag: 'STI awareness',
+    title: 'How accurate are STD rapid tests?',
+    tag: 'Rapid vs lab tests',
   },
   {
-    title: 'When it is a good idea to get tested',
-    tag: 'Wellbeing',
+    title: 'How soon after sex can you take a rapid test?',
+    tag: 'Testing window',
   },
   {
-    title: 'How to talk about testing without the pressure',
-    tag: 'Sexual health',
+    title: 'Rapid test vs lab test: which one should you choose?',
+    tag: 'Which one to choose',
   },
 ] as const;
 
@@ -129,65 +127,60 @@ export default function Home() {
   return (
     <>
       <section className="hero-padding relative overflow-hidden" id="home">
-        <div className="container relative grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
-            <h1 className="text-5xl leading-none tracking-tighter md:text-6xl lg:text-[5.25rem]">
-              Test Discreet.
-              <br />
-              Live Confident.
-            </h1>
-            <p className="text-muted-foreground mt-6 max-w-xl text-lg leading-relaxed">
-              Private, accurate, and easy-to-use health tests&mdash;delivered
-              to you.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-5">
-              <Button asChild size="lg">
-                <Link href="#kits">Shop Now</Link>
-              </Button>
-              <span className="text-muted-foreground flex items-center gap-2 text-sm">
-                <ShieldCheck className="text-accent size-4" />
-                Private. Reliable. Discreet.
-              </span>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {heroTags.map((item) => (
-                <span
-                  key={item}
-                  className="border-border bg-accent-subtle text-foreground rounded-full border px-3 py-2 font-mono text-[0.62rem] tracking-[0.12em] uppercase"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
+        <div className="container relative">
+          <h1 className="font-text max-w-3xl text-4xl leading-none font-normal tracking-tighter md:text-5xl lg:text-6xl">
+            Everything you need to know about STD rapid tests.
+          </h1>
+          <p className="text-muted-foreground mt-6 max-w-xl text-lg leading-relaxed">
+            How accurate they are, how soon after exposure to test, and what
+            your result actually means. Clear, medically reviewed
+            answers&mdash;no clinic, no waiting room, no shame.
+          </p>
+          <div className="mt-8">
+            <Button asChild size="lg">
+              <Link href="/blog">Explore all</Link>
+            </Button>
           </div>
+        </div>
+      </section>
 
-          <div className="border-border relative mx-auto flex w-full max-w-lg items-end justify-center gap-5 overflow-hidden rounded-[2rem] border p-10">
-            <div
-              aria-hidden
-              className="from-secondary via-accent-subtle to-background pointer-events-none absolute inset-0 bg-gradient-to-br"
-            />
-            <div
-              aria-hidden
-              className="bg-accent-light/40 pointer-events-none absolute -top-16 -left-10 size-56 rounded-full blur-3xl"
-            />
-            <div
-              aria-hidden
-              className="bg-accent-light/30 pointer-events-none absolute -right-10 -bottom-20 size-64 rounded-full blur-3xl"
-            />
-            <div
-              aria-hidden
-              className="bg-foreground/10 pointer-events-none absolute inset-x-10 bottom-8 h-6 rounded-full blur-xl"
-            />
-            <ProductBox
-              name={tests[0].name}
-              subtitle={tests[0].subtitle}
-              className="relative rotate-[-3deg]"
-            />
-            <ProductBox
-              name={tests[1].name}
-              subtitle={tests[1].subtitle}
-              className="relative mb-8 rotate-[2deg]"
-            />
+      <section className="section-padding border-y border-dashed bg-white/30">
+        <div className="container">
+          <div className="mb-12">
+            <span className="text-accent mb-4 block font-mono text-[0.68rem] tracking-[0.18em] uppercase">
+              Health advice
+            </span>
+            <h2 className="text-4xl leading-none tracking-tighter md:text-5xl">
+              How rapid tests actually work
+            </h2>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {blogPosts.map((post, index) => (
+              <article
+                key={post.title}
+                className="bg-card border-border overflow-hidden rounded-[1.5rem] border shadow-sm"
+              >
+                <div
+                  className="h-44"
+                  style={{
+                    background: [
+                      'linear-gradient(135deg, rgba(133,146,131,0.28), rgba(244,236,220,0.75))',
+                      'linear-gradient(135deg, rgba(133,146,131,0.3), rgba(235,234,224,0.8))',
+                      'linear-gradient(135deg, rgba(224,207,171,0.3), rgba(133,146,131,0.24))',
+                    ][index],
+                  }}
+                />
+                <div className="p-5">
+                  <p className="text-accent mb-3 font-mono text-[0.62rem] tracking-[0.14em] uppercase">
+                    {post.tag}
+                  </p>
+                  <h3 className="text-2xl leading-tight tracking-tight">{post.title}</h3>
+                  <Link href="/blog" className="mt-4 inline-block text-sm font-medium text-foreground">
+                    Read article
+                  </Link>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -332,47 +325,6 @@ export default function Home() {
                   &mdash; Verified customer
                 </footer>
               </blockquote>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding border-y border-dashed bg-white/30">
-        <div className="container">
-          <div className="mb-12">
-            <span className="text-accent mb-4 block font-mono text-[0.68rem] tracking-[0.18em] uppercase">
-              Health advice
-            </span>
-            <h2 className="text-4xl leading-none tracking-tighter md:text-5xl">
-              Helpful information for everyday wellbeing.
-            </h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {blogPosts.map((post, index) => (
-              <article
-                key={post.title}
-                className="bg-card border-border overflow-hidden rounded-[1.5rem] border shadow-sm"
-              >
-                <div
-                  className="h-44"
-                  style={{
-                    background: [
-                      'linear-gradient(135deg, rgba(133,146,131,0.28), rgba(244,236,220,0.75))',
-                      'linear-gradient(135deg, rgba(133,146,131,0.3), rgba(235,234,224,0.8))',
-                      'linear-gradient(135deg, rgba(224,207,171,0.3), rgba(133,146,131,0.24))',
-                    ][index],
-                  }}
-                />
-                <div className="p-5">
-                  <p className="text-accent mb-3 font-mono text-[0.62rem] tracking-[0.14em] uppercase">
-                    {post.tag}
-                  </p>
-                  <h3 className="text-2xl leading-tight tracking-tight">{post.title}</h3>
-                  <Link href="/blog" className="mt-4 inline-block text-sm font-medium text-foreground">
-                    Read article
-                  </Link>
-                </div>
-              </article>
             ))}
           </div>
         </div>
