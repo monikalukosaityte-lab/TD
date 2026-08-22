@@ -157,7 +157,7 @@
     @apply py-16 md:py-20 lg:py-28;
   }
   .hero-padding {
-    @apply pt-24 pb-16 md:pt-32 md:pb-20 lg:pt-36 lg:pb-24;
+    @apply pt-8 pb-16 md:pt-10 md:pb-20 lg:pt-12 lg:pb-24;
   }
 }
 
