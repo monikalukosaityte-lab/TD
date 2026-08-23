@@ -107,11 +107,10 @@ export default async function ArticlePage({
           title={article.frontmatter.title}
           description={article.frontmatter.description}
           date={article.frontmatter.date}
-          image={article.frontmatter.image}
           nextSlug={nextArticle?.slug !== slug ? nextArticle?.slug : undefined}
         >
-          {/* Article body — two-column editorial layout */}
-          <div className="prose prose-base prose-neutral dark:prose-invert prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-lead:text-muted-foreground prose-li:marker:text-foreground [&>p]:text-muted-foreground [&>ul]:text-muted-foreground [&>h2]:text-muted-foreground [&>h2+p]:font-display [&>h2+p]:text-foreground max-w-none md:grid md:grid-cols-[190px_1fr] md:gap-x-16 md:gap-y-0 md:[&>:not(h2)]:col-start-2 [&>h2]:mt-14 [&>h2]:mb-0 [&>h2]:text-sm [&>h2]:font-normal [&>h2]:tracking-normal md:[&>h2]:col-start-1 md:[&>h2]:mt-20 md:[&>h2]:self-start md:[&>h2]:pt-1.5 [&>h2+p]:mt-2 [&>h2+p]:text-lg [&>h2+p]:leading-snug [&>h2+p]:tracking-tight md:[&>h2+p]:mt-20 md:[&>h2+p]:text-xl lg:[&>h2+p]:text-2xl [&>h2:first-child]:mt-0 [&>h2:first-child+p]:mt-2 md:[&>h2:first-child+p]:mt-0 [&>p+p]:mt-4 [&>ul]:mt-4">
+          {/* Article body */}
+          <div className="prose prose-base prose-neutral dark:prose-invert prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-li:marker:text-foreground max-w-none [&>h2]:mt-14 [&>h2]:text-2xl [&>h2]:leading-tight [&>h2]:tracking-tight [&>h2:first-child]:mt-0 [&>p]:text-muted-foreground [&>ul]:mt-4 [&>ul]:text-muted-foreground [&>p+p]:mt-4">
             {content}
           </div>
 
@@ -119,7 +118,7 @@ export default async function ArticlePage({
           <div className="border-accent-light mt-10 border-t pt-8">
             <div className="flex items-center gap-3">
               <Link
-                href={`https://x.com/intent/tweet?url=${encodeURIComponent(`https://kinto.app/blog/${slug}`)}&text=${encodeURIComponent(article.frontmatter.title)}`}
+                href={`https://x.com/intent/tweet?url=${encodeURIComponent(`https://stdtestkit.co.uk/blog/${slug}`)}&text=${encodeURIComponent(article.frontmatter.title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Share on X"
