@@ -107,6 +107,7 @@ export default async function ArticlePage({
           title={article.frontmatter.title}
           description={article.frontmatter.description}
           date={article.frontmatter.date}
+          image={article.frontmatter.image}
           nextSlug={nextArticle?.slug !== slug ? nextArticle?.slug : undefined}
         >
           {/* Article body */}

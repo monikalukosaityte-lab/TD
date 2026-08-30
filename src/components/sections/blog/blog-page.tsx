@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { ArticleFrontmatter } from '@/lib/types';
@@ -36,10 +37,22 @@ export function BlogListing({ articles }: { articles: ArticleFrontmatter[] }) {
               href={`/blog/${featured.slug}`}
               className="group bg-card border-border block overflow-hidden rounded-[1.5rem] border shadow-sm no-underline"
             >
-              <div
-                className="h-56 md:h-72"
-                style={{ background: CARD_GRADIENTS[0] }}
-              />
+              <div className="relative h-56 md:h-72">
+                {featured.image ? (
+                  <Image
+                    src={featured.image}
+                    alt={featured.title}
+                    fill
+                    sizes="(min-width: 768px) 90vw, 100vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div
+                    className="size-full"
+                    style={{ background: CARD_GRADIENTS[0] }}
+                  />
+                )}
+              </div>
               <div className="p-6 md:p-10">
                 <p className="text-muted-foreground font-mono text-[0.62rem] tracking-[0.14em] uppercase">
                   {formatDate(featured.date)}
@@ -69,12 +82,25 @@ export function BlogListing({ articles }: { articles: ArticleFrontmatter[] }) {
                   key={article.slug}
                   className="bg-card border-border overflow-hidden rounded-[1.5rem] border shadow-sm"
                 >
-                  <div
-                    className="h-44"
-                    style={{
-                      background: CARD_GRADIENTS[index % CARD_GRADIENTS.length],
-                    }}
-                  />
+                  <div className="relative h-44">
+                    {article.image ? (
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        fill
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div
+                        className="size-full"
+                        style={{
+                          background:
+                            CARD_GRADIENTS[index % CARD_GRADIENTS.length],
+                        }}
+                      />
+                    )}
+                  </div>
                   <div className="p-5">
                     <p className="text-muted-foreground mb-3 font-mono text-[0.62rem] tracking-[0.14em] uppercase">
                       {formatDate(article.date)}
