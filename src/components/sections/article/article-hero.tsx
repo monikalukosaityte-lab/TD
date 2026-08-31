@@ -27,7 +27,7 @@ export function ArticleHero({
         <div className="flex items-center justify-between">
           <Link
             href="/blog"
-            className="text-accent hover:text-accent-hover inline-flex items-center gap-1.5 font-mono text-[0.625rem] tracking-widest uppercase no-underline transition-colors"
+            className="text-accent hover:text-accent-hover inline-flex items-center gap-1.5 text-xs no-underline transition-colors"
           >
             <ArrowLeft className="size-3" />
             Back to blog
@@ -45,16 +45,13 @@ export function ArticleHero({
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_320px] lg:items-start lg:gap-12">
           <div>
-            <span className="text-muted-foreground block font-mono text-[0.625rem] tracking-widest uppercase">
-              {formatDate(date)}
-            </span>
-            <h1 className="mt-3 text-4xl leading-none tracking-tighter md:text-5xl">
+            <h1 className="text-4xl leading-none tracking-tighter md:text-5xl">
               {title}
             </h1>
             <p className="text-muted-foreground mt-5 text-lg leading-relaxed">
               {description}
             </p>
-            <div className="text-muted-foreground mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+            <div className="text-muted-foreground mt-5 flex flex-col gap-2 text-sm">
               <span className="flex items-center gap-1.5">
                 <Check className="text-accent size-4" />
                 Published {formatDate(date)}
