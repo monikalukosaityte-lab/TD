@@ -69,9 +69,9 @@ export function ArticleHero({
           )}
         </div>
 
-        <div className="max-w-3xl">
-          <div className="border-border mt-10 border-t" />
+        <div className="border-border mt-10 border-t" />
 
+        <div className="max-w-3xl">
           {children && <div className="pt-10">{children}</div>}
         </div>
       </div>
