@@ -22,7 +22,7 @@ export function ArticleHero({
   children,
 }: ArticleHeroProps) {
   return (
-    <section className="hero-padding">
+    <section className="hero-padding bg-blog">
       <div className="container max-w-5xl">
         <div className="flex items-center justify-between">
           <Link
@@ -57,13 +57,13 @@ export function ArticleHero({
           </div>
 
           {image && (
-            <div className="bg-card border-border relative aspect-3/2 w-full shrink-0 overflow-hidden rounded-2xl border shadow-sm">
+            <div className="relative aspect-3/2 w-full shrink-0">
               <Image
                 src={image}
                 alt={title}
                 fill
                 sizes="(min-width: 1024px) 320px, (min-width: 640px) 60vw, 100vw"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           )}

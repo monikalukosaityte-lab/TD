@@ -14,7 +14,7 @@ export function BlogListing({ articles }: { articles: ArticleFrontmatter[] }) {
   const [featured, ...rest] = articles;
 
   return (
-    <>
+    <div className="bg-blog">
       <section className="hero-padding relative overflow-hidden">
         <div className="container relative">
           <span className="text-accent mb-4 block font-mono text-[0.68rem] tracking-[0.18em] uppercase">
@@ -122,6 +122,6 @@ export function BlogListing({ articles }: { articles: ArticleFrontmatter[] }) {
           </div>
         </section>
       )}
-    </>
+    </div>
   );
 }

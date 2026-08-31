@@ -160,6 +160,12 @@
   .hero-padding {
     @apply pt-8 pb-16 md:pt-10 md:pb-20 lg:pt-12 lg:pb-24;
   }
+  .bg-blog {
+    background-color: oklch(0.962 0.007 59.3);
+  }
+  .dark .bg-blog {
+    background-color: oklch(0.19 0.008 59.3);
+  }
 }
 
 @utility font-weight-display {
