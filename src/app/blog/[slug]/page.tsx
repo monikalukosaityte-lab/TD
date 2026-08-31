@@ -1,14 +1,10 @@
 import rehypeShiki from '@shikijs/rehype';
 import { MDXComponents } from 'mdx/types';
 import Image, { ImageProps } from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import { ComponentPropsWithoutRef } from 'react';
 
-import { IconInstagram } from '@/components/icons/instagram';
-import { IconThreads } from '@/components/icons/threads';
-import { IconX } from '@/components/icons/x';
 import { Pre } from '@/components/mdx/code-block';
 import { ArticleHero, MoreEntries } from '@/components/sections/article';
 import {
@@ -113,39 +109,6 @@ export default async function ArticlePage({
           {/* Article body */}
           <div className="prose prose-base prose-neutral dark:prose-invert prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-li:marker:text-foreground max-w-none [&>h2]:mt-14 [&>h2]:text-2xl [&>h2]:leading-tight [&>h2]:tracking-tight [&>h2:first-child]:mt-0 [&>p]:text-muted-foreground [&>ul]:mt-4 [&>ul]:text-muted-foreground [&>p+p]:mt-4">
             {content}
-          </div>
-
-          {/* Share — minimal */}
-          <div className="border-accent-light mt-10 border-t pt-8">
-            <div className="flex items-center gap-3">
-              <Link
-                href={`https://x.com/intent/tweet?url=${encodeURIComponent(`https://stdtestkit.co.uk/blog/${slug}`)}&text=${encodeURIComponent(article.frontmatter.title)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Share on X"
-                className="bg-accent-light hover:bg-accent-light/70 flex size-10 items-center justify-center rounded-full transition-colors"
-              >
-                <IconX className="text-foreground size-4" />
-              </Link>
-              <Link
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow on Instagram"
-                className="bg-accent-light hover:bg-accent-light/70 flex size-10 items-center justify-center rounded-full transition-colors"
-              >
-                <IconInstagram className="text-foreground size-4" />
-              </Link>
-              <Link
-                href="https://threads.net/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow on Threads"
-                className="bg-accent-light hover:bg-accent-light/70 flex size-10 items-center justify-center rounded-full transition-colors"
-              >
-                <IconThreads className="text-foreground size-4" />
-              </Link>
-            </div>
           </div>
         </ArticleHero>
       </article>
