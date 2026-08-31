@@ -1,4 +1,4 @@
-import { ArrowLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Check, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -27,7 +27,7 @@ export function ArticleHero({
         <div className="flex items-center justify-between">
           <Link
             href="/blog"
-            className="text-muted-foreground hover:text-accent inline-flex items-center gap-1.5 font-mono text-[0.625rem] tracking-widest uppercase no-underline transition-colors"
+            className="text-accent hover:text-accent-hover inline-flex items-center gap-1.5 font-mono text-[0.625rem] tracking-widest uppercase no-underline transition-colors"
           >
             <ArrowLeft className="size-3" />
             Back to blog
@@ -54,6 +54,16 @@ export function ArticleHero({
             <p className="text-muted-foreground mt-5 text-lg leading-relaxed">
               {description}
             </p>
+            <div className="text-muted-foreground mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+              <span className="flex items-center gap-1.5">
+                <Check className="text-accent size-4" />
+                Published {formatDate(date)}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Check className="text-accent size-4" />
+                Medically reviewed
+              </span>
+            </div>
           </div>
 
           {image && (
@@ -69,7 +79,7 @@ export function ArticleHero({
           )}
         </div>
 
-        <div className="border-border mt-10 border-t" />
+        <div className="border-accent mt-10 border-t" />
 
         <div className="max-w-3xl">
           {children && <div className="pt-10">{children}</div>}
