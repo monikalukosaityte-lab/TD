@@ -14,7 +14,7 @@ export default function Navbar() {
   if (isAuthPage) return null;
 
   return (
-    <nav className="py-4 md:py-5">
+    <nav className="bg-blog py-4 md:py-5">
       <div className="container flex items-center justify-between">
         <Link href="/" className="text-accent flex items-center no-underline">
           <LogoMark style={{ width: 'clamp(2.8rem, 3vw, 4rem)', height: 'auto' }} />

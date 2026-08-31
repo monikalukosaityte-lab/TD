@@ -17,8 +17,8 @@ export default function Footer() {
   if (AUTH_ROUTES.includes(pathname)) return null;
 
   return (
-    <footer className="container pb-12">
-      <div className="border-t border-dashed pt-10">
+    <footer className="bg-blog pb-12">
+      <div className="container border-t border-dashed pt-10">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <Link href="/" className="text-accent flex items-center no-underline">
             <LogoMark style={{ width: 'clamp(2.8rem, 3vw, 4rem)', height: 'auto' }} />
