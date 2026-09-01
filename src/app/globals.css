@@ -140,7 +140,7 @@
   }
   body {
     @apply bg-background text-foreground font-text font-weight-text antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
     line-height: 1.6;
   }
   h1,

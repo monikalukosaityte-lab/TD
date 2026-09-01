@@ -60,8 +60,8 @@ export function TableOfContents({ items }: { items: readonly TocItem[] }) {
         </ul>
       </nav>
 
-      {/* Mobile — collapsible accordion */}
-      <details className="group border-accent rounded-2xl border-2 p-4 lg:hidden">
+      {/* Mobile — permanent floating accordion */}
+      <details className="group border-accent bg-blog fixed inset-x-4 top-4 z-20 max-h-[calc(100vh-2rem)] overflow-y-auto rounded-2xl border-2 p-4 shadow-lg lg:hidden">
         <summary className="text-accent flex cursor-pointer list-none items-center justify-between gap-2 text-sm font-medium [&::-webkit-details-marker]:hidden">
           Jump to section
           <ChevronDown className="size-4 transition-transform duration-200 group-open:rotate-180" />
@@ -79,6 +79,8 @@ export function TableOfContents({ items }: { items: readonly TocItem[] }) {
           ))}
         </ul>
       </details>
+      {/* Spacer so the fixed bar doesn't cover content underneath */}
+      <div className="h-16 lg:hidden" />
     </div>
   );
 }
