@@ -6,13 +6,26 @@ import { compileMDX } from 'next-mdx-remote/rsc';
 import { ComponentPropsWithoutRef } from 'react';
 
 import { Pre } from '@/components/mdx/code-block';
-import { ArticleHero, MoreEntries } from '@/components/sections/article';
+import {
+  ArticleHero,
+  MoreEntries,
+  TableOfContents,
+} from '@/components/sections/article';
 import {
   getAllArticles,
   getArticleBySlug,
   getArticleSlugs,
 } from '@/lib/articles';
 import { ArticleFrontmatter } from '@/lib/types';
+import { cn } from '@/lib/utils';
+
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+}
 
 function MdxImage(props: ImageProps) {
   return (
@@ -22,8 +35,13 @@ function MdxImage(props: ImageProps) {
   );
 }
 
-function H2(props: ComponentPropsWithoutRef<'h2'>) {
-  return <h2 {...props} />;
+function H2({ className, children, ...props }: ComponentPropsWithoutRef<'h2'>) {
+  const text = typeof children === 'string' ? children : '';
+  return (
+    <h2 id={slugify(text)} className={cn('scroll-mt-10', className)} {...props}>
+      {children}
+    </h2>
+  );
 }
 
 function P(props: ComponentPropsWithoutRef<'p'>) {
@@ -46,6 +64,21 @@ const mdxComponents: MDXComponents = {
   ul: Ul,
   Lead,
 };
+
+const TOC_ITEMS = [
+  { label: 'Key takeaways', id: 'key-takeaways' },
+  { label: 'How testing works', id: 'how-does-an-sti-test-work' },
+  { label: 'What it checks for', id: 'what-does-an-sti-test-check-for' },
+  { label: 'When to test', id: 'how-soon-after-sex-should-i-test' },
+  { label: 'Result times', id: 'how-long-do-results-take' },
+  {
+    label: 'If you test positive',
+    id: 'what-happens-if-my-result-is-positive',
+  },
+  { label: 'Cost & availability', id: 'is-sti-testing-free-in-the-uk' },
+  { label: 'Accuracy', id: 'are-home-sti-test-kits-accurate' },
+  { label: 'FAQs', id: 'frequently-asked-questions' },
+] as const;
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -107,8 +140,11 @@ export default async function ArticlePage({
           nextSlug={nextArticle?.slug !== slug ? nextArticle?.slug : undefined}
         >
           {/* Article body */}
-          <div className="prose prose-base prose-neutral dark:prose-invert prose-a:text-accent prose-a:underline prose-li:marker:text-foreground max-w-none [&>h2]:mt-14 [&>h2]:text-2xl [&>h2]:leading-tight [&>h2]:tracking-tight [&>h2:first-child]:mt-0 [&>p]:text-muted-foreground [&>ul]:mt-4 [&>ul]:text-muted-foreground [&>p+p]:mt-4">
-            {content}
+          <div className="grid gap-8 lg:grid-cols-[1fr_220px] lg:gap-12">
+            <div className="prose prose-base prose-neutral dark:prose-invert prose-a:text-accent prose-a:underline prose-li:marker:text-foreground max-w-none [&>h2]:mt-14 [&>h2]:text-2xl [&>h2]:leading-tight [&>h2]:tracking-tight [&>h2:first-child]:mt-0 [&>p]:text-muted-foreground [&>ul]:mt-4 [&>ul]:text-muted-foreground [&>p+p]:mt-4">
+              {content}
+            </div>
+            <TableOfContents items={TOC_ITEMS} />
           </div>
         </ArticleHero>
       </article>

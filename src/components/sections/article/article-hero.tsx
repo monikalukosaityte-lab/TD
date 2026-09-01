@@ -78,7 +78,7 @@ export function ArticleHero({
 
         <div className="border-accent mt-10 border-t" />
 
-        <div className="max-w-3xl">
+        <div className="max-w-5xl">
           {children && <div className="pt-10">{children}</div>}
         </div>
       </div>
