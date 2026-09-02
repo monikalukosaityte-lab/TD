@@ -19,19 +19,31 @@ export function TableOfContents({ items }: { items: readonly TocItem[] }) {
       .map((item) => document.getElementById(item.id))
       .filter((el): el is HTMLElement => el !== null);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '-100px 0px -50% 0px' },
-    );
+    const OFFSET = 120;
+    let ticking = false;
 
-    headingEls.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    function updateActive() {
+      ticking = false;
+      let currentId = headingEls[0]?.id ?? '';
+      for (const el of headingEls) {
+        if (el.getBoundingClientRect().top - OFFSET <= 0) {
+          currentId = el.id;
+        } else {
+          break;
+        }
+      }
+      setActiveId(currentId);
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateActive);
+    }
+
+    updateActive();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, [items]);
 
   return (
