@@ -17,11 +17,12 @@ export function TableOfContents({ items }: { items: readonly TocItem[] }) {
   const [activeId, setActiveId] = useState<string>('');
   const [sheetOpen, setSheetOpen] = useState(false);
 
-  // On a fresh page load/refresh, start at the top even if the URL still
-  // has a #section hash from a previous jumplink click — in-page jumplink
-  // clicks don't remount this component, so this only fires on real loads.
+  // Always start at the top on a fresh page load/refresh — browsers restore
+  // both hash-based position and plain manual-scroll position on reload, so
+  // this must be unconditional. In-page jumplink clicks don't remount this
+  // component, so this only ever fires on real loads.
   useLayoutEffect(() => {
-    if (typeof window === 'undefined' || !window.location.hash) return;
+    if (typeof window === 'undefined') return;
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
