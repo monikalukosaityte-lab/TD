@@ -60,7 +60,7 @@ export function TableOfContents({ items }: { items: readonly TocItem[] }) {
     <div className="order-first lg:order-none">
       {/* Desktop — sticky sidebar with scrollspy */}
       <nav className="sticky top-10 hidden max-h-[calc(100vh-5rem)] overflow-y-auto lg:block">
-        <span className="text-muted-foreground mb-3 block font-mono text-[0.625rem] tracking-widest uppercase">
+        <span className="text-muted-foreground mb-3 block text-xs">
           On this page
         </span>
         <ul className="border-border space-y-2.5 border-l">
