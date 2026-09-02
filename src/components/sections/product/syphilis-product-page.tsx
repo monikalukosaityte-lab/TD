@@ -19,7 +19,7 @@ const CARD_GRADIENTS = [
 
 const product = {
   name: 'Syphilis Test',
-  image: { src: '/images/blog/what-is-sti-test.webp', alt: 'Test Discreet Syphilis (TP) Ab Rapid Test Kit' },
+  image: { src: '/images/products/psa-test-kit.webp', alt: 'Test Discreet Syphilis (TP) Ab Rapid Test Kit' },
   rating: { value: 4.9, count: 189 },
   detects: 'Antibodies to Treponema pallidum, the syphilis bacterium.',
   price: { current: '£14.95', original: '£19.95', save: 'Save £5.00' },
