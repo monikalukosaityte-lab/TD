@@ -286,7 +286,7 @@ function ProductHero() {
 
 function HowItWorks() {
   return (
-    <section className="bg-secondary section-padding">
+    <section className="section-padding border-y border-dashed bg-white/30">
       <div className="container">
         <h2 className="text-center text-3xl leading-none tracking-tighter md:text-4xl">
           How it works
