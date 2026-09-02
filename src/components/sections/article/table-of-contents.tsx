@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { List, X } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { cn } from '@/lib/utils';
@@ -16,6 +16,17 @@ interface TocItem {
 export function TableOfContents({ items }: { items: readonly TocItem[] }) {
   const [activeId, setActiveId] = useState<string>('');
   const [sheetOpen, setSheetOpen] = useState(false);
+
+  // On a fresh page load/refresh, start at the top even if the URL still
+  // has a #section hash from a previous jumplink click — in-page jumplink
+  // clicks don't remount this component, so this only fires on real loads.
+  useLayoutEffect(() => {
+    if (typeof window === 'undefined' || !window.location.hash) return;
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const headingEls = items
