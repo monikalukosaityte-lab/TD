@@ -138,10 +138,10 @@ const relatedTests = [
 
 export function SyphilisProductPage() {
   return (
-    <>
+    <div className="bg-blog">
       <ProductHero />
       <RelatedTests />
-    </>
+    </div>
   );
 }
 
