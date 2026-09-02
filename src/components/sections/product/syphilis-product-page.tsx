@@ -22,10 +22,11 @@ const product = {
   image: { src: '/images/products/psa-test-kit.webp', alt: 'Test Discreet Syphilis (TP) Ab Rapid Test Kit' },
   gallery: ['Box front', 'Box back / IFU', "What's inside", 'Discreet mailer'],
   rating: { value: 4.9, count: 189 },
-  detects: {
-    before: 'Detects antibodies to ',
-    italic: 'Treponema pallidum',
-    after: ', the bacterium that causes syphilis.',
+  intro:
+    'Worried you may have been exposed to syphilis? Test privately at home with a simple finger-prick test.',
+  reassurance: {
+    bold: 'No judgement. Just answers.',
+    text: 'Testing is a normal part of looking after your sexual health.',
   },
   price: { current: '£14.95', original: '£19.95', save: 'Save £5.00' },
   features: [
@@ -34,17 +35,14 @@ const product = {
     { icon: ShieldCheck, label: '99% accuracy' },
   ],
   specs: [
+    { label: 'Suitable for', value: 'Men & women' },
     { label: 'Sample', value: 'Fingerprick blood' },
     { label: 'Test from', value: '3–6 weeks after exposure, conclusive at 12' },
-    {
-      label: "What's included",
-      value: '[confirm contents — e.g. 1 test cassette, lancet, buffer, instructions]',
-    },
   ],
   checkoutTrust: [
     'Secure checkout',
-    'Order by 2pm — ships today',
-    'Free UK tracked delivery',
+    'Discreet UK delivery',
+    'Order by 2pm, ships today',
   ],
 } as const;
 
@@ -166,16 +164,25 @@ export function SyphilisProductPage() {
   );
 }
 
-function Rating({ value, count }: { value: number; count: number }) {
+function Rating({
+  value,
+  count,
+  suffix = '',
+}: {
+  value: number;
+  count: number;
+  suffix?: string;
+}) {
   return (
     <div className="flex items-center gap-1.5 text-sm">
       <div className="flex items-center gap-0.5">
         {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} className="text-accent fill-accent size-3.5" />
+          <Star key={i} className="text-accent-deep fill-accent-deep size-3.5" />
         ))}
       </div>
       <span className="text-muted-foreground">
-        {value} ({count})
+        {value} ({count}
+        {suffix})
       </span>
     </div>
   );
@@ -226,12 +233,14 @@ function ProductHero() {
               {product.name}
             </h1>
             <div className="mt-4">
-              <Rating value={product.rating.value} count={product.rating.count} />
+              <Rating value={product.rating.value} count={product.rating.count} suffix=" reviews" />
             </div>
             <p className="text-muted-foreground mt-5 text-lg leading-relaxed">
-              {product.detects.before}
-              <em>{product.detects.italic}</em>
-              {product.detects.after}
+              {product.intro}
+            </p>
+            <p className="mt-4 text-lg leading-relaxed">
+              <span className="font-semibold">{product.reassurance.bold}</span>{' '}
+              <span className="text-muted-foreground">{product.reassurance.text}</span>
             </p>
 
             <div className="mt-6 flex items-baseline gap-3">
@@ -239,7 +248,7 @@ function ProductHero() {
               <span className="text-muted-foreground text-lg line-through">
                 {product.price.original}
               </span>
-              <Badge variant="amber">{product.price.save}</Badge>
+              <Badge variant="sage">{product.price.save}</Badge>
             </div>
 
             <div className="mt-5 flex flex-wrap gap-2">
@@ -263,8 +272,8 @@ function ProductHero() {
               ))}
             </dl>
 
-            <Button variant="brand" size="lg" className="mt-6 w-full">
-              Add to cart — {product.price.current}
+            <Button variant="brand-deep" size="lg" className="mt-6 w-full">
+              Get my test - {product.price.current}
             </Button>
 
             <p className="text-muted-foreground mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-xs">
@@ -355,7 +364,7 @@ function Reviews() {
             >
               <div className="flex items-center gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="text-accent fill-accent size-3.5" />
+                  <Star key={i} className="text-accent-deep fill-accent-deep size-3.5" />
                 ))}
               </div>
               <p className="text-muted-foreground mt-3 text-sm leading-relaxed italic">
