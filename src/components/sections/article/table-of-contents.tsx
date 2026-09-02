@@ -13,6 +13,20 @@ interface TocItem {
   label: string;
 }
 
+// Jumplinks manage the URL hash and scrolling themselves, entirely with the
+// raw History API — bypassing both the browser's native anchor-jump-on-load
+// and Next.js Link's own hash handling, which otherwise race and desync.
+function jumpTo(id: string) {
+  return (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.getElementById(id)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+    history.pushState(null, '', `#${id}`);
+  };
+}
+
 export function TableOfContents({ items }: { items: readonly TocItem[] }) {
   const [activeId, setActiveId] = useState<string>('');
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -27,6 +41,13 @@ export function TableOfContents({ items }: { items: readonly TocItem[] }) {
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+    if (window.location.hash) {
+      history.replaceState(
+        null,
+        '',
+        window.location.pathname + window.location.search,
+      );
+    }
   }, []);
 
   useEffect(() => {
@@ -80,6 +101,7 @@ export function TableOfContents({ items }: { items: readonly TocItem[] }) {
             <li key={item.id}>
               <Link
                 href={`#${item.id}`}
+                onClick={jumpTo(item.id)}
                 className={cn(
                   '-ml-px block border-l-2 py-0.5 pl-4 text-sm no-underline transition-colors',
                   activeId === item.id
@@ -146,7 +168,7 @@ function MobileSectionsSheet({
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >
         <div className="mb-4 flex items-center justify-between">
-          <span className="text-muted-foreground font-mono text-[0.625rem] tracking-widest uppercase">
+          <span className="text-muted-foreground block text-xs">
             On this page
           </span>
           <button
@@ -162,7 +184,10 @@ function MobileSectionsSheet({
             <li key={item.id}>
               <Link
                 href={`#${item.id}`}
-                onClick={onClose}
+                onClick={(e) => {
+                  jumpTo(item.id)(e);
+                  onClose();
+                }}
                 className={cn(
                   'block rounded-lg px-3 py-2.5 text-sm no-underline transition-colors',
                   activeId === item.id
