@@ -1,4 +1,4 @@
-import { ArrowLeft, Check, Star } from 'lucide-react';
+import { ArrowLeft, Camera, Clock, Lock, ShieldCheck, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -18,70 +18,78 @@ const CARD_GRADIENTS = [
 ] as const;
 
 const product = {
-  name: 'Syphilis Test',
+  name: 'Rapid Syphilis Test',
   image: { src: '/images/products/psa-test-kit.webp', alt: 'Test Discreet Syphilis (TP) Ab Rapid Test Kit' },
+  gallery: ['Box front', 'Box back / IFU', "What's inside", 'Discreet mailer'],
   rating: { value: 4.9, count: 189 },
-  detects: 'Antibodies to Treponema pallidum, the syphilis bacterium.',
+  detects: {
+    before: 'Detects antibodies to ',
+    italic: 'Treponema pallidum',
+    after: ', the bacterium that causes syphilis.',
+  },
   price: { current: '£14.95', original: '£19.95', save: 'Save £5.00' },
-  trust: [
-    'In stock — order by 2pm and it ships today',
-    'Results in 15 minutes',
-    'Free UK tracked delivery',
+  features: [
+    { icon: Lock, label: 'Discreet packaging' },
+    { icon: Clock, label: 'Result in 15 minutes' },
+    { icon: ShieldCheck, label: '99% accuracy' },
   ],
   specs: [
     { label: 'Sample', value: 'Fingerprick blood' },
-    { label: 'Test from', value: '3 to 6 weeks after exposure, conclusive at 12' },
-    { label: 'Certification', value: 'CE-marked IVD, colloidal gold method' },
+    { label: 'Test from', value: '3–6 weeks after exposure, conclusive at 12' },
+    {
+      label: "What's included",
+      value: '[confirm contents — e.g. 1 test cassette, lancet, buffer, instructions]',
+    },
+  ],
+  checkoutTrust: [
+    'Secure checkout',
+    'Order by 2pm — ships today',
+    'Free UK tracked delivery',
   ],
 } as const;
 
-const infoSections = [
+const howItWorks = [
   {
-    id: 'why-test',
-    title: 'Why test',
-    type: 'ul',
-    items: [
-      'UK syphilis diagnoses are at their highest level since 1948.',
-      'The first sign is often a painless sore that heals on its own, so it is easy to miss.',
-      'Caught early, syphilis is fully curable with antibiotics. Untreated, it damages the heart, brain and nerves over years.',
-    ],
+    step: 1,
+    title: 'Prick your finger',
+    description: 'One small blood sample, using the included lancet.',
   },
   {
-    id: 'whats-in-the-box',
-    title: "What's in the box",
-    type: 'ul',
-    items: [
-      'Test cassette in sealed foil pouch',
-      'Buffer solution',
-      '2 sterile lancets',
-      'Capillary pipette',
-      'Alcohol pad and plaster',
-      'Instructions for use',
-    ],
+    step: 2,
+    title: 'Add to the device',
+    description: 'A few drops of sample, plus the provided buffer solution.',
   },
   {
-    id: 'how-to-use-it',
-    title: 'How to use it',
-    type: 'ol',
-    items: [
-      'Wash your hands in warm water. Clean your fingertip with the alcohol pad.',
-      'Press the lancet against the side of your fingertip until it clicks. Squeeze out a drop of blood.',
-      'Fill the pipette to the line, dispense into the sample well, add 2 drops of buffer.',
-      'Read your result at 15 minutes, not after 20.',
-    ],
+    step: 3,
+    title: 'Read your result',
+    description: 'A clear line appears on the device within 15 minutes.',
+  },
+] as const;
+
+const faqs = [
+  {
+    id: 'accuracy',
+    question: 'How accurate is this test?',
+    answer:
+      'This is a CE-marked in-vitro diagnostic test using the colloidal gold method. [add your sensitivity / specificity figures here, or a link to the instructions for use]. A positive result should always be confirmed by a GP or sexual health clinic.',
   },
   {
-    id: 'when-to-test',
-    title: 'When to test',
-    type: 'p',
-    text: 'Antibodies usually show from 3 to 6 weeks after exposure; a negative result is conclusive at 12 weeks. A previously treated syphilis infection can still test positive: use a clinic for follow-up if you have had syphilis before.',
+    id: 'shipping',
+    question: 'How is my order shipped?',
+    answer:
+      'Orders placed by 2pm Monday to Friday ship the same day via free UK tracked delivery, in plain, unbranded packaging.',
   },
   {
-    id: 'reading-your-result',
-    title: 'Reading your result',
-    type: 'p',
-    text: 'One line at C means negative. Two lines, even faint, means positive: take the result to your GP or a sexual health clinic to confirm it and start treatment. No line at C means the test is invalid; contact us for a free replacement.',
+    id: 'positive-result',
+    question: 'What happens if my result is positive?',
+    answer:
+      'Take your result to your GP or a sexual health clinic as soon as possible to confirm it and start treatment. [confirm any additional support Test Discreet offers, e.g. free replacement kits or clinic referrals]',
   },
+] as const;
+
+const reviews = [
+  { quote: '[add a real review excerpt here]', author: '[Verified buyer]' },
+  { quote: '[add a real review excerpt here]', author: '[Verified buyer]' },
 ] as const;
 
 const relatedTests = [
@@ -150,6 +158,9 @@ export function SyphilisProductPage() {
   return (
     <div className="bg-blog">
       <ProductHero />
+      <HowItWorks />
+      <CommonQuestions />
+      <Reviews />
       <RelatedTests />
     </div>
   );
@@ -183,18 +194,34 @@ function ProductHero() {
         </Link>
 
         <div className="mt-8 grid gap-10 lg:grid-cols-[440px_1fr] lg:gap-16">
-          <div className="relative aspect-square w-full lg:aspect-4/5">
-            <Image
-              src={product.image.src}
-              alt={product.image.alt}
-              fill
-              sizes="(min-width: 1024px) 440px, 100vw"
-              className="object-contain"
-              priority
-            />
+          <div>
+            <div className="relative aspect-square w-full lg:aspect-4/5">
+              <Image
+                src={product.image.src}
+                alt={product.image.alt}
+                fill
+                sizes="(min-width: 1024px) 440px, 100vw"
+                className="object-contain"
+                priority
+              />
+            </div>
+            <div className="mt-4 grid grid-cols-4 gap-3">
+              {product.gallery.map((label) => (
+                <div
+                  key={label}
+                  className="border-border text-muted-foreground flex aspect-square flex-col items-center justify-center gap-1.5 rounded-lg border border-dashed p-2 text-center text-[0.65rem] leading-tight"
+                >
+                  <Camera className="size-4" />
+                  {label}
+                </div>
+              ))}
+            </div>
           </div>
 
           <div>
+            <span className="text-accent mb-2 block font-mono text-[0.68rem] tracking-[0.18em] uppercase">
+              Test Discreet
+            </span>
             <h1 className="text-4xl leading-none tracking-tighter md:text-5xl">
               {product.name}
             </h1>
@@ -202,7 +229,9 @@ function ProductHero() {
               <Rating value={product.rating.value} count={product.rating.count} />
             </div>
             <p className="text-muted-foreground mt-5 text-lg leading-relaxed">
-              {product.detects}
+              {product.detects.before}
+              <em>{product.detects.italic}</em>
+              {product.detects.after}
             </p>
 
             <div className="mt-6 flex items-baseline gap-3">
@@ -213,19 +242,22 @@ function ProductHero() {
               <Badge variant="amber">{product.price.save}</Badge>
             </div>
 
-            <ul className="text-muted-foreground mt-5 flex flex-col gap-2 text-sm">
-              {product.trust.map((item) => (
-                <li key={item} className="flex items-center gap-1.5">
-                  <Check className="text-accent size-4" />
-                  {item}
-                </li>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {product.features.map((feature) => (
+                <span
+                  key={feature.label}
+                  className="border-border bg-card text-muted-foreground inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium"
+                >
+                  <feature.icon className="text-accent size-3.5" />
+                  {feature.label}
+                </span>
               ))}
-            </ul>
+            </div>
 
             <dl className="divide-border border-border mt-6 divide-y border-y text-sm">
               {product.specs.map((spec) => (
                 <div key={spec.label} className="flex justify-between gap-4 py-3">
-                  <dt className="text-muted-foreground">{spec.label}</dt>
+                  <dt className="text-muted-foreground shrink-0">{spec.label}</dt>
                   <dd className="text-right font-medium">{spec.value}</dd>
                 </div>
               ))}
@@ -235,33 +267,103 @@ function ProductHero() {
               Add to cart — {product.price.current}
             </Button>
 
-            <Accordion type="single" collapsible className="border-border mt-8 border-t">
-              {infoSections.map((section) => (
-                <AccordionItem key={section.id} value={section.id}>
-                  <AccordionTrigger>{section.title}</AccordionTrigger>
-                  <AccordionContent>
-                    {section.type === 'ul' && (
-                      <ul className="text-muted-foreground list-disc space-y-1.5 pl-4">
-                        {section.items.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    )}
-                    {section.type === 'ol' && (
-                      <ol className="text-muted-foreground list-decimal space-y-1.5 pl-4">
-                        {section.items.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ol>
-                    )}
-                    {section.type === 'p' && (
-                      <p className="text-muted-foreground">{section.text}</p>
-                    )}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <p className="text-muted-foreground mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-xs">
+              <span className="inline-flex items-center gap-1">
+                <Lock className="size-3" />
+                {product.checkoutTrust[0]}
+              </span>
+              <span aria-hidden>·</span>
+              <span>{product.checkoutTrust[1]}</span>
+              <span aria-hidden>·</span>
+              <span>{product.checkoutTrust[2]}</span>
+            </p>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HowItWorks() {
+  return (
+    <section className="bg-secondary section-padding">
+      <div className="container">
+        <h2 className="text-center text-3xl leading-none tracking-tighter md:text-4xl">
+          How it works
+        </h2>
+        <div className="mt-12 grid gap-10 text-center md:grid-cols-3 md:gap-8">
+          {howItWorks.map((step) => (
+            <div key={step.step} className="flex flex-col items-center">
+              <span className="bg-accent text-accent-foreground flex size-9 items-center justify-center rounded-full text-sm font-medium">
+                {step.step}
+              </span>
+              <h3 className="mt-4 text-lg leading-tight tracking-tight">{step.title}</h3>
+              <p className="text-muted-foreground mt-2 max-w-xs text-sm leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CommonQuestions() {
+  return (
+    <section className="section-padding">
+      <div className="container max-w-2xl">
+        <h2 className="text-center text-3xl leading-none tracking-tighter md:text-4xl">
+          Common questions
+        </h2>
+        <Accordion type="single" collapsible defaultValue={faqs[0].id} className="mt-10">
+          {faqs.map((faq) => (
+            <AccordionItem key={faq.id} value={faq.id}>
+              <AccordionTrigger>{faq.question}</AccordionTrigger>
+              <AccordionContent>
+                <p className="text-muted-foreground">{faq.answer}</p>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </section>
+  );
+}
+
+function Reviews() {
+  return (
+    <section className="section-padding border-border border-t pt-16">
+      <div className="container">
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="text-3xl leading-none tracking-tighter md:text-4xl">
+            What customers say
+          </h2>
+          <Link
+            href="#"
+            className="text-accent hover:text-accent-hover inline-flex items-center gap-1 text-sm font-medium no-underline transition-colors"
+          >
+            See all {product.rating.count} reviews
+            <span aria-hidden>&rarr;</span>
+          </Link>
+        </div>
+        <div className="grid gap-5 md:grid-cols-2">
+          {reviews.map((review, index) => (
+            <div
+              key={index}
+              className="bg-card border-border rounded-2xl border p-6 shadow-sm"
+            >
+              <div className="flex items-center gap-0.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="text-accent fill-accent size-3.5" />
+                ))}
+              </div>
+              <p className="text-muted-foreground mt-3 text-sm leading-relaxed italic">
+                &ldquo;{review.quote}&rdquo;
+              </p>
+              <p className="text-muted-foreground mt-3 text-xs">{review.author}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
