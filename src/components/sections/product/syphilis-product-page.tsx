@@ -91,6 +91,7 @@ const relatedTests = [
     rating: { value: 4.9, count: 327 },
     detects: 'Five kits covering seven infections.',
     price: { current: '£59.95', original: '£86.75' },
+    image: null,
   },
   {
     name: 'Core 4 Bundle',
@@ -98,6 +99,7 @@ const relatedTests = [
     rating: { value: 4.9, count: 214 },
     detects: 'Chlamydia, gonorrhoea, HIV and syphilis in three kits.',
     price: { current: '£39.95', original: '£50.85' },
+    image: null,
   },
   {
     name: 'Chlamydia & Gonorrhoea Test',
@@ -105,6 +107,7 @@ const relatedTests = [
     rating: { value: 4.8, count: 296 },
     detects: "The UK's two most common bacterial STIs in one test.",
     price: { current: '£17.95', original: '£24.95' },
+    image: null,
   },
   {
     name: 'HIV 1/2 Test',
@@ -112,6 +115,7 @@ const relatedTests = [
     rating: { value: 4.9, count: 348 },
     detects: 'Antibodies to HIV-1 and HIV-2.',
     price: { current: '£17.95', original: '£24.95' },
+    image: null,
   },
   {
     name: 'HSV-2 Genital Herpes Test',
@@ -119,6 +123,7 @@ const relatedTests = [
     rating: { value: 4.8, count: 176 },
     detects: 'IgM antibodies to herpes simplex virus type 2.',
     price: { current: '£17.95', original: '£24.95' },
+    image: null,
   },
   {
     name: 'Hepatitis B & C Test',
@@ -126,6 +131,7 @@ const relatedTests = [
     rating: { value: 4.9, count: 142 },
     detects: 'Hepatitis B surface antigen and hepatitis C antibodies.',
     price: { current: '£17.95', original: '£24.95' },
+    image: null,
   },
   {
     name: 'PSA Prostate Test',
@@ -133,6 +139,10 @@ const relatedTests = [
     rating: { value: 4.8, count: 231 },
     detects: 'Prostate-specific antigen at or above 4 ng/mL.',
     price: { current: '£17.95', original: '£24.95' },
+    image: {
+      src: '/images/products/psa-test-kit.webp',
+      alt: 'Test Discreet Prostate Specific Ag (PSA) Rapid Test Kit',
+    },
   },
 ] as const;
 
@@ -278,8 +288,21 @@ function RelatedTests() {
             >
               <div
                 className="relative h-44"
-                style={{ background: CARD_GRADIENTS[index % CARD_GRADIENTS.length] }}
+                style={
+                  test.image
+                    ? undefined
+                    : { background: CARD_GRADIENTS[index % CARD_GRADIENTS.length] }
+                }
               >
+                {test.image && (
+                  <Image
+                    src={test.image.src}
+                    alt={test.image.alt}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover"
+                  />
+                )}
                 {test.badge && (
                   <Badge variant="subtle" className="absolute top-3 left-3">
                     {test.badge}
