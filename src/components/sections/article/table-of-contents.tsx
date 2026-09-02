@@ -1,8 +1,10 @@
 'use client';
 
-import { ChevronDown } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
+import { List, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import { cn } from '@/lib/utils';
 
@@ -13,6 +15,7 @@ interface TocItem {
 
 export function TableOfContents({ items }: { items: readonly TocItem[] }) {
   const [activeId, setActiveId] = useState<string>('');
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   useEffect(() => {
     const headingEls = items
@@ -46,6 +49,13 @@ export function TableOfContents({ items }: { items: readonly TocItem[] }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, [items]);
 
+  useEffect(() => {
+    document.body.style.overflow = sheetOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [sheetOpen]);
+
   return (
     <div className="order-first lg:order-none">
       {/* Desktop — sticky sidebar with scrollspy */}
@@ -72,27 +82,88 @@ export function TableOfContents({ items }: { items: readonly TocItem[] }) {
         </ul>
       </nav>
 
-      {/* Mobile — permanent floating accordion */}
-      <details className="group border-accent bg-blog fixed inset-x-4 top-4 z-20 max-h-[calc(100vh-2rem)] overflow-y-auto rounded-2xl border-2 p-4 shadow-lg lg:hidden">
-        <summary className="text-accent flex cursor-pointer list-none items-center justify-between gap-2 text-sm font-medium [&::-webkit-details-marker]:hidden">
-          Jump to section
-          <ChevronDown className="size-4 transition-transform duration-200 group-open:rotate-180" />
-        </summary>
-        <ul className="mt-4 space-y-3">
+      {/* Mobile — floating "Sections" pill + bottom sheet */}
+      <button
+        onClick={() => setSheetOpen(true)}
+        className="border-accent bg-card text-accent fixed right-4 bottom-6 z-30 flex items-center gap-2 rounded-full border-2 px-4 py-2.5 text-sm font-medium shadow-lg lg:hidden"
+      >
+        <List className="size-4" />
+        Sections
+      </button>
+
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence>
+            {sheetOpen && (
+              <MobileSectionsSheet
+                items={items}
+                activeId={activeId}
+                onClose={() => setSheetOpen(false)}
+              />
+            )}
+          </AnimatePresence>,
+          document.body,
+        )}
+    </div>
+  );
+}
+
+function MobileSectionsSheet({
+  items,
+  activeId,
+  onClose,
+}: {
+  items: readonly TocItem[];
+  activeId: string;
+  onClose: () => void;
+}) {
+  return (
+    <>
+      <motion.div
+        className="bg-foreground/40 fixed inset-0 z-40 lg:hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+      />
+      <motion.div
+        className="bg-blog border-accent fixed inset-x-0 bottom-0 z-50 rounded-t-3xl border-t-2 p-6 pb-8 lg:hidden"
+        initial={{ y: '100%' }}
+        animate={{ y: 0 }}
+        exit={{ y: '100%' }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      >
+        <div className="mb-4 flex items-center justify-between">
+          <span className="text-muted-foreground font-mono text-[0.625rem] tracking-widest uppercase">
+            On this page
+          </span>
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            className="text-muted-foreground hover:text-foreground"
+          >
+            <X className="size-5" />
+          </button>
+        </div>
+        <ul className="max-h-[60vh] space-y-1 overflow-y-auto">
           {items.map((item) => (
             <li key={item.id}>
               <Link
                 href={`#${item.id}`}
-                className="text-foreground text-sm no-underline"
+                onClick={onClose}
+                className={cn(
+                  'block rounded-lg px-3 py-2.5 text-sm no-underline transition-colors',
+                  activeId === item.id
+                    ? 'bg-accent-subtle text-accent font-medium'
+                    : 'text-foreground hover:bg-accent-subtle',
+                )}
               >
                 {item.label}
               </Link>
             </li>
           ))}
         </ul>
-      </details>
-      {/* Spacer so the fixed bar doesn't cover content underneath */}
-      <div className="h-16 lg:hidden" />
-    </div>
+      </motion.div>
+    </>
   );
 }
