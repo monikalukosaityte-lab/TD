@@ -202,13 +202,13 @@ function ProductHero() {
 
         <div className="mt-8 grid gap-10 lg:grid-cols-[440px_1fr] lg:gap-16">
           <div>
-            <div className="relative aspect-square w-full lg:aspect-4/5">
+            <div className="relative -mx-4 aspect-4/5 overflow-hidden rounded-[2.5rem] lg:mx-0">
               <Image
                 src={product.image.src}
                 alt={product.image.alt}
                 fill
                 sizes="(min-width: 1024px) 440px, 100vw"
-                className="object-contain"
+                className="object-cover"
                 priority
               />
             </div>
