@@ -1,7 +1,10 @@
+import { ShieldCheck, Star } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { getAllArticles } from '@/lib/articles';
+import { ArticleListItem } from '@/lib/types';
+import { cn, formatShortDate } from '@/lib/utils';
 
 const CARD_GRADIENTS = [
   'linear-gradient(135deg, rgba(133,146,131,0.28), rgba(244,236,220,0.75))',
@@ -9,144 +12,129 @@ const CARD_GRADIENTS = [
   'linear-gradient(135deg, rgba(224,207,171,0.3), rgba(133,146,131,0.24))',
 ] as const;
 
-const articleSections = [
-  {
-    eyebrow: 'Health advice',
-    heading: 'How rapid tests actually work',
-    bordered: true,
-    posts: [
-      {
-        title: 'How accurate are STD rapid tests?',
-        tag: 'Rapid vs lab tests',
-      },
-      {
-        title: 'How soon after sex can you take a rapid test?',
-        tag: 'Testing window',
-      },
-      {
-        title: 'Rapid test vs lab test: which one should you choose?',
-        tag: 'Which one to choose',
-      },
-    ],
-  },
-  {
-    eyebrow: 'Understanding your results',
-    heading: 'What your STD test result means',
-    bordered: false,
-    posts: [
-      {
-        title: 'What does a positive rapid test result actually mean?',
-        tag: 'Next steps, not panic',
-      },
-      {
-        title: 'Can a rapid test give a false positive or false negative?',
-        tag: 'False results',
-      },
-      {
-        title: 'I tested negative but still have symptoms—now what?',
-        tag: 'Still have symptoms',
-      },
-    ],
-  },
-  {
-    eyebrow: 'Specific STDs, testing-focused',
-    heading: 'Rapid testing for common STDs',
-    bordered: true,
-    posts: [
-      {
-        title: 'Chlamydia rapid test: what to expect and how fast you get results',
-        tag: 'Chlamydia rapid test',
-      },
-      {
-        title: 'HIV rapid test: window period, accuracy, and privacy',
-        tag: 'HIV rapid test',
-      },
-      {
-        title: "Herpes rapid test: why it's different from other STD tests",
-        tag: 'Herpes rapid test',
-      },
-    ],
-  },
-] as const;
+export default async function Home() {
+  const articles = await getAllArticles();
+  const [featured, ...rest] = articles;
 
-export default function Home() {
   return (
     <>
       <section className="hero-padding relative overflow-hidden" id="home">
         <div className="container relative">
-          <h1 className="font-text max-w-3xl text-4xl leading-none font-normal tracking-tighter md:text-5xl lg:text-6xl">
-            Everything you need to know about STD rapid tests.
+          <span className="text-accent mb-4 block font-mono text-[0.68rem] tracking-[0.18em] uppercase">
+            Health advice
+          </span>
+          <h1 className="max-w-2xl text-4xl leading-none tracking-tighter md:text-5xl lg:text-6xl">
+            The STI Test Kits blog
           </h1>
           <p className="text-muted-foreground mt-6 max-w-xl text-lg leading-relaxed">
-            How accurate they are, how soon after exposure to test, and what
-            your result actually means. Clear, medically reviewed
-            answers&mdash;no clinic, no waiting room, no shame.
+            Clear, medically reviewed answers about STI and STD testing —
+            accuracy, timing, results, and what to do next.
           </p>
-          <div className="mt-8">
-            <Button asChild size="lg">
-              <Link href="/blog">Explore all</Link>
-            </Button>
-          </div>
         </div>
       </section>
 
-      {articleSections.map((section) => (
-        <ArticleSection key={section.heading} {...section} />
-      ))}
+      {(featured || rest.length > 0) && (
+        <section className="section-padding pt-0">
+          <div className="container">
+            {featured && (
+              <div className="mb-5">
+                <ArticleCard article={featured} featured index={0} />
+              </div>
+            )}
+            {rest.length > 0 && (
+              <div className="grid gap-5 md:grid-cols-2">
+                {rest.map((article, index) => (
+                  <ArticleCard
+                    key={article.slug}
+                    article={article}
+                    index={index + 1}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
     </>
   );
 }
 
-function ArticleSection({
-  eyebrow,
-  heading,
-  bordered,
-  posts,
+function ArticleCard({
+  article,
+  featured = false,
+  index,
 }: {
-  eyebrow: string;
-  heading: string;
-  bordered: boolean;
-  posts: readonly { title: string; tag: string }[];
+  article: ArticleListItem;
+  featured?: boolean;
+  index: number;
 }) {
+  const Heading = featured ? 'h2' : 'h3';
+
   return (
-    <section
+    <Link
+      href={`/blog/${article.slug}`}
       className={cn(
-        'section-padding',
-        bordered && 'border-y border-dashed bg-white/30',
+        'group bg-card border-border block overflow-hidden rounded-[1.5rem] border shadow-sm no-underline',
       )}
     >
-      <div className="container">
-        <div className="mb-12">
-          <span className="text-accent mb-4 block font-mono text-[0.68rem] tracking-[0.18em] uppercase">
-            {eyebrow}
+      <div className={cn('relative', featured ? 'h-56 md:h-72' : 'h-44')}>
+        {featured && (
+          <span className="bg-accent text-accent-foreground absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium">
+            <Star className="size-3 fill-current" />
+            Featured guide
           </span>
-          <h2 className="text-4xl leading-none tracking-tighter md:text-5xl">
-            {heading}
-          </h2>
-        </div>
-        <div className="grid gap-5 md:grid-cols-3">
-          {posts.map((post, index) => (
-            <article
-              key={post.title}
-              className="bg-card border-border overflow-hidden rounded-[1.5rem] border shadow-sm"
-            >
-              <div
-                className="h-44"
-                style={{ background: CARD_GRADIENTS[index] }}
-              />
-              <div className="p-5">
-                <p className="text-accent mb-3 font-mono text-[0.62rem] tracking-[0.14em] uppercase">
-                  {post.tag}
-                </p>
-                <h3 className="text-2xl leading-tight tracking-tight">{post.title}</h3>
-                <Link href="/blog" className="mt-4 inline-block text-sm font-medium text-foreground">
-                  Read article
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
+        )}
+        {article.image ? (
+          <Image
+            src={article.image}
+            alt={article.title}
+            fill
+            sizes={
+              featured
+                ? '(min-width: 768px) 90vw, 100vw'
+                : '(min-width: 768px) 45vw, 100vw'
+            }
+            className="object-cover"
+          />
+        ) : (
+          <div
+            className="size-full"
+            style={{ background: CARD_GRADIENTS[index % CARD_GRADIENTS.length] }}
+          />
+        )}
       </div>
-    </section>
+      <div className={cn('p-5', featured && 'md:p-10')}>
+        <p className="text-muted-foreground font-mono text-[0.62rem] tracking-[0.14em] uppercase">
+          {formatShortDate(article.date)} · {article.readingTimeMinutes} min read
+        </p>
+        <Heading
+          className={cn(
+            'mt-3 leading-tight tracking-tight transition-colors group-hover:text-accent',
+            featured ? 'max-w-2xl text-3xl md:text-4xl' : 'text-2xl',
+          )}
+        >
+          {article.title}
+        </Heading>
+        <p
+          className={cn(
+            'text-muted-foreground mt-3 leading-relaxed',
+            featured && 'max-w-2xl',
+          )}
+        >
+          {article.description}
+        </p>
+        <p className="text-muted-foreground mt-4 flex items-center gap-1.5 text-xs">
+          <ShieldCheck className="text-accent size-3.5" />
+          Medically reviewed by{' '}
+          <span className="text-foreground font-medium">
+            {article.reviewer ?? '[Add reviewer name]'}
+          </span>
+        </p>
+        <span className="text-accent mt-4 inline-flex items-center gap-1 text-sm font-medium">
+          Read article
+          <span aria-hidden>&rarr;</span>
+        </span>
+      </div>
+    </Link>
   );
 }
