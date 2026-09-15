@@ -20,15 +20,15 @@ export default async function Home() {
     <div className="bg-blog">
       <section className="hero-padding relative overflow-hidden" id="home">
         <div className="container relative">
-          <span className="text-accent mb-4 block font-mono text-[0.68rem] tracking-[0.18em] uppercase">
-            Health advice
+          <span className="text-muted-foreground mb-4 block text-sm">
+            STI Test Kits
           </span>
           <h1 className="max-w-2xl text-4xl leading-none tracking-tighter md:text-5xl lg:text-6xl">
-            The STI Test Kits blog
+            Everything you need to know about STI
           </h1>
           <p className="text-muted-foreground mt-6 max-w-xl text-lg leading-relaxed">
-            Clear, medically reviewed answers about STI and STD testing —
-            accuracy, timing, results, and what to do next.
+            Straightforward guides to STI testing, infection symptoms and
+            more — what to know, what to look for, and what to do next.
           </p>
         </div>
       </section>
