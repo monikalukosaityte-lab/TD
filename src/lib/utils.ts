@@ -19,3 +19,11 @@ export function formatShortDate(date: string) {
     day: 'numeric',
   });
 }
+
+export function formatPublishDate(date: string) {
+  const d = new Date(date);
+  const day = d.toLocaleDateString('en-GB', { day: 'numeric' });
+  const month = d.toLocaleDateString('en-GB', { month: 'long' });
+  const year = d.toLocaleDateString('en-GB', { year: 'numeric' });
+  return `${day} ${month}, ${year}`;
+}

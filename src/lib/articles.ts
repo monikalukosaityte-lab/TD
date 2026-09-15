@@ -2,16 +2,9 @@ import fs from 'fs/promises';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import path from 'path';
 
-import { Article, ArticleFrontmatter, ArticleListItem } from '@/lib/types';
+import { Article, ArticleFrontmatter } from '@/lib/types';
 
 const articlesDirectory = path.join(process.cwd(), 'content/articles');
-
-const WORDS_PER_MINUTE = 200;
-
-function estimateReadingTimeMinutes(content: string): number {
-  const wordCount = content.trim().split(/\s+/).length;
-  return Math.max(1, Math.round(wordCount / WORDS_PER_MINUTE));
-}
 
 export async function getArticleSlugs(): Promise<string[]> {
   try {
@@ -46,7 +39,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   }
 }
 
-export async function getAllArticles(): Promise<ArticleListItem[]> {
+export async function getAllArticles(): Promise<ArticleFrontmatter[]> {
   try {
     const files = await fs.readdir(articlesDirectory);
     const mdxFiles = files.filter((file) => file.endsWith('.mdx'));
@@ -60,10 +53,7 @@ export async function getAllArticles(): Promise<ArticleListItem[]> {
           options: { parseFrontmatter: true },
         });
 
-        return {
-          ...frontmatter,
-          readingTimeMinutes: estimateReadingTimeMinutes(fileContents),
-        };
+        return frontmatter;
       }),
     );
 

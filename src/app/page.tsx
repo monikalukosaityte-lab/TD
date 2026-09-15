@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { getAllArticles } from '@/lib/articles';
-import { ArticleListItem } from '@/lib/types';
-import { cn, formatShortDate } from '@/lib/utils';
+import { ArticleFrontmatter } from '@/lib/types';
+import { cn, formatPublishDate } from '@/lib/utils';
 
 const CARD_GRADIENTS = [
   'linear-gradient(135deg, rgba(133,146,131,0.28), rgba(244,236,220,0.75))',
@@ -67,7 +67,7 @@ function ArticleCard({
   featured = false,
   index,
 }: {
-  article: ArticleListItem;
+  article: ArticleFrontmatter;
   featured?: boolean;
   index: number;
 }) {
@@ -120,8 +120,8 @@ function ArticleCard({
           featured && 'md:flex md:flex-1 md:flex-col md:justify-center md:p-10',
         )}
       >
-        <p className="text-muted-foreground font-mono text-[0.62rem] tracking-[0.14em] uppercase">
-          {formatShortDate(article.date)} · {article.readingTimeMinutes} min read
+        <p className="text-muted-foreground text-sm">
+          {formatPublishDate(article.date)}
         </p>
         <Heading
           className={cn(
@@ -141,10 +141,7 @@ function ArticleCard({
         </p>
         <p className="text-muted-foreground mt-4 flex items-center gap-1.5 text-xs">
           <ShieldCheck className="text-accent size-3.5" />
-          Medically reviewed by{' '}
-          <span className="text-foreground font-medium">
-            {article.reviewer ?? '[Add reviewer name]'}
-          </span>
+          Medically reviewed
         </p>
         <span className="text-accent mt-4 inline-flex items-center gap-1 text-sm font-medium">
           Read article

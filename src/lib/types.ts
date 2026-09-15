@@ -12,11 +12,6 @@ export interface ArticleFrontmatter {
   tags?: string[];
   pinned?: boolean;
   toc?: TocItem[];
-  reviewer?: string;
-}
-
-export interface ArticleListItem extends ArticleFrontmatter {
-  readingTimeMinutes: number;
 }
 
 export interface Article {
