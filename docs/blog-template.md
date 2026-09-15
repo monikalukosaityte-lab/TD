@@ -24,8 +24,15 @@ date: "YYYY-MM-DD"
 image: "/images/blog/slug-name.webp"
 tags: ["Category"]
 pinned: true
+toc:
+  - label: "Short label"
+    id: "matches-the-h2-slug"
+  - label: "Another short label"
+    id: "another-h2-slug"
 ---
 ```
+
+`toc` drives the "On this page" jumplinks sidebar/mobile sheet — it's per-article (each article defines its own), **not** shared or auto-generated. `label` is a shortened version of the heading (e.g. "How testing works" for an H2 reading "How does an STI test work?"); `id` must exactly match the slug the `H2` component override in `blog/[slug]/page.tsx` generates from that heading text (lowercase, spaces → hyphens, punctuation stripped — same for the "Key takeaways" box's manual `id`). Skipping `toc` just renders an empty sidebar, not an error, so don't forget it on a new article.
 
 ## Structure checklist for a new article
 
