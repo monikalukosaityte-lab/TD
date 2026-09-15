@@ -78,9 +78,17 @@ function ArticleCard({
       href={`/blog/${article.slug}`}
       className={cn(
         'group bg-card border-border block overflow-hidden rounded-[1.5rem] border shadow-sm no-underline',
+        featured && 'md:flex md:items-stretch',
       )}
     >
-      <div className={cn('relative', featured ? 'aspect-video' : 'aspect-3/2')}>
+      <div
+        className={cn(
+          'relative',
+          featured
+            ? 'aspect-video md:aspect-auto md:w-2/5 md:shrink-0 lg:w-[42%]'
+            : 'aspect-3/2',
+        )}
+      >
         {featured && (
           <span className="bg-accent text-accent-foreground absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium">
             <Star className="size-3 fill-current" />
@@ -94,7 +102,7 @@ function ArticleCard({
             fill
             sizes={
               featured
-                ? '(min-width: 768px) 90vw, 100vw'
+                ? '(min-width: 768px) 40vw, 100vw'
                 : '(min-width: 768px) 45vw, 100vw'
             }
             className="object-cover"
@@ -106,7 +114,12 @@ function ArticleCard({
           />
         )}
       </div>
-      <div className={cn('p-5', featured && 'md:p-10')}>
+      <div
+        className={cn(
+          'p-5',
+          featured && 'md:flex md:flex-1 md:flex-col md:justify-center md:p-10',
+        )}
+      >
         <p className="text-muted-foreground font-mono text-[0.62rem] tracking-[0.14em] uppercase">
           {formatShortDate(article.date)} · {article.readingTimeMinutes} min read
         </p>
