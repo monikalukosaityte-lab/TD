@@ -15,6 +15,8 @@ The first real article, [`content/articles/what-is-an-sti-test.mdx`](../content/
 
 ## Frontmatter
 
+`title` is sentence case, not Title Case — capitalize only the first word and proper nouns/acronyms (e.g. "What are the symptoms of chlamydia and gonorrhoea?", "What is an STI test? How STI & STD testing works"). Same goes for H2s in the body.
+
 ```yaml
 ---
 title: "Question-style title? Rest of the title"
