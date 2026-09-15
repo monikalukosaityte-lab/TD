@@ -65,21 +65,6 @@ const mdxComponents: MDXComponents = {
   Lead,
 };
 
-const TOC_ITEMS = [
-  { label: 'Key takeaways', id: 'key-takeaways' },
-  { label: 'How testing works', id: 'how-does-an-sti-test-work' },
-  { label: 'What it checks for', id: 'what-does-an-sti-test-check-for' },
-  { label: 'When to test', id: 'how-soon-after-sex-should-i-test' },
-  { label: 'Result times', id: 'how-long-do-results-take' },
-  {
-    label: 'If you test positive',
-    id: 'what-happens-if-my-result-is-positive',
-  },
-  { label: 'Cost & availability', id: 'is-sti-testing-free-in-the-uk' },
-  { label: 'Accuracy', id: 'are-home-sti-test-kits-accurate' },
-  { label: 'FAQs', id: 'frequently-asked-questions' },
-] as const;
-
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
@@ -144,7 +129,7 @@ export default async function ArticlePage({
             <div className="prose prose-base prose-neutral dark:prose-invert prose-a:text-accent prose-a:underline prose-li:marker:text-foreground max-w-none [&>h2]:mt-14 [&>h2]:text-2xl [&>h2]:leading-tight [&>h2]:tracking-tight [&>h2:first-child]:mt-0 [&>p]:text-muted-foreground [&>ul]:mt-4 [&>ul]:text-muted-foreground [&>p+p]:mt-4">
               {content}
             </div>
-            <TableOfContents items={TOC_ITEMS} />
+            <TableOfContents items={article.frontmatter.toc ?? []} />
           </div>
         </ArticleHero>
       </article>

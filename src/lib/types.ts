@@ -1,3 +1,8 @@
+export interface TocItem {
+  label: string;
+  id: string;
+}
+
 export interface ArticleFrontmatter {
   title: string;
   slug: string;
@@ -6,6 +11,7 @@ export interface ArticleFrontmatter {
   image?: string;
   tags?: string[];
   pinned?: boolean;
+  toc?: TocItem[];
 }
 
 export interface Article {
