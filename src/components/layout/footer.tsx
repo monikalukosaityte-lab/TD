@@ -36,7 +36,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="mt-12 border-t border-dashed pt-6">
-          <span className="text-muted-foreground font-mono text-[0.625rem]">
+          <span className="text-muted-foreground text-sm">
             &copy; 2026 STI Test Kit
           </span>
         </div>

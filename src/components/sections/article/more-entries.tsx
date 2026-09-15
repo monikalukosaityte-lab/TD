@@ -14,9 +14,9 @@ export function MoreEntries({ articles }: { articles: ArticleFrontmatter[] }) {
   if (articles.length === 0) return null;
 
   return (
-    <section className="section-padding border-t border-dashed">
+    <section className="bg-blog section-padding border-t border-dashed">
       <div className="container max-w-3xl">
-        <span className="text-accent mb-6 block font-mono text-[0.68rem] tracking-[0.18em] uppercase">
+        <span className="text-muted-foreground mb-6 block text-sm">
           Keep reading
         </span>
         <div className="space-y-6">
@@ -43,7 +43,7 @@ export function MoreEntries({ articles }: { articles: ArticleFrontmatter[] }) {
                 )}
               </div>
               <div className="min-w-0">
-                <p className="text-muted-foreground font-mono text-[0.625rem] tracking-wider uppercase">
+                <p className="text-muted-foreground text-sm">
                   {formatDate(article.date)}
                 </p>
                 <h3 className="group-hover:text-accent mt-1 text-xl tracking-tight transition-colors md:text-2xl">
