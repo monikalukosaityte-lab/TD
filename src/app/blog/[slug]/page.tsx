@@ -88,8 +88,6 @@ export default async function ArticlePage({
     notFound();
   }
 
-  const currentIndex = allArticles.findIndex((a) => a.slug === slug);
-  const nextArticle = allArticles[currentIndex + 1] || allArticles[0];
   const otherArticles = allArticles.filter((a) => a.slug !== slug);
 
   const { content } = await compileMDX<ArticleFrontmatter>({
@@ -122,7 +120,6 @@ export default async function ArticlePage({
           description={article.frontmatter.description}
           date={article.frontmatter.date}
           image={article.frontmatter.image}
-          nextSlug={nextArticle?.slug !== slug ? nextArticle?.slug : undefined}
         >
           {/* Article body */}
           <div className="grid gap-8 lg:grid-cols-[1fr_220px] lg:gap-12">

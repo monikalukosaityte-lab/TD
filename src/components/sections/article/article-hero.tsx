@@ -1,4 +1,4 @@
-import { ArrowLeft, Check, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Check } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -9,7 +9,6 @@ interface ArticleHeroProps {
   description: string;
   date: string;
   image?: string;
-  nextSlug?: string;
   children?: React.ReactNode;
 }
 
@@ -18,30 +17,18 @@ export function ArticleHero({
   description,
   date,
   image,
-  nextSlug,
   children,
 }: ArticleHeroProps) {
   return (
     <section className="hero-padding bg-blog">
       <div className="container max-w-5xl">
-        <div className="flex items-center justify-between">
-          <Link
-            href="/blog"
-            className="text-accent hover:text-accent-hover inline-flex items-center gap-1.5 text-xs no-underline transition-colors"
-          >
-            <ArrowLeft className="size-3" />
-            Back to blog
-          </Link>
-          {nextSlug && (
-            <Link
-              href={`/blog/${nextSlug}`}
-              className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1 font-mono text-[0.625rem] tracking-widest uppercase no-underline transition-colors"
-            >
-              Next
-              <ChevronRight className="size-3" />
-            </Link>
-          )}
-        </div>
+        <Link
+          href="/blog"
+          className="text-accent hover:text-accent-hover inline-flex items-center gap-1.5 text-xs no-underline transition-colors"
+        >
+          <ArrowLeft className="size-3" />
+          Back to blog
+        </Link>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_320px] lg:items-start lg:gap-12">
           <div>
