@@ -15,24 +15,24 @@ export function MoreEntries({ articles }: { articles: ArticleFrontmatter[] }) {
 
   return (
     <section className="bg-blog section-padding border-t border-dashed">
-      <div className="container max-w-3xl">
+      <div className="container">
         <span className="text-muted-foreground mb-6 block text-sm">
           Keep reading
         </span>
-        <div className="space-y-6">
+        <div className="grid gap-5 md:grid-cols-3">
           {articles.slice(0, 3).map((article, index) => (
             <Link
               key={article.slug}
               href={`/blog/${article.slug}`}
-              className="group border-border flex items-center gap-5 border-b pb-6 no-underline last:border-b-0 last:pb-0"
+              className="group bg-card border-border block overflow-hidden rounded-2xl border shadow-sm no-underline"
             >
-              <div className="border-border bg-card relative size-20 shrink-0 overflow-hidden rounded-xl border md:size-24">
+              <div className="relative aspect-3/2">
                 {article.image ? (
                   <Image
                     src={article.image}
                     alt={article.title}
                     fill
-                    sizes="96px"
+                    sizes="(min-width: 768px) 33vw, 100vw"
                     className="object-cover"
                   />
                 ) : (
@@ -42,16 +42,20 @@ export function MoreEntries({ articles }: { articles: ArticleFrontmatter[] }) {
                   />
                 )}
               </div>
-              <div className="min-w-0">
-                <p className="text-muted-foreground text-sm">
+              <div className="p-4">
+                <p className="text-muted-foreground text-xs">
                   {formatDate(article.date)}
                 </p>
-                <h3 className="group-hover:text-accent mt-1 text-xl tracking-tight transition-colors md:text-2xl">
+                <h3 className="group-hover:text-accent mt-1 text-base leading-snug tracking-tight transition-colors">
                   {article.title}
                 </h3>
                 <p className="text-muted-foreground mt-1 line-clamp-2 text-sm leading-relaxed">
                   {article.description}
                 </p>
+                <span className="text-accent mt-3 inline-flex items-center gap-1 text-sm font-medium">
+                  Read article
+                  <span aria-hidden>&rarr;</span>
+                </span>
               </div>
             </Link>
           ))}
