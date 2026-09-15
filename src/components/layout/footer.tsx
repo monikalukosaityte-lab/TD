@@ -7,10 +7,7 @@ import { LogoMark } from '@/components/layout/logo';
 
 const AUTH_ROUTES = ['/login', '/signup'];
 
-const FOOTER_LINKS = [
-  { label: 'Blog', href: '/blog' },
-  { label: 'About us', href: '/about' },
-] as const;
+const FOOTER_LINKS = [{ label: 'Blog', href: '/blog' }] as const;
 
 export default function Footer() {
   const pathname = usePathname();
@@ -40,7 +37,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-12 border-t border-dashed pt-6">
           <span className="text-muted-foreground font-mono text-[0.625rem]">
-            &copy; 2026 Test Discreet
+            &copy; 2026 STI Test Kit
           </span>
         </div>
       </div>
