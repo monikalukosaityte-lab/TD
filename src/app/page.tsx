@@ -17,7 +17,7 @@ export default async function Home() {
   const [featured, ...rest] = articles;
 
   return (
-    <>
+    <div className="bg-blog">
       <section className="hero-padding relative overflow-hidden" id="home">
         <div className="container relative">
           <span className="text-accent mb-4 block font-mono text-[0.68rem] tracking-[0.18em] uppercase">
@@ -55,7 +55,7 @@ export default async function Home() {
           </div>
         </section>
       )}
-    </>
+    </div>
   );
 }
 
