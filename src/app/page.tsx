@@ -18,7 +18,10 @@ export default async function Home() {
 
   return (
     <div className="bg-blog">
-      <section className="hero-padding relative overflow-hidden" id="home">
+      <section
+        className="relative overflow-hidden pt-8 pb-8 md:pt-10 md:pb-12 lg:pt-12 lg:pb-16"
+        id="home"
+      >
         <div className="container relative">
           <span className="text-muted-foreground mb-4 block text-sm">
             STI Test Kits
