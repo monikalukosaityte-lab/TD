@@ -77,7 +77,7 @@ function ArticleCard({
         'group bg-card border-border block overflow-hidden rounded-[1.5rem] border shadow-sm no-underline',
       )}
     >
-      <div className={cn('relative', featured ? 'h-56 md:h-72' : 'h-44')}>
+      <div className={cn('relative', featured ? 'aspect-video' : 'h-44')}>
         {featured && (
           <span className="bg-accent text-accent-foreground absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium">
             <Star className="size-3 fill-current" />
