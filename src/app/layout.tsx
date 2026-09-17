@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://stdtestkit.co.uk'),
+  metadataBase: new URL('https://stitestkit.co.uk'),
   title: {
     default: 'Test Discreet | Fast STD & STI Test Kits',
     template: '%s | Test Discreet',
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_GB',
-    url: 'https://stdtestkit.co.uk',
+    url: 'https://stitestkit.co.uk',
     siteName: 'Test Discreet',
     title: 'Test Discreet | Fast STD & STI Test Kits',
     description:
