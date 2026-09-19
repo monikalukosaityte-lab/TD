@@ -2,10 +2,13 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 import { DM_Sans, DM_Serif_Display, JetBrains_Mono } from 'next/font/google';
+import Script from 'next/script';
 import Footer from '@/components/layout/footer';
 import Navbar from '@/components/layout/navbar';
 import { StyleGlideProvider } from '@/components/providers/styleglide-provider';
 import { ThemeProvider } from '@/components/providers/theme-provider';
+
+const GA_MEASUREMENT_ID = 'G-90V3D10GNM';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -101,6 +104,19 @@ export default function RootLayout({
       <body
         className={`flex min-h-screen flex-col antialiased ${dmSans.variable} ${dmSerif.variable} ${jetbrainsMono.variable}`}
       >
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
