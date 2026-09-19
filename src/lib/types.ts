@@ -12,6 +12,8 @@ export interface ArticleFrontmatter {
   tags?: string[];
   pinned?: boolean;
   toc?: TocItem[];
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export interface Article {

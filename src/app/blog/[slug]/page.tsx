@@ -1,5 +1,6 @@
 import rehypeShiki from '@shikijs/rehype';
 import { MDXComponents } from 'mdx/types';
+import type { Metadata } from 'next';
 import Image, { ImageProps } from 'next/image';
 import { notFound } from 'next/navigation';
 import { compileMDX } from 'next-mdx-remote/rsc';
@@ -71,6 +72,25 @@ export const dynamicParams = false;
 export async function generateStaticParams() {
   const slugs = await getArticleSlugs();
   return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
+
+  if (!article) return {};
+
+  return {
+    title: {
+      absolute: article.frontmatter.metaTitle ?? article.frontmatter.title,
+    },
+    description:
+      article.frontmatter.metaDescription ?? article.frontmatter.description,
+  };
 }
 
 export default async function ArticlePage({
