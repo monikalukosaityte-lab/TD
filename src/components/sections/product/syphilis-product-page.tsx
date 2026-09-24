@@ -394,10 +394,10 @@ function PrivacyReassurance() {
     <section className="py-8 md:py-12 lg:py-16">
       <div className="container">
         <div className="bg-card border-border grid overflow-hidden rounded-3xl border lg:grid-cols-[420px_1fr]">
-          <div className="border-border bg-muted text-muted-foreground order-2 flex aspect-4/3 items-center justify-center border-b p-4 text-center text-xs lg:order-1 lg:aspect-auto lg:border-r lg:border-b-0">
+          <div className="border-border bg-muted text-muted-foreground flex aspect-4/3 items-center justify-center border-b p-4 text-center text-xs lg:aspect-auto lg:border-r lg:border-b-0">
             [Discreet mailer box photo]
           </div>
-          <div className="order-1 p-8 md:p-12 lg:order-2">
+          <div className="p-8 md:p-12">
             <h2 className="text-3xl leading-tight tracking-tighter md:text-4xl">
               Your health, your privacy.
               <br />
@@ -412,7 +412,7 @@ function PrivacyReassurance() {
               {privacyFeatures.map((feature) => (
                 <div key={feature.title} className="px-4 first:pl-0">
                   <feature.icon className="text-muted-foreground size-5" />
-                  <p className="mt-3 text-sm font-semibold">{feature.title}</p>
+                  <p className="mt-3 min-h-10 text-sm font-semibold">{feature.title}</p>
                   <p className="text-muted-foreground mt-1 text-xs leading-relaxed">
                     {feature.description}
                   </p>
