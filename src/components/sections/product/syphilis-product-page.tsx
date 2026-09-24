@@ -406,50 +406,40 @@ function PrivacyReassurance() {
   return (
     <section className="section-padding">
       <div className="container">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <div>
+        <div className="bg-card border-border grid overflow-hidden rounded-3xl border lg:grid-cols-[420px_1fr]">
+          <div className="border-border bg-muted text-muted-foreground flex aspect-4/3 items-center justify-center border-b p-4 text-center text-xs lg:aspect-auto lg:border-r lg:border-b-0">
+            [Discreet mailer box photo]
+          </div>
+          <div className="p-8 md:p-12">
             <h2 className="text-3xl leading-tight tracking-tighter md:text-4xl">
               Your health.
               <br />
               Your privacy.
             </h2>
             <p className="text-muted-foreground mt-4 max-w-md text-sm leading-relaxed">
-              Testing for syphilis is a personal choice. We make it simple, private and
-              stress-free - so you can take control of your health, on your own terms.
+              Your kit arrives in plain packaging with no mention of syphilis. Test at
+              home, at a time that suits you, on your own terms.
             </p>
-          </div>
-          <div className="divide-border grid grid-cols-3 divide-x">
-            {privacyFeatures.map((feature) => (
-              <div key={feature.title} className="px-4 first:pl-0">
-                <feature.icon className="text-accent size-5" />
-                <p className="mt-3 text-sm font-semibold">{feature.title}</p>
-                <p className="text-muted-foreground mt-1 text-xs leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        <div className="border-border mt-12 grid overflow-hidden rounded-3xl border lg:grid-cols-2">
-          <div className="border-border bg-muted text-muted-foreground flex aspect-4/3 items-center justify-center border-b p-4 text-center text-xs lg:aspect-auto lg:border-r lg:border-b-0">
-            [Discreet mailer box photo]
-          </div>
-          <div className="p-6 md:p-10">
-            <h3 className="text-2xl leading-tight tracking-tight md:text-3xl">
-              Discreet delivery.
-              <br />
-              Test at home on your terms.
-            </h3>
-            <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
-              Your kit arrives in plain, unbranded packaging with no mention of syphilis
-              testing. You can test in the comfort and privacy of your home, at a time
-              that suits you.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-x-8 gap-y-4">
+            <div className="divide-border border-border mt-6 grid grid-cols-3 divide-x border-t pt-6">
+              {privacyFeatures.map((feature) => (
+                <div key={feature.title} className="px-4 first:pl-0">
+                  <feature.icon className="text-muted-foreground size-5" />
+                  <p className="mt-3 text-sm font-semibold">{feature.title}</p>
+                  <p className="text-muted-foreground mt-1 text-xs leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
               {deliveryFeatures.map((feature) => (
-                <span key={feature.title} className="flex items-center gap-2 text-sm">
-                  <feature.icon className="text-accent size-4" />
+                <span
+                  key={feature.title}
+                  className="text-muted-foreground flex items-center gap-2 text-sm"
+                >
+                  <feature.icon className="size-4" />
                   {feature.title}
                 </span>
               ))}
