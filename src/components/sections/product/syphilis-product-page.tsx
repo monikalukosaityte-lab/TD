@@ -1,4 +1,14 @@
-import { ArrowLeft, Camera, Clock, Lock, ShieldCheck, Star } from 'lucide-react';
+import {
+  ArrowLeft,
+  Camera,
+  Clock,
+  Download,
+  Lock,
+  MapPin,
+  ShieldCheck,
+  Star,
+  Truck,
+} from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -10,6 +20,7 @@ import {
 } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const CARD_GRADIENTS = [
   'linear-gradient(135deg, rgba(133,146,131,0.28), rgba(244,236,220,0.75))',
@@ -46,48 +57,129 @@ const product = {
   ],
 } as const;
 
+const deliveryOptions = [
+  {
+    icon: Truck,
+    label: 'Home delivery',
+    description: 'Discreet packaging, straight to your door.',
+    selected: true,
+  },
+  {
+    icon: MapPin,
+    label: 'Local pickup',
+    description: 'Choose an Evri ParcelShop near you at checkout.',
+    selected: false,
+  },
+] as const;
+
+const boxContents = [
+  { item: 'Test cassette', qty: '×1' },
+  { item: 'Safety lancet', qty: '×1' },
+  { item: 'Alcohol wipe', qty: '×1' },
+  { item: 'Blood dropper', qty: '×1' },
+  { item: 'Buffer solution', qty: '×1' },
+  { item: 'Instructions leaflet', qty: '×1' },
+] as const;
+
 const howItWorks = [
   {
     step: 1,
+    image: '[Simple drawing: finger + lancet]',
     title: 'Prick your finger',
-    description: 'One small blood sample, using the included lancet.',
+    description:
+      'Wash your hands, clean a fingertip with the wipe and press the lancet on it.',
   },
   {
     step: 2,
-    title: 'Add to the device',
-    description: 'A few drops of sample, plus the provided buffer solution.',
+    image: '[Simple drawing: drop into cassette]',
+    title: 'Add blood and buffer',
+    description: 'Put one drop of blood in the test, then [2] drops of buffer solution.',
   },
   {
     step: 3,
-    title: 'Read your result',
-    description: 'A clear line appears on the device within 15 minutes.',
+    image: '[Simple drawing: timer + cassette]',
+    title: 'Read at [15] minutes',
+    description:
+      "Don't read it after [20] minutes, as the result may no longer be correct.",
+  },
+] as const;
+
+const resultCards = [
+  {
+    label: 'Negative',
+    lead: 'One line, at C',
+    cLine: true,
+    tLine: false,
+    description:
+      'No syphilis antibodies were found. If you might have been exposed in the last 12 weeks, test again at 12 weeks.',
+  },
+  {
+    label: 'Positive',
+    lead: 'Two lines, at C and T, even a faint one',
+    cLine: true,
+    tLine: true,
+    description:
+      'Syphilis antibodies were found. Visit a sexual health clinic to confirm the result. Syphilis is treated with antibiotics.',
+  },
+  {
+    label: 'Invalid',
+    lead: 'No line at C',
+    cLine: false,
+    tLine: false,
+    description: "The test didn't work. Use a new test, or contact us and we'll help.",
+  },
+] as const;
+
+const beforeYouTestChecklist = [
+  {
+    lead: 'Timing:',
+    text: 'it can take up to 12 weeks after sex for the test to pick up syphilis.',
+  },
+  {
+    lead: 'Had syphilis before?',
+    text: 'This test can stay positive even after treatment. Go to a sexual health clinic instead.',
+  },
+  {
+    lead: 'Got symptoms,',
+    text: 'like a painless sore or a rash? See a clinic, even if your test is negative.',
+  },
+  {
+    lead: 'For adults aged [16/18]+.',
+    text: 'This test does not replace advice from a doctor or nurse.',
   },
 ] as const;
 
 const faqs = [
   {
     id: 'accuracy',
-    question: 'How accurate is this test?',
+    question: 'How accurate is the test?',
     answer:
-      'This is a CE-marked in-vitro diagnostic test using the colloidal gold method. [add your sensitivity / specificity figures here, or a link to the instructions for use]. A positive result should always be confirmed by a GP or sexual health clinic.',
+      "*In the manufacturer's studies it found [XX.X]% of positive samples (sensitivity) and correctly cleared [XX.X]% of negative samples (specificity). Full details are in the instructions leaflet.",
   },
   {
-    id: 'shipping',
-    question: 'How is my order shipped?',
+    id: 'when-to-test',
+    question: 'When should I take the test?',
     answer:
-      'Orders placed by 2pm Monday to Friday ship the same day via free UK tracked delivery, in plain, unbranded packaging.',
+      "Test from 3 to 6 weeks after a possible exposure, and again at 12 weeks to be sure. Testing too early can miss an infection that hasn't reached detectable levels yet.",
   },
   {
     id: 'positive-result',
-    question: 'What happens if my result is positive?',
+    question: 'What if my result is positive?',
     answer:
-      'Take your result to your GP or a sexual health clinic as soon as possible to confirm it and start treatment. [confirm any additional support Test Discreet offers, e.g. free replacement kits or clinic referrals]',
+      "Take your result to your GP or a sexual health clinic as soon as possible. They'll confirm it with a further test and can start treatment, usually a course of antibiotics.",
   },
-] as const;
-
-const reviews = [
-  { quote: '[add a real review excerpt here]', author: '[Verified buyer]' },
-  { quote: '[add a real review excerpt here]', author: '[Verified buyer]' },
+  {
+    id: 'discretion',
+    question: 'Will anyone know what I ordered?',
+    answer:
+      'No. Your order arrives in plain, unbranded packaging with no mention of the contents on the outside or on your bank statement.',
+  },
+  {
+    id: 'returns',
+    question: 'Can I return it?',
+    answer:
+      "[Add your returns policy here, e.g. unopened kits can be returned within 30 days; opened test kits can't be returned for hygiene reasons.]",
+  },
 ] as const;
 
 const relatedTests = [
@@ -156,10 +248,13 @@ export function SyphilisProductPage() {
   return (
     <div className="bg-blog">
       <ProductHero />
-      <HowItWorks />
-      <CommonQuestions />
-      <Reviews />
-      <RelatedTests />
+      <DeliveryMethod />
+      <BoxAndHowItWorks />
+      <ReadingYourResult />
+      <BeforeYouTest />
+      <Questions />
+      <OtherTests />
+      <Compliance />
     </div>
   );
 }
@@ -293,22 +388,120 @@ function ProductHero() {
   );
 }
 
-function HowItWorks() {
+function DeliveryMethod() {
+  return (
+    <section className="container mt-10">
+      <div className="grid gap-3 sm:grid-cols-2">
+        {deliveryOptions.map((option) => (
+          <div
+            key={option.label}
+            className={cn(
+              'flex items-start gap-3 rounded-2xl border p-4',
+              option.selected
+                ? 'border-accent bg-accent-subtle border-2'
+                : 'border-border bg-card',
+            )}
+          >
+            <option.icon
+              className={cn(
+                'mt-0.5 size-5 shrink-0',
+                option.selected ? 'text-accent-deep' : 'text-muted-foreground',
+              )}
+            />
+            <div>
+              <p className="font-medium">{option.label}</p>
+              <p className="text-muted-foreground text-sm">{option.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function BoxAndHowItWorks() {
   return (
     <section className="section-padding border-y border-dashed bg-white/30">
+      <div className="container grid gap-12 lg:grid-cols-[280px_1fr] lg:gap-16">
+        <div>
+          <h2 className="text-2xl leading-tight tracking-tight">What&apos;s in the box</h2>
+          <ul className="divide-border border-border mt-6 divide-y border-y text-sm">
+            {boxContents.map((entry) => (
+              <li key={entry.item} className="flex items-center justify-between py-3">
+                <span>{entry.item}</span>
+                <span className="text-muted-foreground font-mono">{entry.qty}</span>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="#"
+            className="text-accent hover:text-accent-hover mt-4 inline-flex items-center gap-1.5 text-sm font-medium no-underline transition-colors"
+          >
+            <Download className="size-4" />
+            Download the instructions (PDF)
+          </Link>
+        </div>
+
+        <div>
+          <h2 className="text-2xl leading-tight tracking-tight">How it works</h2>
+          <div className="mt-6 grid gap-8 sm:grid-cols-3">
+            {howItWorks.map((step) => (
+              <div key={step.step}>
+                <div className="border-border bg-muted text-muted-foreground flex aspect-video items-center justify-center rounded-xl border border-dashed p-3 text-center text-xs leading-snug">
+                  {step.image}
+                </div>
+                <span className="bg-accent text-accent-foreground mt-4 flex size-7 items-center justify-center rounded-full text-xs font-medium">
+                  {step.step}
+                </span>
+                <h3 className="mt-3 text-base leading-tight tracking-tight">{step.title}</h3>
+                <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ResultStrip({ cLine, tLine }: { cLine: boolean; tLine: boolean }) {
+  return (
+    <div className="border-border bg-card flex size-14 shrink-0 flex-col items-start justify-center gap-2 rounded-lg border px-2.5 font-mono text-[0.6rem]">
+      <span className="flex items-center gap-1">
+        C {cLine && <span className="bg-accent-deep h-px w-3" />}
+      </span>
+      <span className="flex items-center gap-1">
+        T {tLine && <span className="bg-accent-deep h-px w-3" />}
+      </span>
+    </div>
+  );
+}
+
+function ReadingYourResult() {
+  return (
+    <section className="section-padding">
       <div className="container">
-        <h2 className="text-center text-3xl leading-none tracking-tighter md:text-4xl">
-          How it works
+        <h2 className="text-3xl leading-none tracking-tighter md:text-4xl">
+          Reading your result
         </h2>
-        <div className="mt-12 grid gap-10 text-center md:grid-cols-3 md:gap-8">
-          {howItWorks.map((step) => (
-            <div key={step.step} className="flex flex-col items-center">
-              <span className="bg-accent text-accent-foreground flex size-9 items-center justify-center rounded-full text-sm font-medium">
-                {step.step}
-              </span>
-              <h3 className="mt-4 text-lg leading-tight tracking-tight">{step.title}</h3>
-              <p className="text-muted-foreground mt-2 max-w-xs text-sm leading-relaxed">
-                {step.description}
+        <p className="text-muted-foreground mt-3 max-w-2xl text-sm leading-relaxed">
+          Look at the window on the test. C is the control line: it shows the test worked.
+          T is the test line.
+        </p>
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {resultCards.map((card) => (
+            <div key={card.label} className="bg-card border-border rounded-2xl border p-6">
+              <div className="flex items-start gap-4">
+                <ResultStrip cLine={card.cLine} tLine={card.tLine} />
+                <div>
+                  <h3 className="text-lg leading-tight tracking-tight">{card.label}</h3>
+                  <p className="text-muted-foreground mt-1 text-xs">{card.lead}</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
+                {card.description}
               </p>
             </div>
           ))}
@@ -318,14 +511,35 @@ function HowItWorks() {
   );
 }
 
-function CommonQuestions() {
+function BeforeYouTest() {
+  return (
+    <section className="section-padding border-y border-dashed bg-white/30">
+      <div className="container grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-16">
+        <div>
+          <h2 className="text-2xl leading-tight tracking-tight">Before you test</h2>
+          <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
+            Please read this. It helps you get a result you can trust.
+          </p>
+        </div>
+        <ul className="border-accent bg-accent-subtle grid gap-4 rounded-2xl border-2 border-dashed p-6 sm:grid-cols-2 md:p-8">
+          {beforeYouTestChecklist.map((entry) => (
+            <li key={entry.lead} className="text-sm leading-relaxed">
+              <span className="font-semibold">{entry.lead}</span>{' '}
+              <span className="text-muted-foreground">{entry.text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function Questions() {
   return (
     <section className="section-padding">
-      <div className="container max-w-2xl">
-        <h2 className="text-center text-3xl leading-none tracking-tighter md:text-4xl">
-          Common questions
-        </h2>
-        <Accordion type="single" collapsible defaultValue={faqs[0].id} className="mt-10">
+      <div className="container max-w-3xl">
+        <h2 className="text-3xl leading-none tracking-tighter md:text-4xl">Questions</h2>
+        <Accordion type="single" collapsible defaultValue={faqs[0].id} className="mt-8">
           {faqs.map((faq) => (
             <AccordionItem key={faq.id} value={faq.id}>
               <AccordionTrigger>{faq.question}</AccordionTrigger>
@@ -340,46 +554,7 @@ function CommonQuestions() {
   );
 }
 
-function Reviews() {
-  return (
-    <section className="section-padding border-border border-t pt-16">
-      <div className="container">
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-3xl leading-none tracking-tighter md:text-4xl">
-            What customers say
-          </h2>
-          <Link
-            href="#"
-            className="text-accent hover:text-accent-hover inline-flex items-center gap-1 text-sm font-medium no-underline transition-colors"
-          >
-            See all {product.rating.count} reviews
-            <span aria-hidden>&rarr;</span>
-          </Link>
-        </div>
-        <div className="grid gap-5 md:grid-cols-2">
-          {reviews.map((review, index) => (
-            <div
-              key={index}
-              className="bg-card border-border rounded-2xl border p-6 shadow-sm"
-            >
-              <div className="flex items-center gap-0.5">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="text-accent-deep fill-accent-deep size-3.5" />
-                ))}
-              </div>
-              <p className="text-muted-foreground mt-3 text-sm leading-relaxed italic">
-                &ldquo;{review.quote}&rdquo;
-              </p>
-              <p className="text-muted-foreground mt-3 text-xs">{review.author}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function RelatedTests() {
+function OtherTests() {
   return (
     <section className="section-padding border-border border-t">
       <div className="container">
@@ -388,7 +563,7 @@ function RelatedTests() {
             More tests
           </span>
           <h2 className="text-4xl leading-none tracking-tighter md:text-5xl">
-            Explore the range
+            Other tests
           </h2>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
@@ -442,6 +617,32 @@ function RelatedTests() {
               </div>
             </article>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Compliance() {
+  return (
+    <section className="pb-16">
+      <div className="container">
+        <div className="bg-card border-border flex flex-col gap-4 rounded-2xl border p-6 sm:flex-row sm:items-center md:p-8">
+          <div className="border-border text-muted-foreground flex aspect-square w-16 shrink-0 flex-col items-center justify-center rounded-lg border border-dashed p-2 text-center text-[0.6rem] leading-tight">
+            [CE / UKCA mark + number]
+          </div>
+          <div className="text-sm">
+            <p className="font-medium">
+              In vitro diagnostic medical device for self-testing
+            </p>
+            <p className="text-muted-foreground mt-1">
+              Manufacturer: [NAME, ADDRESS] &middot; UK Responsible Person: [NAME, ADDRESS]
+              &middot; MHRA registration: [NUMBER]
+            </p>
+            <p className="text-muted-foreground mt-1">
+              Free, confidential testing is also available from NHS sexual health services.
+            </p>
+          </div>
         </div>
       </div>
     </section>
