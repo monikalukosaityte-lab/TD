@@ -3,11 +3,9 @@ import {
   Camera,
   Clock,
   Download,
-  Home,
   Lock,
   ShieldCheck,
   Star,
-  Truck,
   User,
 } from 'lucide-react';
 import Image from 'next/image';
@@ -72,17 +70,6 @@ const privacyFeatures = [
     icon: ShieldCheck,
     title: 'Take control',
     description: 'Get the clarity you deserve',
-  },
-] as const;
-
-const deliveryFeatures = [
-  {
-    icon: Truck,
-    title: 'Plain, unbranded packaging',
-  },
-  {
-    icon: Home,
-    title: 'No one needs to know',
   },
 ] as const;
 
@@ -433,17 +420,9 @@ function PrivacyReassurance() {
               ))}
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
-              {deliveryFeatures.map((feature) => (
-                <span
-                  key={feature.title}
-                  className="text-muted-foreground flex items-center gap-2 text-sm"
-                >
-                  <feature.icon className="size-4" />
-                  {feature.title}
-                </span>
-              ))}
-            </div>
+            <Button variant="brand-deep" size="lg" className="mt-8 w-full sm:w-auto">
+              Get my test - {product.price.current}
+            </Button>
           </div>
         </div>
       </div>
