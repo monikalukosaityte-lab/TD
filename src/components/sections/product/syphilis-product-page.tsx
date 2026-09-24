@@ -412,9 +412,9 @@ function PrivacyReassurance() {
           </div>
           <div className="p-8 md:p-12">
             <h2 className="text-3xl leading-tight tracking-tighter md:text-4xl">
-              Your health.
+              Your health, your privacy.
               <br />
-              Your privacy.
+              No one needs to know.
             </h2>
             <p className="text-muted-foreground mt-4 max-w-md text-sm leading-relaxed">
               Your kit arrives in plain packaging with no mention of syphilis. Test at
