@@ -3,7 +3,7 @@ export const STORE_LINKS = {
   googlePlay: { href: '#', label: 'Get it on Google Play' },
 } as const;
 
-export const CONTACT_EMAIL = 'hello@stdtestkit.co.uk';
+export const CONTACT_EMAIL = 'hello@stitestkit.co.uk';
 
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },

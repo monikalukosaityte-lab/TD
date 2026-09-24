@@ -1,5 +1,6 @@
 import rehypeShiki from '@shikijs/rehype';
 import { MDXComponents } from 'mdx/types';
+import type { Metadata } from 'next';
 import Image, { ImageProps } from 'next/image';
 import { notFound } from 'next/navigation';
 import { compileMDX } from 'next-mdx-remote/rsc';
@@ -65,27 +66,31 @@ const mdxComponents: MDXComponents = {
   Lead,
 };
 
-const TOC_ITEMS = [
-  { label: 'Key takeaways', id: 'key-takeaways' },
-  { label: 'How testing works', id: 'how-does-an-sti-test-work' },
-  { label: 'What it checks for', id: 'what-does-an-sti-test-check-for' },
-  { label: 'When to test', id: 'how-soon-after-sex-should-i-test' },
-  { label: 'Result times', id: 'how-long-do-results-take' },
-  {
-    label: 'If you test positive',
-    id: 'what-happens-if-my-result-is-positive',
-  },
-  { label: 'Cost & availability', id: 'is-sti-testing-free-in-the-uk' },
-  { label: 'Accuracy', id: 'are-home-sti-test-kits-accurate' },
-  { label: 'FAQs', id: 'frequently-asked-questions' },
-] as const;
-
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const slugs = await getArticleSlugs();
   return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
+
+  if (!article) return {};
+
+  return {
+    title: {
+      absolute: article.frontmatter.metaTitle ?? article.frontmatter.title,
+    },
+    description:
+      article.frontmatter.metaDescription ?? article.frontmatter.description,
+  };
 }
 
 export default async function ArticlePage({
@@ -103,8 +108,6 @@ export default async function ArticlePage({
     notFound();
   }
 
-  const currentIndex = allArticles.findIndex((a) => a.slug === slug);
-  const nextArticle = allArticles[currentIndex + 1] || allArticles[0];
   const otherArticles = allArticles.filter((a) => a.slug !== slug);
 
   const { content } = await compileMDX<ArticleFrontmatter>({
@@ -137,14 +140,13 @@ export default async function ArticlePage({
           description={article.frontmatter.description}
           date={article.frontmatter.date}
           image={article.frontmatter.image}
-          nextSlug={nextArticle?.slug !== slug ? nextArticle?.slug : undefined}
         >
           {/* Article body */}
           <div className="grid gap-8 lg:grid-cols-[1fr_220px] lg:gap-12">
             <div className="prose prose-base prose-neutral dark:prose-invert prose-a:text-accent prose-a:underline prose-li:marker:text-foreground max-w-none [&>h2]:mt-14 [&>h2]:text-2xl [&>h2]:leading-tight [&>h2]:tracking-tight [&>h2:first-child]:mt-0 [&>p]:text-muted-foreground [&>ul]:mt-4 [&>ul]:text-muted-foreground [&>p+p]:mt-4">
               {content}
             </div>
-            <TableOfContents items={TOC_ITEMS} />
+            <TableOfContents items={article.frontmatter.toc ?? []} />
           </div>
         </ArticleHero>
       </article>
