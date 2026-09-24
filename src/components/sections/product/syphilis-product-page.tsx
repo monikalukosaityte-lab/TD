@@ -391,7 +391,7 @@ function ProductHero() {
 
 function PrivacyReassurance() {
   return (
-    <section className="section-padding">
+    <section className="py-8 md:py-12 lg:py-16">
       <div className="container">
         <div className="bg-card border-border grid overflow-hidden rounded-3xl border lg:grid-cols-[420px_1fr]">
           <div className="border-border bg-muted text-muted-foreground flex aspect-4/3 items-center justify-center border-b p-4 text-center text-xs lg:aspect-auto lg:border-r lg:border-b-0">
@@ -432,7 +432,7 @@ function PrivacyReassurance() {
 
 function BoxAndHowItWorks() {
   return (
-    <section className="section-padding border-y border-dashed bg-white/30">
+    <section className="py-8 md:py-12 lg:py-16 border-y border-dashed bg-white/30">
       <div className="container grid gap-12 lg:grid-cols-[280px_1fr] lg:gap-16">
         <div>
           <h2 className="text-2xl leading-tight tracking-tight">What&apos;s in the box</h2>
@@ -492,7 +492,7 @@ function ResultStrip({ cLine, tLine }: { cLine: boolean; tLine: boolean }) {
 
 function ReadingYourResult() {
   return (
-    <section className="section-padding">
+    <section className="py-8 md:py-12 lg:py-16">
       <div className="container">
         <h2 className="text-3xl leading-none tracking-tighter md:text-4xl">
           Reading your result
@@ -524,7 +524,7 @@ function ReadingYourResult() {
 
 function BeforeYouTest() {
   return (
-    <section className="section-padding border-y border-dashed bg-white/30">
+    <section className="py-8 md:py-12 lg:py-16 border-y border-dashed bg-white/30">
       <div className="container grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-16">
         <div>
           <h2 className="text-2xl leading-tight tracking-tight">Before you test</h2>
@@ -547,7 +547,7 @@ function BeforeYouTest() {
 
 function Questions() {
   return (
-    <section className="section-padding">
+    <section className="py-8 md:py-12 lg:py-16">
       <div className="container max-w-3xl">
         <h2 className="text-3xl leading-none tracking-tighter md:text-4xl">Questions</h2>
         <Accordion type="single" collapsible defaultValue={faqs[0].id} className="mt-8">
@@ -567,7 +567,7 @@ function Questions() {
 
 function OtherTests() {
   return (
-    <section className="section-padding border-border border-t">
+    <section className="py-8 md:py-12 lg:py-16 border-border border-t">
       <div className="container">
         <div className="mb-10">
           <span className="text-accent mb-4 block font-mono text-[0.68rem] tracking-[0.18em] uppercase">
