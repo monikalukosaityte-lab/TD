@@ -408,11 +408,13 @@ function PrivacyReassurance() {
               home, at a time that suits you, on your own terms.
             </p>
 
-            <div className="border-border sm:divide-border mt-6 grid gap-6 border-t pt-6 sm:grid-cols-3 sm:gap-0 sm:divide-x">
+            <div className="border-border sm:divide-border mt-6 grid gap-4 border-t pt-6 sm:grid-cols-3 sm:gap-0 sm:divide-x">
               {privacyFeatures.map((feature) => (
                 <div key={feature.title} className="min-w-0 sm:px-4 sm:first:pl-0">
-                  <feature.icon className="text-muted-foreground size-5" />
-                  <p className="mt-3 text-sm font-semibold sm:min-h-10">{feature.title}</p>
+                  <div className="flex items-center gap-2">
+                    <feature.icon className="text-muted-foreground size-5 shrink-0" />
+                    <p className="text-sm font-semibold">{feature.title}</p>
+                  </div>
                   <p className="text-muted-foreground mt-1 text-xs leading-relaxed">
                     {feature.description}
                   </p>
