@@ -74,12 +74,13 @@ const privacyFeatures = [
 ] as const;
 
 const boxContents = [
-  { item: 'Test cassette', qty: '×1' },
-  { item: 'Safety lancet', qty: '×1' },
-  { item: 'Alcohol wipe', qty: '×1' },
-  { item: 'Blood dropper', qty: '×1' },
-  { item: 'Buffer solution', qty: '×1' },
-  { item: 'Instructions leaflet', qty: '×1' },
+  { item: 'Test pad', qty: '×1' },
+  { item: 'Pipette', qty: '×1' },
+  { item: 'Instructions for use', qty: '×1' },
+  { item: 'Sample diluent', qty: '×1' },
+  { item: 'Medical waste bag', qty: '×1' },
+  { item: 'Disposable lancet', qty: '×1' },
+  { item: 'Alcohol pad', qty: '×2' },
 ] as const;
 
 const howItWorks = [
