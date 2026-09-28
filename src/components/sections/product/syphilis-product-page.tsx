@@ -1,7 +1,9 @@
 import {
+  AlertCircle,
   ArrowLeft,
   Camera,
   Clock,
+  History,
   Lock,
   ShieldCheck,
   Star,
@@ -133,19 +135,23 @@ const resultCards = [
 
 const beforeYouTestChecklist = [
   {
-    lead: 'Timing:',
-    text: 'it can take up to 12 weeks after sex for the test to pick up syphilis.',
+    icon: Clock,
+    lead: 'Wait for the right time.',
+    text: 'It can take up to 12 weeks after sex for the test to pick up syphilis.',
   },
   {
+    icon: History,
     lead: 'Had syphilis before?',
     text: 'This test can stay positive even after treatment. Go to a sexual health clinic instead.',
   },
   {
-    lead: 'Got symptoms,',
-    text: 'like a painless sore or a rash? See a clinic, even if your test is negative.',
+    icon: AlertCircle,
+    lead: 'Got symptoms?',
+    text: 'Like a painless sore or a rash? See a clinic, even if your test is negative.',
   },
   {
-    lead: 'For adults aged [16/18]+.',
+    icon: User,
+    lead: 'Adults aged [16/18]+.',
     text: 'This test does not replace advice from a doctor or nurse.',
   },
 ] as const;
@@ -520,21 +526,28 @@ function ReadingYourResult() {
 function BeforeYouTest() {
   return (
     <section className="py-8 md:py-12 lg:py-16 border-y border-dashed bg-white/30">
-      <div className="container grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-16">
-        <div>
-          <h2 className="text-2xl leading-tight tracking-tight">Before you test</h2>
-          <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
-            Please read this. It helps you get a result you can trust.
-          </p>
+      <div className="container">
+        <div className="bg-muted rounded-3xl p-6 md:p-10">
+          <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:items-start lg:gap-16">
+            <div>
+              <h2 className="text-2xl leading-tight tracking-tight">Before you test</h2>
+              <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
+                Please read this first. It helps you get a result you can trust.
+              </p>
+            </div>
+            <div className="bg-card divide-border divide-y rounded-2xl px-6">
+              {beforeYouTestChecklist.map((entry) => (
+                <div key={entry.lead} className="flex items-start gap-3 py-5">
+                  <entry.icon className="text-muted-foreground mt-0.5 size-4 shrink-0" />
+                  <p className="text-sm leading-relaxed">
+                    <span className="font-semibold">{entry.lead}</span>{' '}
+                    <span className="text-muted-foreground">{entry.text}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <ul className="border-accent bg-accent-subtle grid gap-4 rounded-2xl border-2 border-dashed p-6 sm:grid-cols-2 md:p-8">
-          {beforeYouTestChecklist.map((entry) => (
-            <li key={entry.lead} className="text-sm leading-relaxed">
-              <span className="font-semibold">{entry.lead}</span>{' '}
-              <span className="text-muted-foreground">{entry.text}</span>
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
