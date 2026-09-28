@@ -527,11 +527,13 @@ function BeforeYouTest() {
   return (
     <section className="py-8 md:py-12 lg:py-16 border-y border-dashed bg-white/30">
       <div className="container">
-        <div className="bg-accent-subtle rounded-3xl p-6 md:p-10">
+        <div className="bg-accent rounded-3xl p-6 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:items-start lg:gap-16">
             <div>
-              <h2 className="text-2xl leading-tight tracking-tight">Before you test</h2>
-              <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
+              <h2 className="text-accent-foreground text-2xl leading-tight tracking-tight">
+                Before you test
+              </h2>
+              <p className="text-accent-foreground/80 mt-3 text-sm leading-relaxed">
                 Please read this first. It helps you get a result you can trust.
               </p>
             </div>
