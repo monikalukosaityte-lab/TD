@@ -2,7 +2,6 @@ import {
   ArrowLeft,
   Camera,
   Clock,
-  Download,
   Lock,
   ShieldCheck,
   Star,
@@ -447,13 +446,6 @@ function BoxAndHowItWorks() {
               </li>
             ))}
           </ul>
-          <Link
-            href="#"
-            className="text-accent hover:text-accent-hover mt-4 inline-flex items-center gap-1.5 text-sm font-medium no-underline transition-colors"
-          >
-            <Download className="size-4" />
-            Download the instructions (PDF)
-          </Link>
         </div>
 
         <div>
@@ -461,12 +453,12 @@ function BoxAndHowItWorks() {
           <div className="mt-6 grid gap-8 sm:grid-cols-3">
             {howItWorks.map((step) => (
               <div key={step.step}>
-                <div className="border-border bg-muted text-muted-foreground flex aspect-video items-center justify-center rounded-xl border border-dashed p-3 text-center text-xs leading-snug">
-                  {step.image}
-                </div>
-                <span className="bg-accent text-accent-foreground mt-4 flex size-7 items-center justify-center rounded-full text-xs font-medium">
+                <span className="bg-accent text-accent-foreground flex size-7 items-center justify-center rounded-full text-xs font-medium">
                   {step.step}
                 </span>
+                <div className="border-border bg-muted text-muted-foreground mt-4 flex aspect-video items-center justify-center rounded-xl border border-dashed p-3 text-center text-xs leading-snug">
+                  {step.image}
+                </div>
                 <h3 className="mt-3 text-base leading-tight tracking-tight">{step.title}</h3>
                 <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
                   {step.description}
