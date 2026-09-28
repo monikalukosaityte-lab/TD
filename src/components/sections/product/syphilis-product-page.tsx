@@ -456,13 +456,13 @@ function BoxAndHowItWorks() {
                 <span className="bg-accent text-accent-foreground flex size-7 items-center justify-center rounded-full text-xs font-medium">
                   {step.step}
                 </span>
-                <div className="border-border bg-muted text-muted-foreground mt-4 flex aspect-video items-center justify-center rounded-xl border border-dashed p-3 text-center text-xs leading-snug">
-                  {step.image}
-                </div>
                 <h3 className="mt-3 text-base leading-tight tracking-tight">{step.title}</h3>
                 <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
                   {step.description}
                 </p>
+                <div className="border-border bg-muted text-muted-foreground mt-4 flex aspect-video items-center justify-center rounded-xl border border-dashed p-3 text-center text-xs leading-snug">
+                  {step.image}
+                </div>
               </div>
             ))}
           </div>
