@@ -378,7 +378,6 @@ export function SyphilisProductPage() {
       <BeforeYouTest />
       <Questions />
       <OtherTests />
-      <Compliance />
     </div>
   );
 }
@@ -849,28 +848,3 @@ function OtherTests() {
   );
 }
 
-function Compliance() {
-  return (
-    <section className="pb-16">
-      <div className="container">
-        <div className="bg-card border-border flex flex-col gap-4 rounded-2xl border p-6 sm:flex-row sm:items-center md:p-8">
-          <div className="border-border text-muted-foreground flex aspect-square w-16 shrink-0 flex-col items-center justify-center rounded-lg border border-dashed p-2 text-center text-[0.6rem] leading-tight">
-            [CE / UKCA mark + number]
-          </div>
-          <div className="text-sm">
-            <p className="font-medium">
-              In vitro diagnostic medical device for self-testing
-            </p>
-            <p className="text-muted-foreground mt-1">
-              Manufacturer: [NAME, ADDRESS] &middot; UK Responsible Person: [NAME, ADDRESS]
-              &middot; MHRA registration: [NUMBER]
-            </p>
-            <p className="text-muted-foreground mt-1">
-              Free, confidential testing is also available from NHS sexual health services.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
