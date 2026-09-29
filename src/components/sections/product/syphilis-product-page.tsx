@@ -547,10 +547,12 @@ function BoxAndHowItWorks() {
           <div className="mt-6 grid gap-8 sm:grid-cols-3">
             {howItWorks.map((step) => (
               <div key={step.step}>
-                <span className="bg-accent text-accent-foreground flex size-7 items-center justify-center rounded-full text-xs font-medium">
-                  {step.step}
-                </span>
-                <h3 className="mt-3 text-base leading-tight tracking-tight">{step.title}</h3>
+                <div className="flex items-center gap-2.5">
+                  <span className="bg-accent text-accent-foreground flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-medium">
+                    {step.step}
+                  </span>
+                  <h3 className="text-base leading-tight tracking-tight">{step.title}</h3>
+                </div>
                 <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
                   {step.description}
                 </p>
