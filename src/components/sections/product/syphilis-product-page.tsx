@@ -4,6 +4,7 @@ import {
   AlertCircle,
   ArrowLeft,
   Camera,
+  Check,
   Clock,
   History,
   Lock,
@@ -51,6 +52,29 @@ const product = {
     'Order by 2pm, ships today',
   ],
 } as const;
+
+const bundleOption = {
+  price: {
+    current: '£59.95',
+    compareLabel: '£86.75 if bought separately',
+    save: 'Save £26.80',
+  },
+  infections: [
+    'Syphilis',
+    'HIV',
+    'Chlamydia',
+    'Gonorrhoea',
+    'Hepatitis B',
+    'Hepatitis C',
+    'Genital herpes (HSV-2)',
+  ],
+  description: '5 rapid test kits in one plain parcel. About £8.56 per infection.',
+} as const;
+
+const heroOptions = [
+  { id: 'single', label: 'Syphilis only', price: product.price.current },
+  { id: 'bundle', label: '7-in-1 bundle', price: bundleOption.price.current },
+] as const;
 
 const privacyFeatures = [
   {
@@ -293,6 +317,10 @@ export function SyphilisProductPage() {
 }
 
 function ProductHero() {
+  const [selectedOption, setSelectedOption] =
+    useState<(typeof heroOptions)[number]['id']>('single');
+  const isBundle = selectedOption === 'bundle';
+
   return (
     <section className="hero-padding">
       <div className="container">
@@ -344,39 +372,98 @@ function ProductHero() {
               <span className="text-muted-foreground">{product.reassurance.text}</span>
             </p>
 
-            <div className="mt-6 flex items-baseline gap-3">
-              <span className="text-3xl tracking-tight">{product.price.current}</span>
-              <span className="text-muted-foreground text-lg line-through">
-                {product.price.original}
-              </span>
-              <span className="bg-accent-muted text-foreground inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
-                {product.price.save}
-              </span>
-            </div>
-
-            <div className="mt-5 flex flex-wrap gap-2">
-              {product.features.map((feature) => (
-                <span
-                  key={feature.label}
-                  className="border-border bg-card text-muted-foreground inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium"
+            <div className="bg-muted mt-6 flex rounded-full p-1">
+              {heroOptions.map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => setSelectedOption(option.id)}
+                  className={cn(
+                    'flex-1 cursor-pointer rounded-full px-4 py-2.5 text-center text-sm font-medium transition-colors',
+                    selectedOption === option.id
+                      ? 'bg-card text-foreground shadow-sm'
+                      : 'text-muted-foreground hover:text-foreground',
+                  )}
                 >
-                  <feature.icon className="text-accent size-3.5" />
-                  {feature.label}
-                </span>
+                  {option.label} &middot; {option.price}
+                </button>
               ))}
             </div>
 
-            <dl className="divide-border border-border mt-6 divide-y border-y text-sm">
-              {product.specs.map((spec) => (
-                <div key={spec.label} className="flex justify-between gap-4 py-3">
-                  <dt className="text-muted-foreground shrink-0">{spec.label}</dt>
-                  <dd className="text-right font-medium">{spec.value}</dd>
+            {isBundle ? (
+              <div className="mt-6 flex flex-wrap items-baseline gap-3">
+                <span className="text-3xl tracking-tight">{bundleOption.price.current}</span>
+                <span className="text-muted-foreground text-lg">
+                  {bundleOption.price.compareLabel}
+                </span>
+                <span className="bg-accent-muted text-foreground inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+                  {bundleOption.price.save}
+                </span>
+              </div>
+            ) : (
+              <div className="mt-6 flex items-baseline gap-3">
+                <span className="text-3xl tracking-tight">{product.price.current}</span>
+                <span className="text-muted-foreground text-lg line-through">
+                  {product.price.original}
+                </span>
+                <span className="bg-accent-muted text-foreground inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+                  {product.price.save}
+                </span>
+              </div>
+            )}
+
+            {isBundle ? (
+              <div className="mt-5">
+                <p className="text-sm font-medium">Your bundle tests for:</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {bundleOption.infections.map((infection) => (
+                    <span
+                      key={infection}
+                      className={cn(
+                        'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium',
+                        infection === 'Syphilis'
+                          ? 'bg-foreground text-background'
+                          : 'border-border bg-card text-muted-foreground border',
+                      )}
+                    >
+                      {infection === 'Syphilis' && <Check className="size-3.5" />}
+                      {infection}
+                    </span>
+                  ))}
                 </div>
-              ))}
-            </dl>
+                <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
+                  {bundleOption.description}
+                </p>
+              </div>
+            ) : (
+              <>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {product.features.map((feature) => (
+                    <span
+                      key={feature.label}
+                      className="border-border bg-card text-muted-foreground inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium"
+                    >
+                      <feature.icon className="text-accent size-3.5" />
+                      {feature.label}
+                    </span>
+                  ))}
+                </div>
+
+                <dl className="divide-border border-border mt-6 divide-y border-y text-sm">
+                  {product.specs.map((spec) => (
+                    <div key={spec.label} className="flex justify-between gap-4 py-3">
+                      <dt className="text-muted-foreground shrink-0">{spec.label}</dt>
+                      <dd className="text-right font-medium">{spec.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </>
+            )}
 
             <Button variant="brand-deep" size="lg" className="mt-6 w-full">
-              Get my test - {product.price.current}
+              {isBundle
+                ? `Get my 7-in-1 bundle - ${bundleOption.price.current}`
+                : `Get my test - ${product.price.current}`}
             </Button>
 
             <p className="text-muted-foreground mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-xs">
