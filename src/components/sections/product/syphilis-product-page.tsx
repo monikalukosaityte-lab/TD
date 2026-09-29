@@ -440,7 +440,7 @@ function PrivacyReassurance() {
 
 function BoxAndHowItWorks() {
   return (
-    <section className="py-8 md:py-12 lg:py-16 border-y border-dashed bg-white/30">
+    <section className="py-8 md:py-12 lg:py-16 bg-white/30">
       <div className="container grid gap-12 lg:grid-cols-[280px_1fr] lg:gap-16">
         <div>
           <h2 className="text-2xl leading-tight tracking-tight">What&apos;s in the box</h2>
@@ -525,7 +525,7 @@ function ReadingYourResult() {
 
 function BeforeYouTest() {
   return (
-    <section className="py-8 md:py-12 lg:py-16 border-y border-dashed bg-white/30">
+    <section className="py-8 md:py-12 lg:py-16 bg-white/30">
       <div className="container">
         <div className="bg-accent rounded-3xl p-6 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:items-start lg:gap-16">
