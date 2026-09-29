@@ -328,8 +328,8 @@ function ProductHero() {
           </div>
 
           <div>
-            <span className="text-accent mb-2 block font-mono text-[0.68rem] tracking-[0.18em] uppercase">
-              Test Discreet
+            <span className="text-muted-foreground mb-2 block text-sm">
+              STI Test Kit
             </span>
             <h1 className="text-4xl leading-none tracking-tighter md:text-5xl">
               {product.name}
