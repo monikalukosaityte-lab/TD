@@ -180,32 +180,80 @@ const faqs = [
   {
     id: 'accuracy',
     question: 'How accurate is the test?',
-    answer:
-      "*In the manufacturer's studies it found [XX.X]% of positive samples (sensitivity) and correctly cleared [XX.X]% of negative samples (specificity). Full details are in the instructions leaflet.",
+    answer: [
+      "In the manufacturer's studies, this syphilis rapid test correctly found [XX.X]% of positive samples (sensitivity) and correctly identified [XX.X]% of negative samples (specificity). For the most reliable result, follow the instructions carefully and read the result at 15 minutes.",
+    ],
   },
   {
     id: 'when-to-test',
     question: 'When should I take the test?',
-    answer:
-      "Test from 3 to 6 weeks after a possible exposure, and again at 12 weeks to be sure. Testing too early can miss an infection that hasn't reached detectable levels yet.",
+    answer: [
+      'Syphilis antibodies usually show up 3–6 weeks after exposure, but it can take up to 12 weeks. If you test before 12 weeks and get a negative result, test again at 12 weeks to be sure.',
+    ],
   },
   {
     id: 'positive-result',
     question: 'What if my result is positive?',
-    answer:
-      "Take your result to your GP or a sexual health clinic as soon as possible. They'll confirm it with a further test and can start treatment, usually a course of antibiotics.",
+    answer: [
+      "Don't panic. Syphilis is common and treatable. A positive home result needs to be confirmed at a sexual health clinic, where they'll do a lab blood test and give you antibiotics if needed. NHS sexual health services are free and confidential. It's also important to let recent partners know so they can get tested.",
+    ],
   },
   {
     id: 'discretion',
     question: 'Will anyone know what I ordered?',
-    answer:
-      'No. Your order arrives in plain, unbranded packaging with no mention of the contents on the outside or on your bank statement.',
+    answer: [
+      'No. Your syphilis test kit arrives in a plain, unbranded parcel with nothing on the outside about what\'s inside. Your bank statement shows "[STATEMENT NAME]". You can also collect it from a local Evri ParcelShop instead of home delivery.',
+    ],
   },
   {
     id: 'returns',
     question: 'Can I return it?',
-    answer:
-      "[Add your returns policy here, e.g. unopened kits can be returned within 30 days; opened test kits can't be returned for hygiene reasons.]",
+    answer: [
+      "For health and hygiene reasons, we can't accept returns of opened tests. Unopened tests in their original sealed packaging can be returned within [14] days. See our returns policy.",
+    ],
+  },
+  {
+    id: 'how-soon',
+    question: 'How soon after sex can I test for syphilis?',
+    answer: [
+      'You can test from about 3–6 weeks after possible exposure. A result is most reliable from 12 weeks. Testing too early may give a negative result even if you have the infection.',
+    ],
+  },
+  {
+    id: 'reliable',
+    question: 'Is a home syphilis test reliable?',
+    answer: [
+      "Yes, when used correctly. This is a CE-marked rapid test approved for self-testing. Like all tests, it isn't perfect, so any positive result should be confirmed at a clinic, and anyone with symptoms should see a healthcare professional.",
+    ],
+  },
+  {
+    id: 'pregnant',
+    question: "Can I use this test if I'm pregnant?",
+    answer: [
+      "All pregnant people in the UK are offered a free syphilis blood test as part of NHS antenatal care. If you're pregnant and worried about syphilis, please speak to your midwife, GP or a sexual health clinic rather than relying on a home test.",
+    ],
+  },
+  {
+    id: 'what-is-syphilis',
+    question: 'What is syphilis?',
+    answer: [
+      'Syphilis is a sexually transmitted infection (STI) caused by bacteria. It spreads through vaginal, anal or oral sex, and through close skin-to-skin contact with a syphilis sore. It can also pass from a pregnant person to their baby.',
+      "The first sign is often a small, painless sore where the infection entered the body, usually around 3 weeks after contact. Because it doesn't hurt, it's easy to miss. Later, some people get a rash (often on the palms of the hands or soles of the feet) or flu-like symptoms. Many people have no symptoms at all.",
+      'The good news: syphilis is treated with antibiotics. Without treatment it can cause serious health problems years later, which is why testing matters. Syphilis diagnoses in England have risen sharply in recent years.',
+    ],
+  },
+  {
+    id: 'who-should-test',
+    question: 'Who should take a syphilis test?',
+    answer: ['Consider a home syphilis test if:'],
+    list: [
+      "you've had sex with a new partner, or more than one partner",
+      'a partner has told you they have syphilis or another STI',
+      'you had sex without a condom',
+      "you're a man who has sex with men. UK guidance recommends regular STI testing.",
+      'you just want peace of mind as part of looking after your sexual health',
+    ],
+    note: "Got symptoms, like a sore or a rash? Please visit a sexual health clinic, even if your home test is negative.",
   },
 ] as const;
 
@@ -582,7 +630,9 @@ function BoxAndHowItWorks() {
         </div>
 
         <div>
-          <h2 className="text-2xl leading-tight tracking-tight">How it works</h2>
+          <h2 className="text-2xl leading-tight tracking-tight">
+            How the syphilis home test works
+          </h2>
           <div className="mt-6 grid gap-8 sm:grid-cols-3">
             {howItWorks.map((step) => (
               <div key={step.step}>
@@ -625,7 +675,7 @@ function ReadingYourResult() {
     <section className="py-8 md:py-12 lg:py-16">
       <div className="container">
         <h2 className="text-3xl leading-none tracking-tighter md:text-4xl">
-          Reading your result
+          Reading your syphilis test result
         </h2>
         <p className="text-muted-foreground mt-3 max-w-2xl text-sm leading-relaxed">
           Look at the window on the test. C is the control line: it shows the test worked.
@@ -688,13 +738,29 @@ function Questions() {
   return (
     <section className="py-8 md:py-12 lg:py-16">
       <div className="container max-w-3xl">
-        <h2 className="text-3xl leading-none tracking-tighter md:text-4xl">Questions</h2>
+        <h2 className="text-3xl leading-none tracking-tighter md:text-4xl">
+          Syphilis test FAQs
+        </h2>
         <Accordion type="single" collapsible defaultValue={faqs[0].id} className="mt-8">
           {faqs.map((faq) => (
             <AccordionItem key={faq.id} value={faq.id}>
               <AccordionTrigger>{faq.question}</AccordionTrigger>
               <AccordionContent>
-                <p className="text-muted-foreground">{faq.answer}</p>
+                {faq.answer.map((paragraph) => (
+                  <p key={paragraph} className="text-muted-foreground">
+                    {paragraph}
+                  </p>
+                ))}
+                {'list' in faq && (
+                  <ul className="text-muted-foreground mt-2 mb-4 list-disc space-y-1 pl-5">
+                    {faq.list.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+                {'note' in faq && (
+                  <p className="text-muted-foreground">{faq.note}</p>
+                )}
               </AccordionContent>
             </AccordionItem>
           ))}
