@@ -6,7 +6,6 @@ import {
   History,
   Lock,
   ShieldCheck,
-  Star,
   User,
 } from 'lucide-react';
 import Image from 'next/image';
@@ -18,14 +17,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-
-const CARD_GRADIENTS = [
-  'linear-gradient(135deg, rgba(133,146,131,0.28), rgba(244,236,220,0.75))',
-  'linear-gradient(135deg, rgba(133,146,131,0.3), rgba(235,234,224,0.8))',
-  'linear-gradient(135deg, rgba(224,207,171,0.3), rgba(133,146,131,0.24))',
-] as const;
+import { cn } from '@/lib/utils';
 
 const product = {
   name: 'Rapid Syphilis Test',
@@ -189,65 +182,36 @@ const faqs = [
   },
 ] as const;
 
-const relatedTests = [
+const testFilters = ['All tests', 'Bundles', 'Single STI tests', "Men's health"] as const;
+
+const otherTests = [
   {
-    name: '7-in-1 STI Test Bundle',
+    name: '7-in-1 Bundle',
     badge: 'Best value',
-    rating: { value: 4.9, count: 327 },
-    detects: 'Five kits covering seven infections.',
-    price: { current: '£59.95', original: '£86.75' },
-    image: null,
+    description: '7 tests, includes syphilis',
+    price: '£59.95',
+    image: '[7-in-1 Bundle box]',
   },
   {
     name: 'Core 4 Bundle',
-    badge: 'Most popular',
-    rating: { value: 4.9, count: 214 },
-    detects: 'Chlamydia, gonorrhoea, HIV and syphilis in three kits.',
-    price: { current: '£39.95', original: '£50.85' },
-    image: null,
+    badge: null,
+    description: '4 tests, includes syphilis',
+    price: '£39.95',
+    image: '[Core 4 Bundle box]',
   },
   {
-    name: 'Chlamydia & Gonorrhoea Test',
+    name: 'HIV 1/2',
     badge: null,
-    rating: { value: 4.8, count: 296 },
-    detects: "The UK's two most common bacterial STIs in one test.",
-    price: { current: '£17.95', original: '£24.95' },
-    image: null,
+    description: 'Single rapid test',
+    price: '£17.95',
+    image: '[HIV 1/2 box]',
   },
   {
-    name: 'HIV 1/2 Test',
+    name: 'Chlamydia & Gonorrhoea',
     badge: null,
-    rating: { value: 4.9, count: 348 },
-    detects: 'Antibodies to HIV-1 and HIV-2.',
-    price: { current: '£17.95', original: '£24.95' },
-    image: null,
-  },
-  {
-    name: 'HSV-2 Genital Herpes Test',
-    badge: null,
-    rating: { value: 4.8, count: 176 },
-    detects: 'IgM antibodies to herpes simplex virus type 2.',
-    price: { current: '£17.95', original: '£24.95' },
-    image: null,
-  },
-  {
-    name: 'Hepatitis B & C Test',
-    badge: null,
-    rating: { value: 4.9, count: 142 },
-    detects: 'Hepatitis B surface antigen and hepatitis C antibodies.',
-    price: { current: '£17.95', original: '£24.95' },
-    image: null,
-  },
-  {
-    name: 'PSA Prostate Test',
-    badge: null,
-    rating: { value: 4.8, count: 231 },
-    detects: 'Prostate-specific antigen at or above 4 ng/mL.',
-    price: { current: '£17.95', original: '£24.95' },
-    image: {
-      src: '/images/products/psa-test-kit.webp',
-      alt: 'Test Discreet Prostate Specific Ag (PSA) Rapid Test Kit',
-    },
+    description: 'Single rapid test',
+    price: '£17.95',
+    image: '[Chlamydia & Gonorrhoea box]',
   },
 ] as const;
 
@@ -262,30 +226,6 @@ export function SyphilisProductPage() {
       <Questions />
       <OtherTests />
       <Compliance />
-    </div>
-  );
-}
-
-function Rating({
-  value,
-  count,
-  suffix = '',
-}: {
-  value: number;
-  count: number;
-  suffix?: string;
-}) {
-  return (
-    <div className="flex items-center gap-1.5 text-sm">
-      <div className="flex items-center gap-0.5">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} className="text-accent-deep fill-accent-deep size-3.5" />
-        ))}
-      </div>
-      <span className="text-muted-foreground">
-        {value} ({count}
-        {suffix})
-      </span>
     </div>
   );
 }
@@ -578,66 +518,56 @@ function OtherTests() {
   return (
     <section className="py-8 md:py-12 lg:py-16 border-border border-t">
       <div className="container">
-        <div className="mb-10">
-          <span className="text-accent mb-4 block font-mono text-[0.68rem] tracking-[0.18em] uppercase">
-            More tests
-          </span>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="text-4xl leading-none tracking-tighter md:text-5xl">
-            Other tests
+            Other available tests
           </h2>
-        </div>
-        <div className="grid gap-5 md:grid-cols-3">
-          {relatedTests.map((test, index) => (
-            <article
-              key={test.name}
-              className="bg-card border-border overflow-hidden rounded-[1.5rem] border shadow-sm"
-            >
-              <div
-                className="relative h-44"
-                style={
-                  test.image
-                    ? undefined
-                    : { background: CARD_GRADIENTS[index % CARD_GRADIENTS.length] }
-                }
+          <div className="flex gap-2 overflow-x-auto">
+            {testFilters.map((filter, index) => (
+              <span
+                key={filter}
+                className={cn(
+                  'inline-flex shrink-0 items-center rounded-full px-4 py-2 text-sm font-medium',
+                  index === 0
+                    ? 'bg-foreground text-background'
+                    : 'border-border text-foreground border',
+                )}
               >
-                {test.image && (
-                  <Image
-                    src={test.image.src}
-                    alt={test.image.alt}
-                    fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover"
-                  />
-                )}
+                {filter}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 grid grid-cols-2 gap-5 lg:grid-cols-4">
+          {otherTests.map((test) => (
+            <article key={test.name}>
+              <div className="border-border bg-muted text-muted-foreground relative flex aspect-square items-center justify-center rounded-2xl border border-dashed p-3 text-center text-xs leading-snug">
                 {test.badge && (
-                  <Badge variant="subtle" className="absolute top-3 left-3">
+                  <span className="bg-foreground text-background absolute top-3 left-3 rounded-full px-3 py-1 text-xs font-medium">
                     {test.badge}
-                  </Badge>
-                )}
-              </div>
-              <div className="p-5">
-                <h3 className="text-xl leading-tight tracking-tight">{test.name}</h3>
-                <div className="mt-2">
-                  <Rating value={test.rating.value} count={test.rating.count} />
-                </div>
-                <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
-                  {test.detects}
-                </p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="flex items-baseline gap-2">
-                    <span className="font-medium">{test.price.current}</span>
-                    <span className="text-muted-foreground text-sm line-through">
-                      {test.price.original}
-                    </span>
                   </span>
-                  <Button variant="outline" size="sm">
-                    Add to cart
-                  </Button>
-                </div>
+                )}
+                {test.image}
               </div>
+              <div className="mt-3 flex items-baseline justify-between gap-2">
+                <h3 className="text-base leading-tight tracking-tight">{test.name}</h3>
+                <span className="hidden text-sm font-medium lg:inline">{test.price}</span>
+              </div>
+              <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
+                {test.description}
+              </p>
+              <span className="mt-1 block text-sm font-medium lg:hidden">{test.price}</span>
             </article>
           ))}
         </div>
+
+        <Button variant="outline" size="lg" className="mt-8 w-full sm:hidden" asChild>
+          <Link href="#">
+            See all 7 tests
+            <span aria-hidden>&rarr;</span>
+          </Link>
+        </Button>
       </div>
     </section>
   );
