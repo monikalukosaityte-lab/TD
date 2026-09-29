@@ -334,9 +334,6 @@ function ProductHero() {
             <h1 className="text-4xl leading-none tracking-tighter md:text-5xl">
               {product.name}
             </h1>
-            <div className="mt-4">
-              <Rating value={product.rating.value} count={product.rating.count} suffix=" reviews" />
-            </div>
             <p className="text-muted-foreground mt-5 text-lg leading-relaxed">
               {product.intro}
             </p>
@@ -350,7 +347,9 @@ function ProductHero() {
               <span className="text-muted-foreground text-lg line-through">
                 {product.price.original}
               </span>
-              <Badge variant="sage">{product.price.save}</Badge>
+              <span className="bg-accent-muted text-foreground inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+                {product.price.save}
+              </span>
             </div>
 
             <div className="mt-5 flex flex-wrap gap-2">
