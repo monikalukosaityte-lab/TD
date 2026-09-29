@@ -1,3 +1,5 @@
+'use client';
+
 import {
   AlertCircle,
   ArrowLeft,
@@ -10,6 +12,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 import {
   Accordion,
@@ -186,32 +189,68 @@ const testFilters = ['All tests', 'Bundles', 'Single STI tests', "Men's health"]
 
 const otherTests = [
   {
-    name: '7-in-1 Bundle',
-    badge: 'Best value',
-    description: '7 tests, includes syphilis',
-    price: '£59.95',
-    image: '[7-in-1 Bundle box]',
-  },
-  {
-    name: 'Core 4 Bundle',
+    name: 'Syphilis',
+    category: 'Single STI tests',
     badge: null,
-    description: '4 tests, includes syphilis',
-    price: '£39.95',
-    image: '[Core 4 Bundle box]',
+    description: 'Single rapid test',
+    price: '£14.95',
+    image: '[Syphilis box]',
   },
   {
     name: 'HIV 1/2',
+    category: 'Single STI tests',
     badge: null,
     description: 'Single rapid test',
     price: '£17.95',
     image: '[HIV 1/2 box]',
   },
   {
-    name: 'Chlamydia & Gonorrhoea',
+    name: 'HSV-II',
+    category: 'Single STI tests',
     badge: null,
     description: 'Single rapid test',
     price: '£17.95',
-    image: '[Chlamydia & Gonorrhoea box]',
+    image: '[HSV-II box]',
+  },
+  {
+    name: 'HBsAg + HCV Combo',
+    category: 'Single STI tests',
+    badge: null,
+    description: 'Hepatitis B and C combined test',
+    price: '£19.95',
+    image: '[HBsAg + HCV box]',
+  },
+  {
+    name: 'Chlamydia + Gonorrhoea',
+    category: 'Single STI tests',
+    badge: null,
+    description: 'Single rapid test',
+    price: '£17.95',
+    image: '[Chlamydia + Gonorrhoea box]',
+  },
+  {
+    name: 'Core 4',
+    category: 'Bundles',
+    badge: 'Most popular',
+    description: 'CT + NG + HIV + Syphilis',
+    price: '£39.95',
+    image: '[Core 4 box]',
+  },
+  {
+    name: '7-in-1',
+    category: 'Bundles',
+    badge: 'Best value',
+    description: '7 tests in one bundle',
+    price: '£59.95',
+    image: '[7-in-1 box]',
+  },
+  {
+    name: 'PSA',
+    category: "Men's health",
+    badge: null,
+    description: 'Prostate-specific antigen test',
+    price: '£17.95',
+    image: '[PSA box]',
   },
 ] as const;
 
@@ -515,6 +554,14 @@ function Questions() {
 }
 
 function OtherTests() {
+  const [activeFilter, setActiveFilter] =
+    useState<(typeof testFilters)[number]>('All tests');
+
+  const visibleTests =
+    activeFilter === 'All tests'
+      ? otherTests
+      : otherTests.filter((test) => test.category === activeFilter);
+
   return (
     <section className="py-8 md:py-12 lg:py-16 border-border border-t">
       <div className="container">
@@ -523,24 +570,26 @@ function OtherTests() {
             Other available tests
           </h2>
           <div className="flex gap-2 overflow-x-auto">
-            {testFilters.map((filter, index) => (
-              <span
+            {testFilters.map((filter) => (
+              <button
                 key={filter}
+                type="button"
+                onClick={() => setActiveFilter(filter)}
                 className={cn(
-                  'inline-flex shrink-0 items-center rounded-full px-4 py-2 text-sm font-medium',
-                  index === 0
+                  'inline-flex shrink-0 cursor-pointer items-center rounded-full px-4 py-2 text-sm font-medium transition-colors',
+                  activeFilter === filter
                     ? 'bg-foreground text-background'
-                    : 'border-border text-foreground border',
+                    : 'border-border text-foreground hover:bg-muted border',
                 )}
               >
                 {filter}
-              </span>
+              </button>
             ))}
           </div>
         </div>
 
         <div className="mt-8 grid grid-cols-2 gap-5 lg:grid-cols-4">
-          {otherTests.map((test) => (
+          {visibleTests.map((test) => (
             <article key={test.name}>
               <div className="border-border bg-muted text-muted-foreground relative flex aspect-square items-center justify-center rounded-2xl border border-dashed p-3 text-center text-xs leading-snug">
                 {test.badge && (
@@ -561,13 +610,6 @@ function OtherTests() {
             </article>
           ))}
         </div>
-
-        <Button variant="outline" size="lg" className="mt-8 w-full sm:hidden" asChild>
-          <Link href="#">
-            See all 7 tests
-            <span aria-hidden>&rarr;</span>
-          </Link>
-        </Button>
       </div>
     </section>
   );
