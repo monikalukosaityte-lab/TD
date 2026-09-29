@@ -25,7 +25,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const product = {
-  name: 'Rapid Syphilis Test',
+  name: 'Syphilis Rapid Test Kit',
   image: { src: '/images/products/syphilis-test-kit.webp', alt: 'Test Discreet Syphilis (TP) Ab Rapid Test Kit' },
   gallery: ['Box front', 'Box back / IFU', "What's inside", 'Discreet mailer'],
   rating: { value: 4.9, count: 189 },
@@ -301,9 +301,28 @@ const otherTests = [
   },
 ] as const;
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://stitestkit.co.uk' },
+    { '@type': 'ListItem', position: 2, name: 'Tests', item: 'https://stitestkit.co.uk' },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Syphilis test',
+      item: 'https://stitestkit.co.uk/tests/syphilis-test',
+    },
+  ],
+};
+
 export function SyphilisProductPage() {
   return (
     <div className="bg-blog">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <ProductHero />
       <PrivacyReassurance />
       <BoxAndHowItWorks />
@@ -358,9 +377,29 @@ function ProductHero() {
           </div>
 
           <div>
-            <span className="text-muted-foreground mb-2 block text-sm">
-              STI Test Kit
-            </span>
+            <nav aria-label="Breadcrumb" className="mb-2">
+              <ol className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm">
+                <li>
+                  <Link
+                    href="/"
+                    className="hover:text-foreground no-underline transition-colors"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden>&rsaquo;</li>
+                <li>
+                  <Link
+                    href="/"
+                    className="hover:text-foreground no-underline transition-colors"
+                  >
+                    Tests
+                  </Link>
+                </li>
+                <li aria-hidden>&rsaquo;</li>
+                <li aria-current="page">Syphilis test</li>
+              </ol>
+            </nav>
             <h1 className="text-4xl leading-none tracking-tighter md:text-5xl">
               {product.name}
             </h1>
