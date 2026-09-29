@@ -25,7 +25,7 @@ import { cn } from '@/lib/utils';
 
 const product = {
   name: 'Rapid Syphilis Test',
-  image: { src: '/images/products/psa-test-kit.webp', alt: 'Test Discreet Syphilis (TP) Ab Rapid Test Kit' },
+  image: { src: '/images/products/syphilis-test-kit.webp', alt: 'Test Discreet Syphilis (TP) Ab Rapid Test Kit' },
   gallery: ['Box front', 'Box back / IFU', "What's inside", 'Discreet mailer'],
   rating: { value: 4.9, count: 189 },
   intro:
@@ -194,7 +194,11 @@ const otherTests = [
     badge: null,
     description: 'Single rapid test',
     price: '£14.95',
-    image: '[Syphilis box]',
+    placeholder: '[Syphilis box]',
+    photo: {
+      src: '/images/products/syphilis-test-kit.webp',
+      alt: 'Test Discreet Syphilis (TP) Ab Rapid Test Kit',
+    },
   },
   {
     name: 'HIV 1/2',
@@ -202,7 +206,11 @@ const otherTests = [
     badge: null,
     description: 'Single rapid test',
     price: '£17.95',
-    image: '[HIV 1/2 box]',
+    placeholder: '[HIV 1/2 box]',
+    photo: {
+      src: '/images/products/hiv-test-kit.webp',
+      alt: 'Test Discreet HIV 1/2 Ab Rapid Test Kit',
+    },
   },
   {
     name: 'HSV-II',
@@ -210,7 +218,11 @@ const otherTests = [
     badge: null,
     description: 'Single rapid test',
     price: '£17.95',
-    image: '[HSV-II box]',
+    placeholder: '[HSV-II box]',
+    photo: {
+      src: '/images/products/herpes-test-kit.webp',
+      alt: 'Test Discreet Herpes Simplex Virus II Ab IgM Rapid Test Kit',
+    },
   },
   {
     name: 'HBsAg + HCV Combo',
@@ -218,7 +230,11 @@ const otherTests = [
     badge: null,
     description: 'Hepatitis B and C combined test',
     price: '£19.95',
-    image: '[HBsAg + HCV box]',
+    placeholder: '[HBsAg + HCV box]',
+    photo: {
+      src: '/images/products/hbsag-hcv-combo-test-kit.webp',
+      alt: 'Test Discreet HBsAg/HCV Ab Combo Rapid Test Kit',
+    },
   },
   {
     name: 'Chlamydia + Gonorrhoea',
@@ -226,7 +242,8 @@ const otherTests = [
     badge: null,
     description: 'Single rapid test',
     price: '£17.95',
-    image: '[Chlamydia + Gonorrhoea box]',
+    placeholder: '[Chlamydia + Gonorrhoea box]',
+    photo: null,
   },
   {
     name: 'Core 4',
@@ -234,7 +251,8 @@ const otherTests = [
     badge: 'Most popular',
     description: 'CT + NG + HIV + Syphilis',
     price: '£39.95',
-    image: '[Core 4 box]',
+    placeholder: '[Core 4 box]',
+    photo: null,
   },
   {
     name: '7-in-1',
@@ -242,7 +260,8 @@ const otherTests = [
     badge: 'Best value',
     description: '7 tests in one bundle',
     price: '£59.95',
-    image: '[7-in-1 box]',
+    placeholder: '[7-in-1 box]',
+    photo: null,
   },
   {
     name: 'PSA',
@@ -250,7 +269,11 @@ const otherTests = [
     badge: null,
     description: 'Prostate-specific antigen test',
     price: '£17.95',
-    image: '[PSA box]',
+    placeholder: '[PSA box]',
+    photo: {
+      src: '/images/products/psa-test-kit.webp',
+      alt: 'Test Discreet Prostate Specific Ag (PSA) Rapid Test Kit',
+    },
   },
 ] as const;
 
@@ -591,13 +614,30 @@ function OtherTests() {
         <div className="mt-8 grid grid-cols-2 gap-5 lg:grid-cols-4">
           {visibleTests.map((test) => (
             <article key={test.name}>
-              <div className="border-border bg-muted text-muted-foreground relative flex aspect-square items-center justify-center rounded-2xl border border-dashed p-3 text-center text-xs leading-snug">
+              <div
+                className={cn(
+                  'relative flex aspect-square items-center justify-center overflow-hidden rounded-2xl text-center text-xs leading-snug',
+                  test.photo
+                    ? 'bg-muted'
+                    : 'border-border bg-muted text-muted-foreground border border-dashed p-3',
+                )}
+              >
                 {test.badge && (
-                  <span className="bg-foreground text-background absolute top-3 left-3 rounded-full px-3 py-1 text-xs font-medium">
+                  <span className="bg-foreground text-background absolute top-3 left-3 z-10 rounded-full px-3 py-1 text-xs font-medium">
                     {test.badge}
                   </span>
                 )}
-                {test.image}
+                {test.photo ? (
+                  <Image
+                    src={test.photo.src}
+                    alt={test.photo.alt}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, 50vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  test.placeholder
+                )}
               </div>
               <div className="mt-3 flex items-baseline justify-between gap-2">
                 <h3 className="text-base leading-tight tracking-tight">{test.name}</h3>
