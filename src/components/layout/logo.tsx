@@ -23,7 +23,7 @@ export function Logo({ className }: { className?: string }) {
   );
 }
 
-/** Text logo from testdiscreet.co.uk: "TD" over a spaced "Test Discreet". */
+/** Text logo in the testdiscreet.co.uk style: "STI Test Kits" over a spaced "by Test Discreet". */
 export function BrandLockup({
   inverted = false,
   align = 'center',
@@ -41,14 +41,14 @@ export function BrandLockup({
     >
       <span
         className={cn(
-          'text-3xl leading-none tracking-tighter',
+          'text-xl leading-none tracking-tight whitespace-nowrap md:text-2xl',
           !inverted && 'text-muted-foreground',
         )}
       >
-        TD
+        STI Test Kits
       </span>
       <span className="-mr-[0.28em] text-[0.625rem] leading-none tracking-[0.28em] whitespace-nowrap uppercase">
-        Test Discreet
+        by Test Discreet
       </span>
     </span>
   );
