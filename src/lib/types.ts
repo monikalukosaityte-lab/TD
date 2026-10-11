@@ -21,3 +21,14 @@ export interface Article {
   content: string;
   frontmatter: ArticleFrontmatter;
 }
+
+export interface ShopProduct {
+  handle: string;
+  title: string;
+  price: string;
+  variantId: number;
+  badge?: string;
+  includes: string[];
+  sample: 'Blood + swab' | 'Swab' | 'Fingerprick';
+  image: { src: string; alt: string };
+}

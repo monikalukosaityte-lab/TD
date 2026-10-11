@@ -1,5 +1,12 @@
 # Project Rules
 
+## Scope & Deployment
+
+- This repo is stitestkit.co.uk only. td-site-prod (`~/Documents/td-site-prod`, `~/orca/workspaces/td-site-prod/`) is the separate Shopify theme for testdiscreet.co.uk — it is read-only reference: you may read its files and copy assets out of it, but never edit, write, commit, push, or run commands that change anything there
+- `main` auto-deploys to production on Vercel. Never commit or push to `main`
+- Always work on a branch (e.g. `preview/<feature>`) and push it so Vercel builds a preview URL for review
+- Never merge into `main` — the user reviews the preview and merges themselves
+
 ## Styling
 
 - always use shadcn components
@@ -50,9 +57,12 @@
 
 ## Typography
 
-- Fonts: DM Sans (text), DM Serif Display (display), JetBrains Mono (mono)
+- Look and feel mirrors the testdiscreet.co.uk Shopify theme (colours, buttons, header, footer, cards)
+- Fonts: Montserrat (text + display), Libre Baskerville (`font-serif` accent), Inter Tight (`font-logo`, logo only), JetBrains Mono (mono)
+- Montserrat and Libre Baskerville stand in for the Shopify theme's Proxima Nova and Bookmania — those are commercial fonts and must never be committed here (this repo is public)
 - already font-text and font-weight-text set in globals.css body — don't need to set it again
-- Headings automatically use `font-display` and `font-weight-display` via base layer (h1-h6)
+- Headings automatically use `font-display` and `font-weight-display` (800) via base layer (h1-h6); h3-h6 are bold (700)
+- `<em>` inside h1-h3 switches to the serif accent (and primary colour in h1/h2), e.g. `Latest <em>guides</em>`
 - For non-heading elements that need the display font, use `font-display` explicitly
 - Body text uses `font-text` utility (default via body, no need to specify)
 - Data, labels, and small caps use `font-mono` utility

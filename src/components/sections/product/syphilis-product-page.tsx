@@ -366,7 +366,7 @@ const breadcrumbJsonLd = {
 
 export function SyphilisProductPage() {
   return (
-    <div className="bg-blog">
+    <div className="bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
