@@ -97,25 +97,26 @@ function MenuDrawer() {
           </p>
           <div className="mb-6 grid grid-cols-2 gap-3">
             {bundles.map((product) => (
-              <a
-                key={product.handle}
-                href={productUrl(product.handle)}
-                className="bg-muted block overflow-hidden rounded-lg no-underline"
-              >
-                <div className="bg-secondary relative aspect-4/3">
-                  <Image
-                    src={product.image.src}
-                    alt={product.image.alt}
-                    fill
-                    sizes="200px"
-                    className="object-cover"
-                  />
-                </div>
-                <span className="flex items-center justify-between gap-2 px-3 py-2.5 text-sm font-bold">
-                  {product.title}
-                  <ArrowRightIcon className="size-4 shrink-0" />
-                </span>
-              </a>
+              <SheetClose key={product.handle} asChild>
+                <Link
+                  href={productUrl(product)}
+                  className="bg-muted block overflow-hidden rounded-lg no-underline"
+                >
+                  <div className="bg-secondary relative aspect-4/3">
+                    <Image
+                      src={product.image.src}
+                      alt={product.image.alt}
+                      fill
+                      sizes="200px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <span className="flex items-center justify-between gap-2 px-3 py-2.5 text-sm font-bold">
+                    {product.title}
+                    <ArrowRightIcon className="size-4 shrink-0" />
+                  </span>
+                </Link>
+              </SheetClose>
             ))}
           </div>
 
@@ -125,12 +126,14 @@ function MenuDrawer() {
           <ul className="mb-6 border-t">
             {tests.map((product) => (
               <li key={product.handle}>
-                <a
-                  href={productUrl(product.handle)}
-                  className="block border-b py-3 font-bold no-underline"
-                >
-                  {product.title}
-                </a>
+                <SheetClose asChild>
+                  <Link
+                    href={productUrl(product)}
+                    className="block border-b py-3 font-bold no-underline"
+                  >
+                    {product.title}
+                  </Link>
+                </SheetClose>
               </li>
             ))}
           </ul>

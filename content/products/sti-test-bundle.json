@@ -1,0 +1,257 @@
+{
+  "slug": "sti-test-bundle",
+  "handle": "sti-bundle",
+  "gallery": [
+    {
+      "src": "/images/products/gallery/product-sti-bundle-grey.webp",
+      "alt": "7-in-1 STI Test Bundle"
+    },
+    {
+      "src": "/images/products/gallery/benefits-sti-bundle.webp",
+      "alt": "7-in-1 STI Test Bundle: what you get"
+    },
+    {
+      "src": "/images/products/gallery/value-prop-sti-bundle-benefits.webp",
+      "alt": "7-in-1 STI Test Bundle - results in 15 minutes, no clinic visit, discreet packaging"
+    },
+    {
+      "src": "/images/products/gallery/how-to-test-sti-bundle.webp",
+      "alt": "How to use the 7-in-1 STI Test Bundle"
+    },
+    {
+      "src": "/images/products/gallery/privacy-promise.webp",
+      "alt": "Test Discreet privacy promise: confidential, discreet delivery, private payment"
+    }
+  ],
+  "title": "7-in-1 STI Test Bundle",
+  "intro": "<p>Test privately at home for seven infections: chlamydia, gonorrhoea, HIV, syphilis, genital herpes (HSV-2), and hepatitis B and C. Five rapid tests using a swab and finger-prick blood samples, with results in around 15 minutes each.</p>",
+  "footnote": "",
+  "keyFacts": [
+    "<strong>Screens for:</strong> Chlamydia, gonorrhoea, HIV-1 and HIV-2, syphilis, genital herpes (HSV-2), hepatitis B and hepatitis C",
+    "<strong>Samples:</strong> 1 swab test and 4 finger-prick blood tests",
+    "<strong>Results:</strong> Around 15 minutes"
+  ],
+  "shipping": "Ships within <strong>1 working day</strong>",
+  "bundleChoice": null,
+  "variantId": 63780179870026,
+  "retest": {
+    "heading": "Select quantity",
+    "badge": "Test + retest",
+    "discount": 10,
+    "note": "Testing soon after sex? An early negative may need to be repeated. See when to retest each infection below."
+  },
+  "buyLabel": "Get my test",
+  "trust": "Secure checkout · Discreet UK delivery · Ships within 1 working day",
+  "reassurance": {
+    "title": "Discreet delivery",
+    "text": "Plain packaging with nothing on the outside to reveal what’s inside."
+  },
+  "accordions": [
+    {
+      "heading": "What does the 7-in-1 bundle test for?",
+      "open": false,
+      "content": "<p><strong>Chlamydia and gonorrhoea</strong> are bacterial infections that often cause no symptoms. Both can be cured with antibiotics.</p><p><strong>HIV</strong> is a virus that affects the immune system. It cannot be cured, but treatment is highly effective.</p><p><strong>Syphilis</strong> is a bacterial infection that can cause a painless sore or rash, or no symptoms at all. It can be cured with antibiotics.</p><p><strong>Genital herpes (HSV-2)</strong> is a virus that can cause genital blisters or sores. There is no cure, but outbreaks can be treated with antiviral medicine.</p><p><strong>Hepatitis B and C</strong> are viruses that affect the liver. Many adults recover from a new hepatitis B infection naturally, while hepatitis C can usually be cured with antiviral tablets.</p>",
+      "after": "",
+      "checklist": []
+    },
+    {
+      "heading": "Is this for you?",
+      "open": true,
+      "content": "<p><strong>You don’t need to have symptoms to test.</strong> All seven infections can cause no noticeable symptoms.</p><p>It may be worth testing if:</p>",
+      "after": "<p><strong>Had a possible HIV exposure in the last 72 hours?</strong> Don’t wait for a test result. Contact a sexual health clinic or go to A&E as soon as possible and ask about PEP, medication that can help prevent HIV after exposure.</p>",
+      "checklist": [
+        "You’ve had <strong>sex without a condom</strong>",
+        "You have a <strong>new sexual partner</strong>, or more than one",
+        "A <strong>sexual partner has told you</strong> they have an STI",
+        "You’ve had <strong>possible symptoms</strong>, such as unusual discharge, pain when peeing, blisters, sores or a rash",
+        "You want to check for <strong>seven infections</strong> in one go",
+        "You’d rather <strong>test privately</strong> at home"
+      ]
+    }
+  ],
+  "benefits": {
+    "heading": "Test <em>privately</em>",
+    "text": "Everything you need to test for seven infections at home:",
+    "items": [
+      {
+        "icon": "clock",
+        "label": "Results in 15 minutes"
+      },
+      {
+        "icon": "swab",
+        "label": "1 swab and 4 finger-prick tests"
+      },
+      {
+        "icon": "package",
+        "label": "Discreet packaging"
+      },
+      {
+        "icon": "home",
+        "label": "No clinic visit"
+      }
+    ]
+  },
+  "how": {
+    "heading": "How do the tests work?",
+    "intro": "<p>Your bundle includes five tests for seven infections. One uses a swab to check for chlamydia and gonorrhoea. The other four use a small finger-prick blood sample to check for signs of HIV, syphilis, genital herpes (HSV-2), and hepatitis B and C.</p><p>Each test gives a result in around 15 minutes, with no samples to send to a laboratory.</p>",
+    "steps": [
+      {
+        "image": {
+          "src": "/images/products/steps/how-it-works-sti-bundle-step-1.webp",
+          "alt": "Take your swab"
+        },
+        "title": "Take your swab",
+        "text": "Collect your swab, mix it with the test liquids and add the prepared sample to both wells on the chlamydia and gonorrhoea test pad."
+      },
+      {
+        "image": {
+          "src": "/images/products/steps/how-it-works-sti-bundle-step-2.webp",
+          "alt": "Prick your finger"
+        },
+        "title": "Prick your finger",
+        "text": "Clean your fingertip and use a lancet to prick your finger. Add the required blood and test liquid to each of the four finger-prick test pads, following their instructions."
+      },
+      {
+        "image": {
+          "src": "/images/products/steps/how-it-works-sti-bundle-step-3.webp",
+          "alt": "Read your results"
+        },
+        "title": "Read your results",
+        "text": "Leave the test pads flat and read each result at the time shown in its instructions. The tests have slightly different reading windows."
+      }
+    ]
+  },
+  "windows": {
+    "heading": "When should I <em>test?</em>",
+    "subheading": "Testing too early can give a negative result even if you have an infection.",
+    "days": 90,
+    "initialTitle": "Test now. If negative, repeat in 90 days.",
+    "strings": {
+      "today": "Today",
+      "days_ago_one": "__COUNT__ day ago",
+      "days_ago_other": "__COUNT__ days ago",
+      "interval": "90 days",
+      "retest_title": "Test now. If negative, repeat on __DATE__.",
+      "retest_body": "An early negative may miss HIV from this exposure.",
+      "now_title": "You can test now.",
+      "now_body": "",
+      "unsure_title": "Test now. If negative, repeat in __INTERVAL__.",
+      "unsure_body": "",
+      "retest": ""
+    }
+  },
+  "reviews": {
+    "heading": "Don't just take our word for it",
+    "items": [
+      {
+        "image": {
+          "src": "/images/products/reviews/photo-review-1.webp",
+          "alt": "Test Discreet kit at home"
+        },
+        "title": "So simple",
+        "text": "Really simple to use and the instructions were very clear."
+      },
+      {
+        "image": {
+          "src": "/images/products/reviews/photo-review-2.webp",
+          "alt": "Test Discreet kit at home"
+        },
+        "title": "Fast delivery",
+        "text": "Arrived quickly and the packaging was completely discreet."
+      },
+      {
+        "image": {
+          "src": "/images/products/reviews/photo-review-3.webp",
+          "alt": "Test Discreet kit at home"
+        },
+        "title": "Would recommend",
+        "text": "It was straightforward and having the result there and then gave me peace of mind."
+      },
+      {
+        "image": {
+          "src": "/images/products/reviews/photo-review-4.webp",
+          "alt": "Test Discreet kit at home"
+        },
+        "title": "Stress-free",
+        "text": "Much less stressful than I expected. Would definitely recommend."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently asked questions",
+    "tabs": [
+      {
+        "label": "Product",
+        "questions": [
+          {
+            "question": "Do I have to take all the tests at once?",
+            "answer": "<p>No. Each test is separate, so you can take them together or at different times.</p><p>An early negative may need repeating: chlamydia and gonorrhoea at 2 weeks, syphilis at 12 weeks, and HIV at 90 days.</p><p><strong>Hepatitis C:</strong> an early negative result may need repeating at six months. Contact your GP or a sexual health clinic for advice about testing sooner.</p>"
+          },
+          {
+            "question": "It’s been less than 72 hours since I may have been exposed to HIV. What should I do?",
+            "answer": "<p>If you think you may have been exposed to HIV in the last 72 hours, contact a sexual health clinic or go to A&E immediately and ask about PEP, medication that can help prevent HIV infection after exposure.</p><p>Don't wait to take a rapid HIV test or rely on a negative result. HIV can take weeks to show up on a test. PEP must be started within 72 hours, and the sooner, the better.</p>"
+          },
+          {
+            "question": "How reliable are these rapid tests?",
+            "answer": "<p>Rapid tests can be reliable when used correctly. Testing too early or collecting a sample incorrectly can affect your result. A negative result may need repeating if you tested early, and a positive result should be followed up with a sexual health clinic.</p>"
+          },
+          {
+            "question": "What if a result is positive?",
+            "answer": "<p>Contact a sexual health clinic or your GP for further testing and treatment if needed. Chlamydia, gonorrhoea and syphilis can be cured with antibiotics. HIV treatment is highly effective, herpes outbreaks can be treated, and treatment is available for hepatitis B and C.</p><p>NHS sexual health services are free and confidential. If an infection is confirmed, recent sexual partners may also need to be tested.</p>"
+          },
+          {
+            "question": "I’ve had syphilis or herpes before. Can I use this bundle?",
+            "answer": "<p>Yes, but the results may be harder to interpret. Syphilis antibodies can remain after successful treatment, so the syphilis test may still show positive.</p><p>HSV-2 IgM antibodies can sometimes appear again during a recurrence, so a positive result doesn't necessarily mean a new infection. If you have blisters or sores, a sexual health clinic can take a swab to check what's causing them.</p>"
+          },
+          {
+            "question": "I’ve been vaccinated against hepatitis B. Will it show positive?",
+            "answer": "<p>No. The hepatitis B vaccine doesn't normally cause a positive result on this test because it looks for hepatitis B surface antigen, not the protective antibodies produced after vaccination.</p><p>This test cannot tell you whether you're immune to hepatitis B.</p>"
+          },
+          {
+            "question": "I've had hepatitis C before. Can I use this bundle?",
+            "answer": "<p>Hepatitis C antibodies can stay in your blood after the infection has cleared or been treated, so the hepatitis C result may still show positive.</p><p>A sexual health clinic or your GP can arrange an HCV RNA blood test to check whether the virus is currently present.</p>"
+          },
+          {
+            "question": "Does the swab test check the throat or bottom?",
+            "answer": "<p>No. The chlamydia and gonorrhoea test only checks a swab from the vagina or urethra. If you've had oral or anal sex, speak to a sexual health clinic about testing those areas.</p>"
+          },
+          {
+            "question": "Can I use this bundle while pregnant?",
+            "answer": "<p>If you're pregnant and concerned about STIs, speak to your midwife, GP or a sexual health clinic. HIV, syphilis and hepatitis B testing is routinely offered during pregnancy through the NHS, and they can advise on testing for the other infections.</p>"
+          }
+        ]
+      },
+      {
+        "label": "Shipping",
+        "questions": [
+          {
+            "question": "How fast is shipping?",
+            "answer": "<p>Your test ships within 1 working day by free Royal Mail Tracked 48.</p>"
+          },
+          {
+            "question": "Will anyone know what I ordered?",
+            "answer": "<p>No. Your order arrives in plain, discreet packaging, with nothing on the outside to reveal what’s inside. Your bank statement will also not show “Test Discreet” or the name of the test.</p>"
+          }
+        ]
+      },
+      {
+        "label": "Other",
+        "questions": [
+          {
+            "question": "Can I return my test?",
+            "answer": "<p>You can return unopened kits within 14 days of delivery. For health and hygiene reasons, we can’t take a kit back once its seal is broken.</p><p>If there’s a problem with your order or your test arrives damaged, contact us and we’ll help.</p><p>For more information, see our <a href=\"https://testdiscreet.co.uk/policies/refund-policy\">Returns Policy</a>.</p>"
+          }
+        ]
+      }
+    ]
+  },
+  "otherProducts": [
+    "core-4",
+    "chlamydia-gonorrhoea",
+    "hiv",
+    "syphilis",
+    "hsv-2",
+    "hep-b-c",
+    "psa"
+  ]
+}

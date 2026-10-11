@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import {
   CheckIcon,
@@ -14,9 +15,11 @@ import { cn, shopUrl } from '@/lib/utils';
 
 // Mirrors the "Explore our tests" grid on testdiscreet.co.uk. Prices and variant
 // IDs come from the Shopify catalogue — update them here if they change there.
+// Cards open this site's product pages; "Quick add" goes to the Shopify cart.
 export const SHOP_PRODUCTS: ShopProduct[] = [
   {
     handle: 'sti-bundle',
+    slug: 'sti-test-bundle',
     title: '7-in-1 STI Test Bundle',
     price: '£64.95',
     variantId: 63780179870026,
@@ -38,6 +41,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'core-4',
+    slug: 'core-4-bundle',
     title: 'Core 4 Bundle',
     price: '£44.95',
     variantId: 63780180492618,
@@ -48,6 +52,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'chlamydia-gonorrhoea',
+    slug: 'chlamydia-gonorrhoea-test',
     title: 'Chlamydia & Gonorrhoea Rapid Test Kit',
     price: '£19.95',
     variantId: 63780180590922,
@@ -60,6 +65,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'hiv',
+    slug: 'hiv-test',
     title: 'HIV Rapid Test Kit',
     price: '£15.95',
     variantId: 63780178592074,
@@ -69,6 +75,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'syphilis',
+    slug: 'syphilis-test',
     title: 'Syphilis Rapid Test Kit',
     price: '£14.95',
     variantId: 63780180623690,
@@ -81,6 +88,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'hsv-2',
+    slug: 'herpes-test',
     title: 'Herpes (HSV-2) Rapid Test Kit',
     price: '£19.95',
     variantId: 63780180656458,
@@ -93,6 +101,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'hep-b-c',
+    slug: 'hepatitis-b-c-test',
     title: 'Hepatitis B & C Rapid Test Kit',
     price: '£27.95',
     variantId: 63780180787530,
@@ -105,6 +114,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'psa',
+    slug: 'psa-test',
     title: 'PSA Prostate Test',
     price: '£19.95',
     variantId: 63780180820298,
@@ -114,28 +124,38 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
 ];
 
-export function productUrl(handle: string) {
-  return shopUrl(`/products/${handle}`, 'buy');
+export function productUrl(product: ShopProduct) {
+  return `/tests/${product.slug}`;
 }
 
 export default function ProductGrid({
   heading = 'Explore our tests',
+  handles,
+  featureFirst = true,
 }: {
   heading?: string;
+  handles?: string[];
+  featureFirst?: boolean;
 }) {
+  const products = handles
+    ? handles
+        .map((handle) => SHOP_PRODUCTS.find((p) => p.handle === handle))
+        .filter((p): p is ShopProduct => Boolean(p))
+    : SHOP_PRODUCTS;
+
   return (
     <section id="tests" className="pt-10 pb-14">
       <div className="container">
         <h2 className="mb-8 text-center text-3xl font-bold">{heading}</h2>
         <ul className="grid grid-cols-2 gap-2.5 md:grid-cols-3 md:gap-4 lg:grid-cols-4">
-          {SHOP_PRODUCTS.map((product, index) => (
-            <li
-              key={product.handle}
-              className={cn(index === 0 && 'col-span-full')}
-            >
-              <ProductCard product={product} hero={index === 0} />
-            </li>
-          ))}
+          {products.map((product, index) => {
+            const hero = featureFirst && index === 0;
+            return (
+              <li key={product.handle} className={cn(hero && 'col-span-full')}>
+                <ProductCard product={product} hero={hero} />
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>
@@ -149,7 +169,7 @@ function ProductCard({
   product: ShopProduct;
   hero?: boolean;
 }) {
-  const href = productUrl(product.handle);
+  const href = productUrl(product);
   const SampleIcon = product.sample === 'Swab' ? SwabIcon : DropIcon;
 
   return (
@@ -159,7 +179,7 @@ function ProductCard({
         hero && 'md:flex-row',
       )}
     >
-      <a
+      <Link
         href={href}
         tabIndex={-1}
         aria-hidden
@@ -179,7 +199,7 @@ function ProductCard({
           }
           className="object-contain p-2"
         />
-      </a>
+      </Link>
       {product.badge && (
         <Badge className="bg-card text-foreground font-text absolute top-3 left-3 z-10 rounded-xs border-transparent px-2 py-0.5 text-[0.6875rem] font-bold tracking-wide uppercase">
           {product.badge}
@@ -197,9 +217,12 @@ function ProductCard({
             hero && 'md:mb-3 md:text-3xl',
           )}
         >
-          <a href={href} className="no-underline after:absolute after:inset-0">
+          <Link
+            href={href}
+            className="no-underline after:absolute after:inset-0"
+          >
             {product.title}
-          </a>
+          </Link>
         </h3>
         <ul
           className={cn(
