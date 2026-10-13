@@ -65,6 +65,56 @@
       }
     ]
   },
+  "about": {
+    "heading": "About HIV <em>and testing</em>",
+    "questions": [
+      {
+        "question": "What is HIV?",
+        "open": true,
+        "answer": "<p>HIV (human immunodeficiency virus) is a virus that attacks the immune system, the part of the body that fights infection. Many people have no symptoms for years, so testing is the only way to know your HIV status for sure.</p><p>An HIV home test kit lets you test yourself in private. You use a small finger-prick of blood, and the test looks for antibodies to HIV-1 and HIV-2. Your result shows in around 15 minutes, with nothing to post to a lab.</p>"
+      },
+      {
+        "question": "What are the main symptoms of HIV?",
+        "open": false,
+        "answer": "<p>Some people get a short, flu-like illness 2 to 6 weeks after getting HIV. Signs can include:</p><ul><li>High temperature or fever</li><li>Sore throat</li><li>A red rash on the body</li><li>Feeling very tired, or aching muscles</li></ul><p>After this, many people feel completely well for years. You cannot tell if you have HIV by how you feel, which is why testing matters.</p>"
+      },
+      {
+        "question": "Is HIV treatable?",
+        "open": false,
+        "answer": "<p>Yes. HIV treatment is free on the NHS. With treatment, people with HIV live long, healthy lives, and once the virus is undetectable they cannot pass it on to partners. The earlier you know, the better.</p>"
+      },
+      {
+        "question": "Who should take an HIV test?",
+        "open": false,
+        "answer": "<p>Anyone who is sexually active can get HIV. It is a good idea to test if you have had sex without a condom, have a new partner, have shared needles, or your partner has HIV. If you often have new partners, testing every 3 months is a good habit.</p>"
+      }
+    ],
+    "link": {
+      "label": "Testing for other STIs too? See all our test kits",
+      "href": "/#tests"
+    },
+    "aside": {
+      "heading": "Why test at home?",
+      "items": [
+        {
+          "icon": "clock",
+          "title": "Fast answer",
+          "text": "Result in 15 minutes, not days."
+        },
+        {
+          "icon": "home",
+          "title": "No clinic visit",
+          "text": "Test when and where you feel comfortable."
+        },
+        {
+          "icon": "lock",
+          "title": "Completely private",
+          "text": "Plain parcel. Only you see your result."
+        }
+      ],
+      "buttonLabel": "Get my test"
+    }
+  },
   "intro": "<p>Test privately for HIV with a simple finger-prick blood test. Results in around 15 minutes.</p>",
   "footnote": "",
   "keyFacts": [

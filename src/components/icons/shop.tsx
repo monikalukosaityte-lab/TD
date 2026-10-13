@@ -1,4 +1,6 @@
-import type { SVGProps } from 'react';
+import type { ReactElement, SVGProps } from 'react';
+
+import type { ProductIconName } from '@/lib/types';
 
 // Line icons from the Test Discreet Shopify theme (snippets/icon.liquid).
 
@@ -270,3 +272,18 @@ export const InfoIcon = (props: SVGProps<SVGSVGElement>) => (
     <path d="M12 8h.01M11 12h1v4h1" />
   </svg>
 );
+
+/** Icons that product page content (content/products/*.json) can refer to by name. */
+export const PRODUCT_ICONS: Record<
+  ProductIconName,
+  (props: SVGProps<SVGSVGElement>) => ReactElement
+> = {
+  clock: ClockIcon,
+  drop: DropIcon,
+  home: HomeIcon,
+  lock: LockIcon,
+  package: PackageIcon,
+  search: SearchIcon,
+  swab: SwabIcon,
+  users: UsersIcon,
+};

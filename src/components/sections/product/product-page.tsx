@@ -8,6 +8,7 @@ import {
   PackageIcon,
   SwabIcon,
 } from '@/components/icons/shop';
+import AboutTest from '@/components/sections/product/about-test';
 import BuyBox from '@/components/sections/product/buy-box';
 import ProductFaq from '@/components/sections/product/product-faq';
 import ProductGallery from '@/components/sections/product/product-gallery';
@@ -15,14 +16,22 @@ import WindowCalculator from '@/components/sections/product/window-calculator';
 import ProductGrid from '@/components/sections/product-grid';
 import { Button } from '@/components/ui/button';
 import { ProductPageData } from '@/lib/types';
-import { cn } from '@/lib/utils';
+import { cn, shopUrl } from '@/lib/utils';
 
 // Same sections as the testdiscreet.co.uk product pages, minus the top banner
-// and the first review band, with "Test privately" straight under the hero.
+// and the first review band. Pages with "about" content get that section
+// straight under the hero, then "Test privately".
 export default function ProductPage({ product }: { product: ProductPageData }) {
   return (
     <>
       <ProductHero product={product} />
+      {product.about && (
+        <AboutTest
+          about={product.about}
+          price={product.bundleChoice?.options[0]?.price ?? ''}
+          buyHref={shopUrl(`/cart/add?id=${product.variantId}&quantity=1`)}
+        />
+      )}
       <TestPrivately benefits={product.benefits} />
       <HowItWorks how={product.how} />
       {product.windows && <WindowCalculator windows={product.windows} />}

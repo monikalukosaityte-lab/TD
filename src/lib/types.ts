@@ -83,11 +83,24 @@ export interface ProductHeroContent {
   specs: { icon: ProductIconName; label: string; value: string }[];
 }
 
+/** "About [test] and testing" section shown straight after the hero. */
+export interface ProductAboutContent {
+  heading: string;
+  questions: { question: string; answer: string; open: boolean }[];
+  link: { label: string; href: string };
+  aside: {
+    heading: string;
+    items: { icon: ProductIconName; title: string; text: string }[];
+    buttonLabel: string;
+  };
+}
+
 export interface ProductPageData {
   slug: string;
   handle: string;
   title: string;
   hero?: ProductHeroContent;
+  about?: ProductAboutContent;
   gallery: ProductImage[];
   intro: string;
   footnote: string;

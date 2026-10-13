@@ -6,15 +6,9 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 import { RichText } from '@/components/elements/rich-text';
 import {
   CheckIcon,
-  ClockIcon,
-  DropIcon,
-  HomeIcon,
   InfoIcon,
-  LockIcon,
   PackageIcon,
-  SearchIcon,
-  SwabIcon,
-  UsersIcon,
+  PRODUCT_ICONS,
 } from '@/components/icons/shop';
 import {
   Accordion,
@@ -23,11 +17,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import {
-  ProductHeroContent,
-  ProductIconName,
-  ProductPageData,
-} from '@/lib/types';
+import { ProductHeroContent, ProductPageData } from '@/lib/types';
 import { cn, shopUrl } from '@/lib/utils';
 
 function toPence(price: string) {
@@ -234,7 +224,8 @@ export default function BuyBox({ product }: { product: ProductPageData }) {
         className="text-muted-foreground text-sm"
       />
 
-      {product.accordions.length > 0 && (
+      {/* Pages with an About section show these questions there instead. */}
+      {!product.about && product.accordions.length > 0 && (
         <Accordion
           type="multiple"
           defaultValue={product.accordions
@@ -281,20 +272,6 @@ export default function BuyBox({ product }: { product: ProductPageData }) {
   );
 }
 
-const HERO_ICONS: Record<
-  ProductIconName,
-  (props: React.SVGProps<SVGSVGElement>) => React.ReactElement
-> = {
-  clock: ClockIcon,
-  drop: DropIcon,
-  home: HomeIcon,
-  lock: LockIcon,
-  package: PackageIcon,
-  search: SearchIcon,
-  swab: SwabIcon,
-  users: UsersIcon,
-};
-
 function HeroIntro({ hero }: { hero: ProductHeroContent }) {
   return (
     <>
@@ -306,7 +283,7 @@ function HeroIntro({ hero }: { hero: ProductHeroContent }) {
 
       <ul className="flex flex-wrap gap-1.5">
         {hero.highlights.map((highlight) => {
-          const Icon = HERO_ICONS[highlight.icon];
+          const Icon = PRODUCT_ICONS[highlight.icon];
           return (
             <li
               key={highlight.label}
@@ -321,7 +298,7 @@ function HeroIntro({ hero }: { hero: ProductHeroContent }) {
 
       <dl className="bg-card divide-y rounded-xl border px-5 shadow-sm md:px-6">
         {hero.specs.map((spec) => {
-          const Icon = HERO_ICONS[spec.icon];
+          const Icon = PRODUCT_ICONS[spec.icon];
           return (
             <div
               key={spec.label}
