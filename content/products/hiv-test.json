@@ -347,57 +347,55 @@
     "heading": "Frequently asked questions",
     "tabs": [
       {
-        "label": "Product",
+        "label": "All",
         "questions": [
           {
-            "question": "When should I take an HIV test?",
-            "answer": "<p>You can test at any time, but the window period matters. A negative result from an antibody-only rapid test may need repeating if the exposure was within the last 90 days.</p><p>You don't need to have symptoms to test for HIV. Testing is recommended if you think you may have been exposed, have a new sexual partner or want to check your HIV status.</p>"
-          },
-          {
             "question": "How soon after sex can I test for HIV?",
-            "answer": "<p>You can test straight away, but a test taken very soon after exposure may not detect a new HIV infection.</p><p>For this antibody-only rapid test, use a 90-day window period. If your result is negative before then, repeat testing after 90 days may be needed.</p><p>A sexual health clinic can offer tests that detect HIV earlier.</p>"
+            "answer": "<p>This HIV rapid test gives a conclusive result 90 days (12 weeks) after possible exposure. You can test from <mark>[4 weeks]</mark>, and many people will show a result by then, but you should test again at 90 days to be sure. If you want an earlier answer, a lab test at a sexual health clinic can detect HIV from around 45 days.</p>"
           },
           {
             "question": "It’s been less than 72 hours since I may have been exposed to HIV. What should I do?",
-            "answer": "<p>Contact a sexual health clinic or go to A&E as soon as possible and ask about PEP (post-exposure prophylaxis).</p><p>PEP is medication that can help prevent HIV after exposure. It must be started within 72 hours and works best when started as soon as possible.</p>"
+            "answer": "<p>Go to a sexual health clinic or A&amp;E as soon as possible and ask about PEP (post-exposure prophylaxis). PEP is emergency medicine that can stop HIV infection. It must be started within 72 hours and works best within 24 hours. It’s too early to use a home test now, so test at 90 days.</p>"
           },
           {
-            "question": "How reliable is this HIV rapid test?",
-            "answer": "<p>When used correctly, this test provides a reliable way to check for HIV antibodies at home.</p><p>Testing too soon after exposure can affect your result, so an early negative may need to be repeated. This is a screening test, so a positive result should be followed up with a sexual health clinic for further testing.</p>"
+            "question": "How accurate is the HIV rapid test?",
+            "answer": "<p>This HIV home test is <mark>[99.x%]</mark> accurate when used correctly, 90 days or more after possible exposure. It’s CE marked for self-testing. Testing too early, or not following the instructions, can affect your result, so read the leaflet before you start.</p>"
+          },
+          {
+            "question": "How do I use the HIV home test kit?",
+            "answer": "<p>Wash and warm your hands, then use the lancet to prick the side of your fingertip. Add one drop of blood to the test, then add the liquid (diluent) from the kit. Wait 15 minutes and read your result. Everything you need is in the box, with step-by-step instructions.</p>"
+          },
+          {
+            "question": "How do I read my HIV test result?",
+            "answer": "<p>Look at the lines on the test after 15 minutes. One line at C means negative. Two lines (C and T) means positive, even if the T line is faint. If no line appears at C, the test is invalid and didn’t work, often because there wasn’t enough blood. Use a new test.</p>"
           },
           {
             "question": "What does a negative HIV test result mean?",
-            "answer": "<p>A negative result means no HIV antibodies were detected.</p><p>HIV can take time to show up on a test. If you may have been exposed within the last 90 days, test again at least 90 days after your last possible exposure.</p><p>If you have symptoms or are concerned, contact a sexual health clinic for advice about testing sooner.</p>"
+            "answer": "<p>A negative result means no HIV antibodies were found. If it has been 90 days or more since your last possible exposure, you can trust this result. If it has been less than 90 days, test again at the 90-day mark. Keep testing regularly if you’re sexually active.</p>"
           },
           {
-            "question": "What if my result is positive?",
-            "answer": "<p>A positive result doesn't necessarily mean you have HIV. You'll need another test to confirm it. Contact a sexual health clinic as soon as possible and let them know you've had a positive rapid HIV test. If HIV is confirmed, effective treatment is available. People living with HIV can live long, healthy lives. NHS sexual health services are free and confidential. If HIV is confirmed, the clinic can also advise you about informing sexual partners.</p>"
+            "question": "What if my HIV test result is positive?",
+            "answer": "<p>A positive result means HIV antibodies may be present and needs a follow-up test to confirm it. Book a free, confidential appointment at a sexual health clinic or with your GP. Try not to panic: HIV is very treatable. With treatment, people live long, healthy lives and cannot pass HIV on to partners.</p>"
           },
           {
             "question": "Can I take an HIV test while pregnant?",
-            "answer": "<p>If you're pregnant and concerned about HIV, speak to your midwife, GP or a sexual health clinic.</p><p>HIV testing is routinely offered during pregnancy through the NHS. Early diagnosis and treatment can help protect both you and your baby.</p>"
-          }
-        ]
-      },
-      {
-        "label": "Shipping",
-        "questions": [
-          {
-            "question": "How fast is shipping?",
-            "answer": "<p>Your test ships within 1 working day by free Royal Mail Tracked 48.</p>"
+            "answer": "<p>Yes, you can use this HIV test while pregnant. <mark>[Check this against the kit leaflet.]</mark> In the UK, HIV testing is also offered free as part of routine antenatal care, so speak to your midwife too. If you are pregnant and have HIV, treatment makes the chance of passing it to your baby very low.</p>"
           },
           {
-            "question": "Will anyone know what I ordered?",
-            "answer": "<p>No. Your order arrives in plain, discreet packaging, with nothing on the outside to reveal what’s inside. Your bank statement will also not show “Test Discreet” or the name of the test.</p>"
-          }
-        ]
-      },
-      {
-        "label": "Other",
-        "questions": [
+            "question": "Can I use this test if I take PrEP or HIV medicine?",
+            "answer": "<p>This test isn’t suitable if you take PrEP, PEP or HIV treatment, because these medicines can affect the result. If you take PrEP, your sexual health clinic will give you regular HIV tests as part of your care. <mark>[Check this against the kit leaflet.]</mark></p>"
+          },
           {
-            "question": "Can I return my test?",
-            "answer": "<p>You can return unopened kits within 14 days of delivery. For health and hygiene reasons, we can’t take a kit back once its seal is broken.</p><p>If there’s a problem with your order or your test arrives damaged, contact us and we’ll help.</p><p>For more information, see our <a href=\"https://testdiscreet.co.uk/policies/refund-policy\">Returns Policy</a>.</p>"
+            "question": "How fast is delivery, and is the packaging discreet?",
+            "answer": "<p>We dispatch orders within 1 working day, and most arrive within 2 to 3 working days across the UK. Your HIV test kit arrives in a plain parcel with nothing on the outside to show what’s inside. Your bank statement won’t show “Test Discreet” or the name of the test, so your order stays private.</p>"
+          },
+          {
+            "question": "Can I get a free HIV test on the NHS?",
+            "answer": "<p>Yes. HIV tests are free at NHS sexual health clinics, and some areas offer free postal kits. Many people choose to buy a rapid HIV test instead, because it gives a result in 15 minutes at home, with no appointment, no forms and no sample to post to a lab.</p>"
+          },
+          {
+            "question": "Does this test check for other STIs?",
+            "answer": "<p>No, this kit only tests for HIV. If you may have been exposed to HIV, you may have been exposed to other STIs too, such as chlamydia, gonorrhoea or syphilis. Many STIs have no symptoms. <a href=\"/tests/sti-test-bundle\">Our 7-in-1 STI test bundle</a> checks for several in one go.</p>"
           }
         ]
       }

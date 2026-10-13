@@ -1,13 +1,6 @@
 import Image from 'next/image';
 
 import { RichText } from '@/components/elements/rich-text';
-import {
-  ClockIcon,
-  DropIcon,
-  HomeIcon,
-  PackageIcon,
-  SwabIcon,
-} from '@/components/icons/shop';
 import AboutTest from '@/components/sections/product/about-test';
 import BuyBox from '@/components/sections/product/buy-box';
 import ProductFaq from '@/components/sections/product/product-faq';
@@ -18,9 +11,9 @@ import { Button } from '@/components/ui/button';
 import { ProductPageData } from '@/lib/types';
 import { cn, shopUrl } from '@/lib/utils';
 
-// Same sections as the testdiscreet.co.uk product pages, minus the top banner
-// and the first review band. Pages with "about" content get that section
-// straight under the hero, then "Test privately".
+// Based on the testdiscreet.co.uk product pages, minus the top banner, the first
+// review band and "Test privately". Pages with "about" content get that section
+// straight under the hero.
 export default function ProductPage({ product }: { product: ProductPageData }) {
   return (
     <>
@@ -32,7 +25,6 @@ export default function ProductPage({ product }: { product: ProductPageData }) {
           buyHref={shopUrl(`/cart/add?id=${product.variantId}&quantity=1`)}
         />
       )}
-      <TestPrivately benefits={product.benefits} />
       <HowItWorks how={product.how} />
       {product.windows && <WindowCalculator windows={product.windows} />}
       {product.results && <Results results={product.results} />}
@@ -49,54 +41,6 @@ function ProductHero({ product }: { product: ProductPageData }) {
       <div className="container grid items-start gap-6 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:gap-14">
         <ProductGallery images={product.gallery} />
         <BuyBox product={product} />
-      </div>
-    </section>
-  );
-}
-
-const BENEFIT_ICONS = {
-  clock: ClockIcon,
-  swab: SwabIcon,
-  drop: DropIcon,
-  package: PackageIcon,
-  home: HomeIcon,
-} as const;
-
-function TestPrivately({
-  benefits,
-}: {
-  benefits: ProductPageData['benefits'];
-}) {
-  return (
-    <section className="bg-muted">
-      <div className="container max-w-5xl py-10 text-center md:py-16">
-        <h2 className="mb-3 text-3xl md:text-4xl">
-          <RichText as="span" html={benefits.heading} />
-        </h2>
-        <p className="mb-7 text-lg">{benefits.text}</p>
-        <ul className="mb-8 grid grid-cols-2 gap-x-6 gap-y-5 md:grid-cols-4">
-          {benefits.items.map((item) => {
-            const Icon =
-              BENEFIT_ICONS[item.icon as keyof typeof BENEFIT_ICONS] ??
-              ClockIcon;
-            return (
-              <li
-                key={item.label}
-                className="font-display flex flex-col items-center gap-3 font-bold md:text-lg"
-              >
-                <span className="bg-background grid size-13 place-items-center rounded-full">
-                  <Icon className="text-primary size-1/2" />
-                </span>
-                {item.label}
-              </li>
-            );
-          })}
-        </ul>
-        <div className="grid md:inline-grid md:min-w-64">
-          <Button asChild>
-            <a href="#buy">Shop now</a>
-          </Button>
-        </div>
       </div>
     </section>
   );
