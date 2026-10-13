@@ -16,7 +16,7 @@ const FOOTER_COLUMNS = [
     links: [
       { label: 'Home', href: '/' },
       { label: 'STI guides', href: '/blog' },
-      { label: 'All tests', href: shopUrl('/', 'tests') },
+      { label: 'All tests', href: '/#tests' },
       { label: 'How to test', href: shopUrl('/pages/how-to-test') },
     ],
   },
@@ -24,8 +24,8 @@ const FOOTER_COLUMNS = [
     heading: 'Help',
     links: [
       { label: 'Contact', href: shopUrl('/pages/contact') },
-      { label: 'FAQ', href: shopUrl('/', 'faq') },
-      { label: 'When can I test?', href: shopUrl('/', 'when-to-test') },
+      { label: 'FAQ', href: '/#faq' },
+      { label: 'When can I test?', href: '/#when-to-test' },
     ],
   },
 ];

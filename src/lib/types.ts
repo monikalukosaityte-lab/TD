@@ -150,6 +150,8 @@ export interface ProductPageData {
     days: number;
     initialTitle: string | null;
     strings: Record<string, string> | null;
+    notes?: string;
+    scope?: string;
   } | null;
   results?: {
     heading: string;

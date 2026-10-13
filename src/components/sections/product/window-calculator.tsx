@@ -91,6 +91,15 @@ export default function WindowCalculator({ windows }: { windows: Windows }) {
           </h2>
           <p className="text-muted-foreground mb-6">{windows.subheading}</p>
 
+          {windows.notes && (
+            <RichText
+              html={windows.notes}
+              className="bg-muted mb-6 rounded-md px-5 py-4 text-sm"
+            />
+          )}
+
+          {windows.scope && <p className="mb-3 font-bold">{windows.scope}</p>}
+
           {hasCalculator && (
             <>
               <label htmlFor="exposure-date" className="mb-1.5 block font-bold">

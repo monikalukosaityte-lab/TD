@@ -10,6 +10,7 @@ import {
   PackageIcon,
   PRODUCT_ICONS,
 } from '@/components/icons/shop';
+import { productUrl, SHOP_PRODUCTS } from '@/components/sections/product-grid';
 import {
   Accordion,
   AccordionContent,
@@ -28,8 +29,17 @@ function formatPence(pence: number) {
   return `£${(pence / 100).toFixed(2)}`;
 }
 
-export default function BuyBox({ product }: { product: ProductPageData }) {
+// `featured` is the homepage version: no breadcrumb, and the title is an h2
+// linking to the product page.
+export default function BuyBox({
+  product,
+  featured = false,
+}: {
+  product: ProductPageData;
+  featured?: boolean;
+}) {
   const options = product.bundleChoice?.options ?? [];
+  const shopProduct = SHOP_PRODUCTS.find((p) => p.handle === product.handle);
   const [choice, setChoice] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const buyRef = useRef<HTMLDivElement>(null);
@@ -38,7 +48,7 @@ export default function BuyBox({ product }: { product: ProductPageData }) {
   const selected = options[choice];
   const isBundle = choice > 0 && Boolean(selected?.variantId);
   const variantId = isBundle ? selected.variantId! : product.variantId;
-  const unitPence = toPence(selected?.price ?? '0');
+  const unitPence = toPence(selected?.price ?? shopProduct?.price ?? '0');
   const discount = product.retest?.discount ?? 0;
   const buyLabel = isBundle
     ? (selected.buttonLabel ?? product.buyLabel)
@@ -62,9 +72,17 @@ export default function BuyBox({ product }: { product: ProductPageData }) {
         <HeroIntro hero={product.hero} />
       ) : (
         <>
-          <Breadcrumb current={product.title} />
+          {!featured && <Breadcrumb current={product.title} />}
 
-          <h1 className="text-3xl lg:text-4xl">{product.title}</h1>
+          {featured && shopProduct ? (
+            <h2 className="text-3xl lg:text-4xl">
+              <Link href={productUrl(shopProduct)} className="no-underline">
+                {product.title}
+              </Link>
+            </h2>
+          ) : (
+            <h1 className="text-3xl lg:text-4xl">{product.title}</h1>
+          )}
 
           <RichText html={product.intro} className="text-base md:text-lg" />
 
@@ -81,6 +99,13 @@ export default function BuyBox({ product }: { product: ProductPageData }) {
               <PackageIcon className="text-primary size-4.5" />
               <RichText as="span" html={product.shipping} />
             </p>
+          )}
+
+          {!product.bundleChoice && shopProduct && (
+            <Price
+              price={shopProduct.price}
+              compareAt={shopProduct.compareAt}
+            />
           )}
         </>
       )}
@@ -316,6 +341,27 @@ function HeroIntro({ hero }: { hero: ProductHeroContent }) {
         })}
       </dl>
     </>
+  );
+}
+
+// Bundles show what the tests would cost separately and the saving.
+function Price({ price, compareAt }: { price: string; compareAt?: string }) {
+  const save = compareAt ? toPence(compareAt) - toPence(price) : 0;
+
+  return (
+    <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+      <span className="text-3xl font-extrabold">{price}</span>
+      {compareAt && (
+        <span className="text-muted-foreground">
+          <s>{compareAt}</s> if bought separately
+        </span>
+      )}
+      {save > 0 && (
+        <span className="bg-accent-light text-accent-deep rounded-full px-2.5 py-0.5 text-sm font-semibold">
+          Save {formatPence(save)}
+        </span>
+      )}
+    </p>
   );
 }
 

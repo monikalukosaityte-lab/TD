@@ -1,18 +1,20 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
-import { BlogListing } from '@/components/sections/blog/blog-page';
-import { getAllArticles } from '@/lib/articles';
+import HomePage from '@/components/sections/home/home-page';
+import { getProductBySlug } from '@/lib/products';
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'STI Test Kits | Sexual Health Guides & STI Information',
+    absolute: 'STI Test Kits | Home STI Tests with Results in 15 Minutes',
   },
   description:
-    'Straightforward, medically reviewed guides on STIs, symptoms and testing. Everything you need to know.',
+    'Rapid STI test kits for home use: chlamydia, gonorrhoea, HIV, syphilis, herpes and hepatitis B & C. Private results in 15 minutes, discreet UK delivery.',
 };
 
 export default async function Home() {
-  const articles = await getAllArticles();
+  const bundle = await getProductBySlug('sti-test-bundle');
+  if (!bundle) notFound();
 
-  return <BlogListing articles={articles} />;
+  return <HomePage bundle={bundle} />;
 }

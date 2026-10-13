@@ -4,7 +4,7 @@ import Link from 'next/link';
 import ProductGrid from '@/components/sections/product-grid';
 import { Button } from '@/components/ui/button';
 import { ArticleFrontmatter } from '@/lib/types';
-import { formatPublishDate, shopUrl } from '@/lib/utils';
+import { formatPublishDate } from '@/lib/utils';
 
 export function BlogListing({ articles }: { articles: ArticleFrontmatter[] }) {
   return (
@@ -77,7 +77,7 @@ function BlogHero() {
             what to know, what to look for, and what to do next.
           </p>
           <Button asChild variant="light">
-            <a href={shopUrl('/', 'tests')}>Shop now</a>
+            <Link href="/#tests">Shop now</Link>
           </Button>
         </div>
       </div>
