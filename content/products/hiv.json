@@ -1,5 +1,5 @@
 {
-  "slug": "hiv-test",
+  "slug": "hiv",
   "handle": "hiv",
   "gallery": [
     {
@@ -395,7 +395,7 @@
           },
           {
             "question": "Does this test check for other STIs?",
-            "answer": "<p>No, this kit only tests for HIV. If you may have been exposed to HIV, you may have been exposed to other STIs too, such as chlamydia, gonorrhoea or syphilis. Many STIs have no symptoms. <a href=\"/tests/sti-test-bundle\">Our 7-in-1 STI test bundle</a> checks for several in one go.</p>"
+            "answer": "<p>No, this kit only tests for HIV. If you may have been exposed to HIV, you may have been exposed to other STIs too, such as chlamydia, gonorrhoea or syphilis. Many STIs have no symptoms. <a href=\"/rapid-tests/sti-test-bundle\">Our 7-in-1 STI test bundle</a> checks for several in one go.</p>"
           }
         ]
       }
@@ -423,12 +423,6 @@
         "subtitle": "HIV + 3 more STIs"
       }
     ],
-    "singles": [
-      "chlamydia-gonorrhoea",
-      "syphilis",
-      "hsv-2",
-      "hep-b-c",
-      "psa"
-    ]
+    "singles": ["chlamydia-gonorrhoea", "syphilis", "hsv-2", "hep-b-c", "psa"]
   }
 }

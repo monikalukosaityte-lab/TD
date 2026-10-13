@@ -54,7 +54,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'chlamydia-gonorrhoea',
-    slug: 'chlamydia-gonorrhoea-test',
+    slug: 'chlamydia-gonorrhoea',
     title: 'Chlamydia & Gonorrhoea Rapid Test Kit',
     price: '£19.95',
     variantId: 63780180590922,
@@ -67,7 +67,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'hiv',
-    slug: 'hiv-test',
+    slug: 'hiv',
     title: 'HIV Rapid Test Kit',
     price: '£15.95',
     variantId: 63780178592074,
@@ -77,7 +77,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'syphilis',
-    slug: 'syphilis-test',
+    slug: 'syphilis',
     title: 'Syphilis Rapid Test Kit',
     price: '£14.95',
     variantId: 63780180623690,
@@ -90,7 +90,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'hsv-2',
-    slug: 'herpes-test',
+    slug: 'herpes',
     title: 'Herpes (HSV-2) Rapid Test Kit',
     price: '£19.95',
     variantId: 63780180656458,
@@ -103,7 +103,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'hep-b-c',
-    slug: 'hepatitis-b-c-test',
+    slug: 'hepatitis-b-c',
     title: 'Hepatitis B & C Rapid Test Kit',
     price: '£27.95',
     variantId: 63780180787530,
@@ -116,7 +116,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'psa',
-    slug: 'psa-test',
+    slug: 'psa',
     title: 'PSA Prostate Test',
     price: '£19.95',
     variantId: 63780180820298,
@@ -127,7 +127,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
 ];
 
 export function productUrl(product: ShopProduct) {
-  return `/tests/${product.slug}`;
+  return `/rapid-tests/${product.slug}`;
 }
 
 export default function ProductGrid({
