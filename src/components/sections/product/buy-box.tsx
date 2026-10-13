@@ -156,13 +156,7 @@ export default function BuyBox({ product }: { product: ProductPageData }) {
                   </span>
                 </label>
                 {index === 0 && product.bundleChoice!.intro && (
-                  <p
-                    role="note"
-                    className="bg-accent-subtle text-accent-deep flex flex-col items-center gap-1.5 rounded-lg px-4 py-3 text-center text-sm sm:flex-row sm:items-start sm:text-left"
-                  >
-                    <InfoIcon className="size-4.5 shrink-0 sm:mt-px" />
-                    {product.bundleChoice!.intro}
-                  </p>
+                  <Notice>{product.bundleChoice!.intro}</Notice>
                 )}
               </Fragment>
             ))}
@@ -217,9 +211,7 @@ export default function BuyBox({ product }: { product: ProductPageData }) {
             })}
           </div>
           {product.retest.note && (
-            <p className="text-muted-foreground mt-3 text-sm">
-              {product.retest.note}
-            </p>
+            <Notice className="mt-3.5">{product.retest.note}</Notice>
           )}
         </fieldset>
       )}
@@ -228,12 +220,6 @@ export default function BuyBox({ product }: { product: ProductPageData }) {
         <Button asChild size="lg">
           <a href={buyHref}>{buyLabel}</a>
         </Button>
-        {product.trust && (
-          <p className="text-muted-foreground flex flex-wrap items-center justify-center gap-1.5 text-center text-sm">
-            <LockIcon className="size-4.5" />
-            {product.trust}
-          </p>
-        )}
       </div>
 
       {product.reassurance && (
@@ -375,6 +361,28 @@ function Breadcrumb({ current }: { current: string }) {
       <span className="mx-1.5">/</span>
       <span aria-current="page">{current}</span>
     </nav>
+  );
+}
+
+// Info note: icon sits inline with the text so it doesn't take a line of its own.
+function Notice({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <p
+      role="note"
+      className={cn(
+        'bg-accent-subtle text-accent-deep rounded-lg px-4 py-3 text-center text-sm sm:text-left',
+        className,
+      )}
+    >
+      <InfoIcon className="mr-1.5 inline size-4 -translate-y-px align-middle" />
+      {children}
+    </p>
   );
 }
 
