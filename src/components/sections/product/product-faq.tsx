@@ -36,7 +36,7 @@ export default function ProductFaq({ faq }: { faq: ProductPageData['faq'] }) {
               value={item.question}
               className="border-b"
             >
-              <AccordionTrigger className="py-4 text-base font-extrabold md:text-lg">
+              <AccordionTrigger className="py-4 text-base font-normal md:text-lg">
                 {item.question}
               </AccordionTrigger>
               <AccordionContent className="pb-5 text-base">
