@@ -22,6 +22,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: 'sti-test-bundle',
     title: '7-in-1 STI Test Bundle',
     price: '£64.95',
+    compareAt: '£98.75',
     variantId: 63780179870026,
     badge: 'Best value',
     includes: [
@@ -44,6 +45,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: 'core-4-bundle',
     title: 'Core 4 Bundle',
     price: '£44.95',
+    compareAt: '£50.85',
     variantId: 63780180492618,
     badge: 'Most popular',
     includes: ['Chlamydia', 'Gonorrhoea', 'HIV 1/2', 'Syphilis'],

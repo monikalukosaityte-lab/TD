@@ -409,5 +409,27 @@
     "hsv-2",
     "hep-b-c",
     "psa"
-  ]
+  ],
+  "otherTests": {
+    "heading": "Other available tests and bundles",
+    "highlight": "HIV 1/2",
+    "bundles": [
+      {
+        "handle": "sti-bundle",
+        "subtitle": "HIV + 6 more STIs"
+      },
+      {
+        "handle": "core-4",
+        "subtitle": "HIV + 3 more STIs"
+      }
+    ],
+    "singlesHeading": "Or add a single test",
+    "singles": [
+      "chlamydia-gonorrhoea",
+      "syphilis",
+      "hsv-2",
+      "hep-b-c",
+      "psa"
+    ]
+  }
 }

@@ -27,6 +27,8 @@ export interface ShopProduct {
   slug: string;
   title: string;
   price: string;
+  /** Bundles only: the price of the tests bought separately. */
+  compareAt?: string;
   variantId: number;
   badge?: string;
   includes: string[];
@@ -95,12 +97,23 @@ export interface ProductAboutContent {
   };
 }
 
+/** "Other available tests and bundles" — replaces the plain product grid. */
+export interface ProductOtherTestsContent {
+  heading: string;
+  /** Chip to highlight on bundle cards: the test this page is about. */
+  highlight: string;
+  bundles: { handle: string; subtitle: string }[];
+  singlesHeading: string;
+  singles: string[];
+}
+
 export interface ProductPageData {
   slug: string;
   handle: string;
   title: string;
   hero?: ProductHeroContent;
   about?: ProductAboutContent;
+  otherTests?: ProductOtherTestsContent;
   gallery: ProductImage[];
   intro: string;
   footnote: string;

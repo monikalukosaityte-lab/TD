@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { RichText } from '@/components/elements/rich-text';
 import AboutTest from '@/components/sections/product/about-test';
 import BuyBox from '@/components/sections/product/buy-box';
+import OtherTests from '@/components/sections/product/other-tests';
 import ProductFaq from '@/components/sections/product/product-faq';
 import ProductGallery from '@/components/sections/product/product-gallery';
 import WindowCalculator from '@/components/sections/product/window-calculator';
@@ -30,7 +31,11 @@ export default function ProductPage({ product }: { product: ProductPageData }) {
       {product.results && <Results results={product.results} />}
       <PhotoReviews reviews={product.reviews} />
       <ProductFaq faq={product.faq} />
-      <ProductGrid handles={product.otherProducts} featureFirst={false} />
+      {product.otherTests ? (
+        <OtherTests content={product.otherTests} />
+      ) : (
+        <ProductGrid handles={product.otherProducts} featureFirst={false} />
+      )}
     </>
   );
 }
