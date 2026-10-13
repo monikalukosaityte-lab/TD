@@ -254,3 +254,19 @@ export const UsersIcon = (props: SVGProps<SVGSVGElement>) => (
     <path d="M15.5 5.5a3.25 3.25 0 010 6.25M17.5 14.9c1.6.6 2.7 2.1 3 4.6" />
   </svg>
 );
+
+export const InfoIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.75"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+    {...props}
+  >
+    <circle cx="12" cy="12" r="9.5" />
+    <path d="M12 8h.01M11 12h1v4h1" />
+  </svg>
+);

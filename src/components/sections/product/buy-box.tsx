@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 
 import { RichText } from '@/components/elements/rich-text';
 import {
@@ -9,6 +9,7 @@ import {
   ClockIcon,
   DropIcon,
   HomeIcon,
+  InfoIcon,
   LockIcon,
   PackageIcon,
   SearchIcon,
@@ -96,67 +97,74 @@ export default function BuyBox({ product }: { product: ProductPageData }) {
 
       {product.bundleChoice && (
         <fieldset className="pt-2">
-          <legend className="mb-1.5 font-semibold">
+          <legend className="mb-4 font-semibold">
             {product.bundleChoice.heading}
           </legend>
-          <p className="text-muted-foreground mb-4 text-sm">
-            {product.bundleChoice.intro}
-          </p>
           <div className="grid gap-3.5">
             {options.map((option, index) => (
-              <label
-                key={option.title}
-                className={cn(
-                  'bg-card relative grid cursor-pointer grid-cols-[auto_1fr_auto] items-center gap-3.5 rounded-lg border px-4 py-4 transition-colors',
-                  choice === index &&
-                    'border-accent-deep ring-accent-deep ring-1 ring-inset',
-                )}
-              >
-                <input
-                  type="radio"
-                  name="bundle"
-                  checked={choice === index}
-                  onChange={() => setChoice(index)}
-                  className="peer sr-only"
-                />
-                <span
-                  aria-hidden
+              <Fragment key={option.title}>
+                <label
                   className={cn(
-                    'size-5 rounded-full border-2',
-                    choice === index
-                      ? 'border-accent-deep from-accent-deep bg-radial from-40% to-transparent to-45%'
-                      : 'bg-card',
+                    'bg-card relative grid cursor-pointer grid-cols-[auto_1fr_auto] items-center gap-3.5 rounded-lg border px-4 py-4 transition-colors',
+                    choice === index &&
+                      'border-accent-deep ring-accent-deep ring-1 ring-inset',
                   )}
-                />
-                {option.badge && (
-                  <span className="bg-accent-deep text-accent-foreground absolute top-0 right-4 -translate-y-1/2 rounded-full px-2.5 py-1 text-[0.6875rem] font-semibold tracking-wider uppercase">
-                    {option.badge}
-                  </span>
-                )}
-                <span className="grid gap-1">
-                  <span className="font-semibold">{option.title}</span>
-                  {option.includes && (
-                    <RichText
-                      as="span"
-                      html={option.includes}
-                      className="text-muted-foreground [&_strong]:text-foreground text-sm leading-snug [&_strong]:font-semibold"
-                    />
-                  )}
-                </span>
-                <span className="flex max-w-32 flex-wrap items-baseline justify-end gap-x-1.5 gap-y-0.5 text-right">
-                  {option.was && (
-                    <s className="text-muted-foreground text-sm">
-                      {option.was}
-                    </s>
-                  )}
-                  <span className="text-lg font-bold">{option.price}</span>
-                  {option.save && (
-                    <span className="bg-accent-light text-accent-deep rounded-full px-2 py-0.5 text-xs font-semibold">
-                      {option.save}
+                >
+                  <input
+                    type="radio"
+                    name="bundle"
+                    checked={choice === index}
+                    onChange={() => setChoice(index)}
+                    className="peer sr-only"
+                  />
+                  <span
+                    aria-hidden
+                    className={cn(
+                      'size-5 rounded-full border-2',
+                      choice === index
+                        ? 'border-accent-deep from-accent-deep bg-radial from-40% to-transparent to-45%'
+                        : 'bg-card',
+                    )}
+                  />
+                  {option.badge && (
+                    <span className="bg-accent-deep text-accent-foreground absolute top-0 right-4 -translate-y-1/2 rounded-full px-2.5 py-1 text-[0.6875rem] font-semibold tracking-wider uppercase">
+                      {option.badge}
                     </span>
                   )}
-                </span>
-              </label>
+                  <span className="grid gap-1">
+                    <span className="font-semibold">{option.title}</span>
+                    {option.includes && (
+                      <RichText
+                        as="span"
+                        html={option.includes}
+                        className="text-muted-foreground [&_strong]:text-foreground text-sm leading-snug [&_strong]:font-semibold"
+                      />
+                    )}
+                  </span>
+                  <span className="flex max-w-32 flex-wrap items-baseline justify-end gap-x-1.5 gap-y-0.5 text-right">
+                    {option.was && (
+                      <s className="text-muted-foreground text-sm">
+                        {option.was}
+                      </s>
+                    )}
+                    <span className="text-lg font-bold">{option.price}</span>
+                    {option.save && (
+                      <span className="bg-accent-light text-accent-deep rounded-full px-2 py-0.5 text-xs font-semibold">
+                        {option.save}
+                      </span>
+                    )}
+                  </span>
+                </label>
+                {index === 0 && product.bundleChoice!.intro && (
+                  <p
+                    role="note"
+                    className="bg-accent-subtle text-accent-deep flex flex-col items-center gap-1.5 rounded-lg px-4 py-3 text-center text-sm sm:flex-row sm:items-start sm:text-left"
+                  >
+                    <InfoIcon className="size-4.5 shrink-0 sm:mt-px" />
+                    {product.bundleChoice!.intro}
+                  </p>
+                )}
+              </Fragment>
             ))}
           </div>
         </fieldset>
