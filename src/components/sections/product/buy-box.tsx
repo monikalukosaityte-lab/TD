@@ -4,7 +4,17 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 import { RichText } from '@/components/elements/rich-text';
-import { CheckIcon, LockIcon, PackageIcon } from '@/components/icons/shop';
+import {
+  CheckIcon,
+  ClockIcon,
+  DropIcon,
+  HomeIcon,
+  LockIcon,
+  PackageIcon,
+  SearchIcon,
+  SwabIcon,
+  UsersIcon,
+} from '@/components/icons/shop';
 import {
   Accordion,
   AccordionContent,
@@ -12,7 +22,11 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import { ProductPageData } from '@/lib/types';
+import {
+  ProductHeroContent,
+  ProductIconName,
+  ProductPageData,
+} from '@/lib/types';
 import { cn, shopUrl } from '@/lib/utils';
 
 function toPence(price: string) {
@@ -53,34 +67,31 @@ export default function BuyBox({ product }: { product: ProductPageData }) {
 
   return (
     <div className="space-y-5">
-      <nav
-        aria-label="Breadcrumb"
-        className="text-muted-foreground text-sm md:text-base"
-      >
-        <Link href="/" className="no-underline hover:underline">
-          Home
-        </Link>
-        <span className="mx-1.5">/</span>
-        <span>{product.title}</span>
-      </nav>
+      {product.hero ? (
+        <HeroIntro hero={product.hero} />
+      ) : (
+        <>
+          <Breadcrumb current={product.title} />
 
-      <h1 className="text-3xl lg:text-4xl">{product.title}</h1>
+          <h1 className="text-3xl lg:text-4xl">{product.title}</h1>
 
-      <RichText html={product.intro} className="text-base md:text-lg" />
+          <RichText html={product.intro} className="text-base md:text-lg" />
 
-      {product.keyFacts.length > 0 && (
-        <ul className="space-y-2.5">
-          {product.keyFacts.map((fact) => (
-            <CheckItem key={fact} html={fact} />
-          ))}
-        </ul>
-      )}
+          {product.keyFacts.length > 0 && (
+            <ul className="space-y-2.5">
+              {product.keyFacts.map((fact) => (
+                <CheckItem key={fact} html={fact} />
+              ))}
+            </ul>
+          )}
 
-      {product.shipping && (
-        <p className="bg-muted inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm">
-          <PackageIcon className="text-primary size-4.5" />
-          <RichText as="span" html={product.shipping} />
-        </p>
+          {product.shipping && (
+            <p className="bg-muted inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm">
+              <PackageIcon className="text-primary size-4.5" />
+              <RichText as="span" html={product.shipping} />
+            </p>
+          )}
+        </>
       )}
 
       {product.bundleChoice && (
@@ -273,6 +284,89 @@ export default function BuyBox({ product }: { product: ProductPageData }) {
         </Button>
       </div>
     </div>
+  );
+}
+
+const HERO_ICONS: Record<
+  ProductIconName,
+  (props: React.SVGProps<SVGSVGElement>) => React.ReactElement
+> = {
+  clock: ClockIcon,
+  drop: DropIcon,
+  home: HomeIcon,
+  lock: LockIcon,
+  package: PackageIcon,
+  search: SearchIcon,
+  swab: SwabIcon,
+  users: UsersIcon,
+};
+
+function HeroIntro({ hero }: { hero: ProductHeroContent }) {
+  return (
+    <>
+      <Breadcrumb current={hero.breadcrumb} />
+
+      <h1 className="text-3xl lg:text-4xl">{hero.heading}</h1>
+
+      <p className="text-base md:text-lg">{hero.intro}</p>
+
+      <ul className="flex flex-wrap gap-1.5">
+        {hero.highlights.map((highlight) => {
+          const Icon = HERO_ICONS[highlight.icon];
+          return (
+            <li
+              key={highlight.label}
+              className="bg-accent text-accent-foreground inline-flex items-center gap-1 rounded-full px-2.5 py-1.5 text-sm font-medium whitespace-nowrap"
+            >
+              <Icon className="size-3.5" />
+              {highlight.label}
+            </li>
+          );
+        })}
+      </ul>
+
+      <dl className="bg-card divide-y rounded-xl border px-5 shadow-sm md:px-6">
+        {hero.specs.map((spec) => {
+          const Icon = HERO_ICONS[spec.icon];
+          return (
+            <div
+              key={spec.label}
+              className="grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-0.5 py-3.5 sm:grid-cols-[auto_auto_1fr] sm:gap-x-3.5 sm:py-4"
+            >
+              <Icon className="text-accent row-span-2 size-5 sm:row-span-1" />
+              <dt className="text-muted-foreground text-sm sm:text-base">
+                {spec.label}
+              </dt>
+              <dd className="col-start-2 font-bold sm:col-start-auto sm:text-right">
+                {spec.value}
+              </dd>
+            </div>
+          );
+        })}
+      </dl>
+    </>
+  );
+}
+
+function Breadcrumb({ current }: { current: string }) {
+  return (
+    <nav
+      aria-label="Breadcrumb"
+      className="text-muted-foreground text-sm md:text-base"
+    >
+      <Link
+        href="/"
+        className="hover:text-foreground underline underline-offset-3"
+      >
+        Home
+      </Link>
+      <span className="mx-1.5">/</span>
+      <Link href="/#tests" className="no-underline hover:underline">
+        All tests
+      </Link>
+      <span className="mx-1.5">/</span>
+      <span aria-current="page">{current}</span>
+    </nav>
   );
 }
 

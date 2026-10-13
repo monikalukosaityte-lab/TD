@@ -221,3 +221,36 @@ export const ChevronRightIcon = (props: SVGProps<SVGSVGElement>) => (
     <path d="M6 3l5 5-5 5" />
   </svg>
 );
+
+export const SearchIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.75"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+    {...props}
+  >
+    <circle cx="11" cy="11" r="6.5" />
+    <path d="M20 20l-4.25-4.25" />
+  </svg>
+);
+
+export const UsersIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.75"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+    {...props}
+  >
+    <circle cx="9" cy="8.5" r="3.25" />
+    <path d="M3.5 19.5c.6-3 2.8-4.75 5.5-4.75s4.9 1.75 5.5 4.75" />
+    <path d="M15.5 5.5a3.25 3.25 0 010 6.25M17.5 14.9c1.6.6 2.7 2.1 3 4.6" />
+  </svg>
+);

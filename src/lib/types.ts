@@ -64,10 +64,30 @@ export interface ProductResultItem {
   text: string;
 }
 
+export type ProductIconName =
+  | 'clock'
+  | 'drop'
+  | 'home'
+  | 'lock'
+  | 'package'
+  | 'search'
+  | 'swab'
+  | 'users';
+
+/** Rewritten hero copy for stitestkit; pages without it show the Shopify copy. */
+export interface ProductHeroContent {
+  breadcrumb: string;
+  heading: string;
+  intro: string;
+  highlights: { icon: ProductIconName; label: string }[];
+  specs: { icon: ProductIconName; label: string; value: string }[];
+}
+
 export interface ProductPageData {
   slug: string;
   handle: string;
   title: string;
+  hero?: ProductHeroContent;
   gallery: ProductImage[];
   intro: string;
   footnote: string;

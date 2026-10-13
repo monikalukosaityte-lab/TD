@@ -24,6 +24,47 @@
     }
   ],
   "title": "HIV Rapid Test Kit",
+  "hero": {
+    "breadcrumb": "HIV Test Kit",
+    "heading": "HIV Home Test Kit – Rapid Results in 15 Minutes",
+    "intro": "A rapid HIV self-test you do at home. One finger-prick of blood gives you a result in 15 minutes. Sent in plain packaging across the UK.",
+    "highlights": [
+      {
+        "icon": "lock",
+        "label": "Discreet packaging"
+      },
+      {
+        "icon": "clock",
+        "label": "Result in 15 minutes"
+      },
+      {
+        "icon": "home",
+        "label": "No clinic visit"
+      }
+    ],
+    "specs": [
+      {
+        "icon": "search",
+        "label": "What it tests for",
+        "value": "HIV-1 and HIV-2 antibodies"
+      },
+      {
+        "icon": "drop",
+        "label": "Sample",
+        "value": "Finger-prick blood"
+      },
+      {
+        "icon": "users",
+        "label": "For who",
+        "value": "Men and women"
+      },
+      {
+        "icon": "package",
+        "label": "Delivery",
+        "value": "UK dispatch within 1 working day"
+      }
+    ]
+  },
   "intro": "<p>Test privately for HIV with a simple finger-prick blood test. Results in around 15 minutes.</p>",
   "footnote": "",
   "keyFacts": [
