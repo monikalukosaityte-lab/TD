@@ -103,7 +103,6 @@ export interface ProductOtherTestsContent {
   /** Chip to highlight on bundle cards: the test this page is about. */
   highlight: string;
   bundles: { handle: string; subtitle: string }[];
-  singlesHeading: string;
   singles: string[];
 }
 

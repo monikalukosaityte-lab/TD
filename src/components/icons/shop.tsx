@@ -287,17 +287,3 @@ export const PRODUCT_ICONS: Record<
   swab: SwabIcon,
   users: UsersIcon,
 };
-
-export const PlusIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 16 16"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.75"
-    strokeLinecap="round"
-    aria-hidden
-    {...props}
-  >
-    <path d="M8 3v10M3 8h10" />
-  </svg>
-);

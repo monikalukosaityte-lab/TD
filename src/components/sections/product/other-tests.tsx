@@ -1,18 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { PlusIcon } from '@/components/icons/shop';
+import { ArrowRightIcon } from '@/components/icons/shop';
 import { productUrl, SHOP_PRODUCTS } from '@/components/sections/product-grid';
 import { Button } from '@/components/ui/button';
 import { ProductOtherTestsContent, ShopProduct } from '@/lib/types';
-import { cn, shopUrl } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 
 function findProduct(handle: string) {
   return SHOP_PRODUCTS.find((product) => product.handle === handle);
-}
-
-function cartUrl(product: ShopProduct) {
-  return shopUrl(`/cart/add?id=${product.variantId}&quantity=1`);
 }
 
 function toPence(price: string) {
@@ -52,8 +48,7 @@ export default function OtherTests({
           })}
         </ul>
 
-        <h3 className="mt-10 mb-3 text-base">{content.singlesHeading}</h3>
-        <ul className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-5">
+        <ul className="mt-4 grid gap-2.5 sm:grid-cols-2 md:mt-5 lg:grid-cols-5">
           {singles.map((product) => (
             <li key={product.handle}>
               <SingleTestCard product={product} />
@@ -150,7 +145,7 @@ function BundleCard({
 
         <div className="grid">
           <Button asChild size="sm">
-            <a href={cartUrl(product)}>Add to basket</a>
+            <Link href={productUrl(product)}>Learn more</Link>
           </Button>
         </div>
       </div>
@@ -158,11 +153,14 @@ function BundleCard({
   );
 }
 
-// Mobile: one row (photo, name, +). Desktop: photo and + on top, name below,
-// so five cards fit side by side.
+// Whole card links to the test's page. Mobile: one row (photo, name, arrow).
+// Desktop: photo and arrow on top, name below, so five cards fit side by side.
 function SingleTestCard({ product }: { product: ShopProduct }) {
   return (
-    <div className="bg-card grid h-full grid-cols-[auto_1fr_auto] items-center gap-3 rounded-lg border px-3 py-2.5 lg:grid-cols-[auto_1fr] lg:items-start lg:p-4">
+    <Link
+      href={productUrl(product)}
+      className="group bg-card hover:border-accent grid h-full grid-cols-[auto_1fr_auto] items-center gap-3 rounded-lg border px-3 py-2.5 no-underline transition-colors lg:grid-cols-[auto_1fr] lg:items-start lg:p-4"
+    >
       <div className="bg-secondary relative size-11 shrink-0 overflow-hidden rounded-md lg:size-14">
         <Image
           src={product.image.src}
@@ -173,28 +171,19 @@ function SingleTestCard({ product }: { product: ShopProduct }) {
         />
       </div>
       <div className="min-w-0 lg:col-span-2 lg:row-start-2">
-        <Link
-          href={productUrl(product)}
-          className="block text-sm leading-snug font-bold no-underline hover:underline"
-        >
+        <p className="text-sm leading-snug font-bold group-hover:underline">
           {product.title.replace(/ (Rapid Test Kit|Test)$/, '')}
-        </Link>
+        </p>
         <p className="text-muted-foreground text-xs">
           {product.sample} · {product.price}
         </p>
       </div>
-      <div className="lg:col-start-2 lg:row-start-1 lg:justify-self-end">
-        <Button
-          asChild
-          variant="outline"
-          size="icon-lg"
-          aria-label={`Add ${product.title} to basket`}
-        >
-          <a href={cartUrl(product)}>
-            <PlusIcon />
-          </a>
-        </Button>
-      </div>
-    </div>
+      <span
+        aria-hidden
+        className="border-primary text-primary group-hover:bg-primary group-hover:text-primary-foreground grid size-9 place-items-center rounded-full border-2 transition-colors lg:col-start-2 lg:row-start-1 lg:justify-self-end"
+      >
+        <ArrowRightIcon className="size-4" />
+      </span>
+    </Link>
   );
 }
