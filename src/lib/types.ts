@@ -84,6 +84,8 @@ export interface ProductHeroContent {
   intro: string;
   highlights: { icon: ProductIconName; label: string }[];
   specs: { icon: ProductIconName; label: string; value: string }[];
+  /** "What's in the box" line under the specs (HTML). */
+  inBox?: string;
 }
 
 /** "About [test] and testing" section shown straight after the hero. */
@@ -91,7 +93,7 @@ export interface ProductAboutContent {
   /** Without a heading, each question is an h2 of its own. */
   heading?: string;
   questions: { question: string; answer: string; open: boolean }[];
-  link: { label: string; href: string };
+  link?: { label: string; href: string };
   aside: {
     heading: string;
     items: { icon: ProductIconName; title: string; text: string }[];

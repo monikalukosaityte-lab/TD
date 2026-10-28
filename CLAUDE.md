@@ -80,6 +80,7 @@
   5. How to read your result
   6. FAQs, with references underneath
   7. Other tests: bundles first, then single tests with short names, leaving out the page's own test
+- Tests not in any bundle (PSA) set `bundleChoice` to null and leave out the bundle link; an optional `hero.inBox` adds a "What's in the box" line under the specs
 - No reviews section on product pages
 - FAQ groups (H3s in the copy doc) become separate `faq.tabs`; a single group shows no heading. Tables in the copy (e.g. infection stages) go into the answer HTML as a `<table>`
 - Dropdown (accordion) answers are always in the HTML, hidden with CSS when closed, so search engines can read them. Keep it that way: never let closed content unmount

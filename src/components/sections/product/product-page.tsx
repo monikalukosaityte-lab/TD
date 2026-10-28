@@ -7,7 +7,7 @@ import OtherTests from '@/components/sections/product/other-tests';
 import ProductFaq from '@/components/sections/product/product-faq';
 import ProductGallery from '@/components/sections/product/product-gallery';
 import WindowCalculator from '@/components/sections/product/window-calculator';
-import ProductGrid from '@/components/sections/product-grid';
+import ProductGrid, { SHOP_PRODUCTS } from '@/components/sections/product-grid';
 import { Button } from '@/components/ui/button';
 import { ProductPageData } from '@/lib/types';
 import { cn, shopUrl } from '@/lib/utils';
@@ -22,7 +22,11 @@ export default function ProductPage({ product }: { product: ProductPageData }) {
       {product.about && (
         <AboutTest
           about={product.about}
-          price={product.bundleChoice?.options[0]?.price ?? ''}
+          price={
+            product.bundleChoice?.options[0]?.price ??
+            SHOP_PRODUCTS.find((p) => p.handle === product.handle)?.price ??
+            ''
+          }
           buyHref={shopUrl(`/cart/add?id=${product.variantId}&quantity=1`)}
         />
       )}

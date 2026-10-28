@@ -54,12 +54,14 @@ export default function AboutTest({
               </AccordionItem>
             ))}
           </Accordion>
-          <Link
-            href={about.link.href}
-            className="text-primary hover:text-primary-hover mt-6 inline-block text-sm font-bold underline underline-offset-3"
-          >
-            {about.link.label} &rarr;
-          </Link>
+          {about.link && (
+            <Link
+              href={about.link.href}
+              className="text-primary hover:text-primary-hover mt-6 inline-block text-sm font-bold underline underline-offset-3"
+            >
+              {about.link.label} &rarr;
+            </Link>
+          )}
         </div>
 
         <WhyTestCard aside={about.aside} buyHref={buyHref} price={price} />

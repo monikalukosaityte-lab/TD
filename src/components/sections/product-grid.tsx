@@ -116,7 +116,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'psa',
-    slug: 'psa',
+    slug: 'psa-prostate-home-test-kit',
     title: 'PSA Prostate Test',
     price: '£19.95',
     variantId: 63780180820298,

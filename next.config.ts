@@ -63,7 +63,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/tests/psa-test',
-        destination: '/rapid-tests/psa',
+        destination: '/rapid-tests/psa-prostate-home-test-kit',
+        permanent: true,
+      },
+      {
+        source: '/rapid-tests/psa',
+        destination: '/rapid-tests/psa-prostate-home-test-kit',
         permanent: true,
       },
       {

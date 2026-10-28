@@ -345,6 +345,8 @@ function HeroIntro({ hero }: { hero: ProductHeroContent }) {
           );
         })}
       </dl>
+
+      {hero.inBox && <RichText html={hero.inBox} className="text-sm" />}
     </>
   );
 }
