@@ -327,43 +327,6 @@
       }
     ]
   },
-  "reviews": {
-    "heading": "What customers say about our HIV home test kit",
-    "items": [
-      {
-        "image": {
-          "src": "/images/products/reviews/photo-review-1.webp",
-          "alt": "Test Discreet kit at home"
-        },
-        "title": "So simple",
-        "text": "Really simple to use and the instructions were very clear."
-      },
-      {
-        "image": {
-          "src": "/images/products/reviews/photo-review-2.webp",
-          "alt": "Test Discreet kit at home"
-        },
-        "title": "Fast delivery",
-        "text": "Arrived quickly and the packaging was completely discreet."
-      },
-      {
-        "image": {
-          "src": "/images/products/reviews/photo-review-3.webp",
-          "alt": "Test Discreet kit at home"
-        },
-        "title": "Would recommend",
-        "text": "It was straightforward and having the result there and then gave me peace of mind."
-      },
-      {
-        "image": {
-          "src": "/images/products/reviews/photo-review-4.webp",
-          "alt": "Test Discreet kit at home"
-        },
-        "title": "Stress-free",
-        "text": "Much less stressful than I expected. Would definitely recommend."
-      }
-    ]
-  },
   "faq": {
     "heading": "HIV home test FAQs",
     "tabs": [

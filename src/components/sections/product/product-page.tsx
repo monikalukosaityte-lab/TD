@@ -29,7 +29,7 @@ export default function ProductPage({ product }: { product: ProductPageData }) {
       <HowItWorks how={product.how} />
       {product.windows && <WindowCalculator windows={product.windows} />}
       {product.results && <Results results={product.results} />}
-      <PhotoReviews reviews={product.reviews} />
+      {product.reviews && <PhotoReviews reviews={product.reviews} />}
       <ProductFaq faq={product.faq} />
       {product.otherTests ? (
         <OtherTests content={product.otherTests} />
@@ -183,7 +183,11 @@ function Results({
   );
 }
 
-function PhotoReviews({ reviews }: { reviews: ProductPageData['reviews'] }) {
+function PhotoReviews({
+  reviews,
+}: {
+  reviews: NonNullable<ProductPageData['reviews']>;
+}) {
   return (
     <section className="bg-secondary py-14">
       <div className="container">

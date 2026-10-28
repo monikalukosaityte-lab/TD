@@ -169,7 +169,7 @@ export interface ProductPageData {
     }[];
     notes: { title: string; text: string }[];
   } | null;
-  reviews: {
+  reviews?: {
     heading: string;
     items: { image: ProductImage; title: string; text: string }[];
   };
