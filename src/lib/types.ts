@@ -158,6 +158,8 @@ export interface ProductPageData {
     days: number;
     initialTitle: string | null;
     strings: Record<string, string> | null;
+    /** Shown instead of the date checker for tests with no window period. */
+    cards?: { title: string; text: string }[];
     notes?: string;
     scope?: string;
   } | null;

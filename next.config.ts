@@ -38,7 +38,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/tests/herpes-test',
-        destination: '/rapid-tests/herpes',
+        destination: '/rapid-tests/herpes-hsv-2-home-test-kit',
+        permanent: true,
+      },
+      {
+        source: '/rapid-tests/herpes',
+        destination: '/rapid-tests/herpes-hsv-2-home-test-kit',
         permanent: true,
       },
       {

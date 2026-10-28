@@ -90,7 +90,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'hsv-2',
-    slug: 'herpes',
+    slug: 'herpes-hsv-2-home-test-kit',
     title: 'Herpes (HSV-2) Rapid Test Kit',
     price: '£19.95',
     variantId: 63780180656458,

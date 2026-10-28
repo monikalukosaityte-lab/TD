@@ -101,6 +101,17 @@ export default function WindowCalculator({ windows }: { windows: Windows }) {
             className="text-muted-foreground mb-6"
           />
 
+          {windows.cards && (
+            <ul className="mb-6 grid gap-3 md:grid-cols-3">
+              {windows.cards.map((card) => (
+                <li key={card.title} className="rounded-md border p-4">
+                  <h3 className="mb-1.5 text-base">{card.title}</h3>
+                  <p className="text-muted-foreground text-sm">{card.text}</p>
+                </li>
+              ))}
+            </ul>
+          )}
+
           {windows.notes && (
             <RichText
               html={windows.notes}
