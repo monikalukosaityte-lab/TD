@@ -96,7 +96,10 @@ export default function WindowCalculator({ windows }: { windows: Windows }) {
           <h2 className="mb-2 text-3xl">
             <RichText as="span" html={windows.heading} />
           </h2>
-          <p className="text-muted-foreground mb-6">{windows.subheading}</p>
+          <RichText
+            html={windows.subheading}
+            className="text-muted-foreground mb-6"
+          />
 
           {windows.notes && (
             <RichText

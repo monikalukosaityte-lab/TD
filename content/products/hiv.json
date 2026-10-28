@@ -84,12 +84,12 @@
       {
         "question": "What are the early symptoms of HIV?",
         "open": false,
-        "answer": "<p>Some people get early HIV symptoms, a short flu-like illness, 2 to 6 weeks after getting HIV. It usually clears up within 2 to 3 weeks. Symptoms can include:</p><ul><li>High temperature (fever)</li><li>Sore throat</li><li>Swollen glands</li><li>Skin rash</li><li>Aching muscles</li><li>Tiredness</li><li>Mouth ulcers</li></ul><p>These symptoms are common with many other illnesses, and some people get none at all. After this stage, you can have HIV with no symptoms for years while it still affects your immune system. You can’t tell if you have HIV by how you feel, which is why testing matters.</p>"
+        "answer": "<p>Some people get <a href=\"/blog/hiv-symptoms-stages#what-are-the-early-symptoms-of-hiv\">early HIV symptoms</a>, a short flu-like illness, 2 to 6 weeks after getting HIV. It usually clears up within 2 to 3 weeks. Symptoms can include:</p><ul><li>High temperature (fever)</li><li>Sore throat</li><li>Swollen glands</li><li>Skin rash</li><li>Aching muscles</li><li>Tiredness</li><li>Mouth ulcers</li></ul><p>These symptoms are common with many other illnesses, and some people get none at all. After this stage, you can have <a href=\"/blog/hiv-symptoms-stages#can-you-have-hiv-with-no-symptoms\">HIV with no symptoms for years</a> while it still affects your immune system. You can’t tell if you have HIV by how you feel, which is why testing matters.</p>"
       },
       {
         "question": "Is HIV treatable?",
         "open": false,
-        "answer": "<p>Yes. There is no cure for HIV yet, but treatment is highly effective and free on the NHS. With treatment, people with HIV can expect a similar life expectancy to people without it, and most never reach late-stage HIV (AIDS). Once treatment brings HIV in the blood to an undetectable level, it can’t be passed on through sex. The earlier you know, the sooner treatment can start.</p>"
+        "answer": "<p>Yes. There is no cure for HIV yet, but treatment is highly effective and free on the NHS. With treatment, people with HIV can expect a similar life expectancy to people without it, and most never reach <a href=\"/blog/hiv-symptoms-stages#what-are-the-symptoms-of-late-stage-hiv\">late-stage HIV (AIDS)</a>. Once treatment brings HIV in the blood to an undetectable level, it can’t be passed on through sex. The earlier you know, the sooner treatment can start.</p>"
       },
       {
         "question": "Who should take an HIV test?",
@@ -256,12 +256,12 @@
     "stepsHeading": "How to use the HIV test kit in 3 steps",
     "link": {
       "label": "How to test and read your results",
-      "href": "https://testdiscreet.co.uk/pages/how-to-test?utm_source=stitestkit&utm_medium=referral"
+      "href": "https://testdiscreet.co.uk/pages/how-to-test-hiv?utm_source=stitestkit&utm_medium=referral"
     }
   },
   "windows": {
     "heading": "When should I take an HIV <em>test?</em>",
-    "subheading": "You can test at any time, but when you get tested for HIV matters. Testing too early can give a negative result even if you have HIV. This antibody test has a 90-day window period, so an early negative should be repeated 90 days after your last possible exposure.",
+    "subheading": "You can test at any time, but <a href=\"/blog/hiv-symptoms-stages#when-should-you-get-tested-for-hiv\">when you get tested for HIV</a> matters. Testing too early can give a negative result even if you have HIV. This antibody test has a 90-day window period, so an early negative should be repeated 90 days after your last possible exposure.",
     "days": 90,
     "initialTitle": "Test now. If negative, test again in 90 days.",
     "strings": {
@@ -376,7 +376,7 @@
           },
           {
             "question": "What are the first signs of HIV?",
-            "answer": "<p>The first signs of HIV, if any, are usually a short flu-like illness 2 to 6 weeks after infection. This can include a fever, sore throat, swollen glands, rash and aching muscles, and it usually passes within 2 to 3 weeks. Many people have no symptoms, so a test is the only way to know.</p>"
+            "answer": "<p>The first signs of HIV, if any, are usually <a href=\"/blog/hiv-symptoms-stages#what-are-the-early-symptoms-of-hiv\">a short flu-like illness</a> 2 to 6 weeks after infection. This can include a fever, sore throat, swollen glands, rash and aching muscles, and it usually passes within 2 to 3 weeks. Many people have no symptoms, so a test is the only way to know.</p>"
           },
           {
             "question": "How reliable is the HIV home test?",
@@ -408,7 +408,7 @@
           },
           {
             "question": "What’s the difference between HIV and AIDS?",
-            "answer": "<p>HIV is the virus. AIDS is the late stage of HIV, which can develop if HIV goes untreated for many years and badly damages the immune system. With treatment, most people with HIV in the UK never develop AIDS.</p>"
+            "answer": "<p>HIV is the virus. AIDS is <a href=\"/blog/hiv-symptoms-stages#whats-the-difference-between-hiv-and-aids\">the late stage of HIV</a>, which can develop if HIV goes untreated for many years and badly damages the immune system. With treatment, <a href=\"/blog/hiv-symptoms-stages#does-hiv-always-turn-into-aids\">most people with HIV in the UK never develop AIDS</a>.</p>"
           },
           {
             "question": "Will anyone know what I ordered?",
@@ -420,7 +420,7 @@
           },
           {
             "question": "Does this test check for other STIs?",
-            "answer": "<p>No, this kit only tests for HIV. If you may have been exposed to HIV, you may have been exposed to other STIs too, such as chlamydia, gonorrhoea or syphilis. Many STIs have no symptoms, so it helps to know <a href=\"/blog/what-is-an-sti-test\">how STI testing works</a>. Our <a href=\"/rapid-tests/core-4-bundle\">Core 4 bundle</a> and <a href=\"/rapid-tests/sti-test-bundle\">7-in-1 STI test bundle</a> check for several in one order.</p>"
+            "answer": "<p>No, this kit only tests for HIV. If you may have been exposed to HIV, you may have been exposed to other STIs too, such as <a href=\"/blog/chlamydia-gonorrhoea-symptoms\">chlamydia, gonorrhoea</a> or <a href=\"/blog/syphilis-symptoms-stages\">syphilis</a>. Many STIs have no symptoms, so it helps to know <a href=\"/blog/what-is-an-sti-test\">how STI testing works</a>. Our <a href=\"/rapid-tests/core-4-bundle\">Core 4 bundle</a> and <a href=\"/rapid-tests/sti-test-bundle\">7-in-1 STI test bundle</a> check for several in one order.</p>"
           }
         ]
       }
@@ -429,7 +429,7 @@
       "heading": "References",
       "items": [
         "Centers for Disease Control and Prevention. “About HIV.” <em>CDC</em>, 14 Jan. 2025, <a href=\"https://www.cdc.gov/hiv/about/index.html\">cdc.gov/hiv/about/index.html</a>.",
-        "GOV.UK / UK Health Security Agency. “New HIV Report Shows Progress but Inequalities Persist in Access to Testing, PrEP and Early Diagnosis.” <em>GOV.UK</em>, 14 May 2026, gov.uk.",
+        "GOV.UK / UK Health Security Agency. “New HIV Report Shows Progress but Inequalities Persist in Access to Testing, PrEP and Early Diagnosis.” <em>GOV.UK</em>, 14 May 2026, <a href=\"https://www.gov.uk/government/news/new-hiv-report-shows-progress-but-inequalities-persist-in-access-to-testing-prep-and-early-diagnosis\">gov.uk</a>.",
         "NHS. “HIV and AIDS.” <em>NHS.uk</em>, 9 Jul. 2025, <a href=\"https://www.nhs.uk/conditions/hiv-and-aids/\">nhs.uk/conditions/hiv-and-aids</a>.",
         "Terrence Higgins Trust (aidsmap). “Early HIV Infection.” <em>aidsmap</em>, Nov. 2025, <a href=\"https://www.aidsmap.com/about-hiv/early-hiv-infection\">aidsmap.com/about-hiv/early-hiv-infection</a>.",
         "Terrence Higgins Trust (aidsmap). “The Stages of HIV Infection.” <em>aidsmap</em>, Jun. 2025, <a href=\"https://www.aidsmap.com/about-hiv/stages-hiv-infection\">aidsmap.com/about-hiv/stages-hiv-infection</a>.",
