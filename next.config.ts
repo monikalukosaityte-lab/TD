@@ -78,7 +78,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/tests/core-4-bundle',
-        destination: '/rapid-tests/core-4-bundle',
+        destination: '/rapid-tests/core-4-sti-test-kit',
+        permanent: true,
+      },
+      {
+        source: '/rapid-tests/core-4-bundle',
+        destination: '/rapid-tests/core-4-sti-test-kit',
         permanent: true,
       },
       {

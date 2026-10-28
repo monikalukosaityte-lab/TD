@@ -118,7 +118,7 @@
     ],
     "link": {
       "label": "Testing for other STIs too? See our Core 4 STI test bundle",
-      "href": "/rapid-tests/core-4-bundle"
+      "href": "/rapid-tests/core-4-sti-test-kit"
     },
     "aside": {
       "heading": "Why test for chlamydia and gonorrhoea at home?",
@@ -462,7 +462,7 @@
           },
           {
             "question": "Does this test check for other STIs?",
-            "answer": "<p>No, this kit only tests for chlamydia and gonorrhoea. If you may have been exposed to one STI, you may have been exposed to others too, such as <a href=\"/rapid-tests/hiv-home-test-kit\">HIV</a> or <a href=\"/rapid-tests/syphilis-home-test-kit\">syphilis</a>. Many STIs have no symptoms, so it helps to know <a href=\"/blog/what-is-an-sti-test\">how STI testing works</a>. Our <a href=\"/rapid-tests/core-4-bundle\">Core 4 bundle</a> and <a href=\"/rapid-tests/7-in-1-sti-test-kit\">7-in-1 STI test bundle</a> check for several in one order.</p>"
+            "answer": "<p>No, this kit only tests for chlamydia and gonorrhoea. If you may have been exposed to one STI, you may have been exposed to others too, such as <a href=\"/rapid-tests/hiv-home-test-kit\">HIV</a> or <a href=\"/rapid-tests/syphilis-home-test-kit\">syphilis</a>. Many STIs have no symptoms, so it helps to know <a href=\"/blog/what-is-an-sti-test\">how STI testing works</a>. Our <a href=\"/rapid-tests/core-4-sti-test-kit\">Core 4 bundle</a> and <a href=\"/rapid-tests/7-in-1-sti-test-kit\">7-in-1 STI test bundle</a> check for several in one order.</p>"
           }
         ]
       }

@@ -89,7 +89,7 @@ export interface ProductHeroContent {
   specs: { icon: ProductIconName; label: string; value: string }[];
   /** "What's in the box" line under the specs (HTML). */
   inBox?: string;
-  /** Shows the price block (price, was-price, saving) with this line under it. */
+  /** Shows the price block (price, was-price, saving), with this line under it if not empty. */
   priceNote?: string;
   /** HTML under the discreet delivery box, e.g. a mini comparison table. */
   after?: string;

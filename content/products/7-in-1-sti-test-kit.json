@@ -321,7 +321,7 @@
       }
     ],
     "notes": "<p><strong>Simple rule:</strong> If you test soon after exposure and get negative results, retest at 2 weeks, 90 days and 6 months. That covers every window above.</p><p><strong>PEP alert:</strong> Possible HIV exposure in the last 72 hours? Contact a sexual health clinic or A&amp;E now and ask about PEP. Don’t wait for a test result.</p>",
-    "after": "<p><strong>Planning to retest?</strong> Choose the 2-kit Test + retest pack for £116.91 and save 10%, or our <a href=\"/rapid-tests/core-4-bundle\">Core 4 bundle</a> covers chlamydia, gonorrhoea, HIV and syphilis for a lower price.</p>"
+    "after": "<p><strong>Planning to retest?</strong> Choose the 2-kit Test + retest pack for £116.91 and save 10%, or our <a href=\"/rapid-tests/core-4-sti-test-kit\">Core 4 bundle</a> covers chlamydia, gonorrhoea, HIV and syphilis for a lower price.</p>"
   },
   "results": {
     "heading": "How to read your 7-in-1 STI test results",
@@ -372,7 +372,7 @@
           },
           {
             "question": "What’s the difference between the 7-in-1 kit and the Core 4 bundle?",
-            "answer": "<p>The <a href=\"/rapid-tests/core-4-bundle\">Core 4 bundle</a> tests for chlamydia, gonorrhoea, HIV and syphilis for £44.95. The 7-in-1 kit adds genital herpes, hepatitis B and hepatitis C for £64.95. Choose the 7-in-1 for the most complete check.</p>"
+            "answer": "<p>The <a href=\"/rapid-tests/core-4-sti-test-kit\">Core 4 bundle</a> tests for chlamydia, gonorrhoea, HIV and syphilis for £44.95. The 7-in-1 kit adds genital herpes, hepatitis B and hepatitis C for £64.95. Choose the 7-in-1 for the most complete check.</p>"
           },
           {
             "question": "Can men and women use the 7-in-1 kit?",
@@ -463,7 +463,7 @@
   ],
   "compare": {
     "heading": "Which STI test kit is right for me?",
-    "html": "<table><thead><tr><th></th><th>7-in-1 kit</th><th>Core 4 bundle</th><th>Single tests</th></tr></thead><tbody><tr><td>HIV</td><td>Yes</td><td>Yes</td><td><a href=\"/rapid-tests/hiv-home-test-kit\">£15.95</a></td></tr><tr><td>Syphilis</td><td>Yes</td><td>Yes</td><td><a href=\"/rapid-tests/syphilis-home-test-kit\">£14.95</a></td></tr><tr><td>Chlamydia &amp; gonorrhoea</td><td>Yes</td><td>Yes</td><td><a href=\"/rapid-tests/chlamydia-gonorrhoea-home-test-kit\">£19.95</a></td></tr><tr><td>Genital herpes (HSV-2)</td><td>Yes</td><td>No</td><td><a href=\"/rapid-tests/herpes-hsv-2-home-test-kit\">£19.95</a></td></tr><tr><td>Hepatitis B &amp; C</td><td>Yes</td><td>No</td><td><a href=\"/rapid-tests/hepatitis-b-c-home-test-kit\">£27.95</a></td></tr><tr><td>Price</td><td><strong>£64.95</strong></td><td><a href=\"/rapid-tests/core-4-bundle\">£44.95</a></td><td>£98.75 for all 5</td></tr><tr><td>Best for</td><td>The most complete check</td><td>The 4 most common STIs</td><td>Checking one thing</td></tr></tbody></table><p>All results in around 15 minutes.</p><p><strong>Also available:</strong> <a href=\"/rapid-tests/psa-prostate-home-test-kit\">PSA Prostate Test</a>, £19.95, for checking prostate health.</p>",
+    "html": "<table><thead><tr><th></th><th>7-in-1 kit</th><th>Core 4 bundle</th><th>Single tests</th></tr></thead><tbody><tr><td>HIV</td><td>Yes</td><td>Yes</td><td><a href=\"/rapid-tests/hiv-home-test-kit\">£15.95</a></td></tr><tr><td>Syphilis</td><td>Yes</td><td>Yes</td><td><a href=\"/rapid-tests/syphilis-home-test-kit\">£14.95</a></td></tr><tr><td>Chlamydia &amp; gonorrhoea</td><td>Yes</td><td>Yes</td><td><a href=\"/rapid-tests/chlamydia-gonorrhoea-home-test-kit\">£19.95</a></td></tr><tr><td>Genital herpes (HSV-2)</td><td>Yes</td><td>No</td><td><a href=\"/rapid-tests/herpes-hsv-2-home-test-kit\">£19.95</a></td></tr><tr><td>Hepatitis B &amp; C</td><td>Yes</td><td>No</td><td><a href=\"/rapid-tests/hepatitis-b-c-home-test-kit\">£27.95</a></td></tr><tr><td>Price</td><td><strong>£64.95</strong></td><td><a href=\"/rapid-tests/core-4-sti-test-kit\">£44.95</a></td><td>£98.75 for all 5</td></tr><tr><td>Best for</td><td>The most complete check</td><td>The 4 most common STIs</td><td>Checking one thing</td></tr></tbody></table><p>All results in around 15 minutes.</p><p><strong>Also available:</strong> <a href=\"/rapid-tests/psa-prostate-home-test-kit\">PSA Prostate Test</a>, £19.95, for checking prostate health.</p>",
     "buttonLabel": "Get the 7-in-1 kit – £64.95"
   }
 }

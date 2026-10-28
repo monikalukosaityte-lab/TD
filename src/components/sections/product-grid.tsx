@@ -42,7 +42,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'core-4',
-    slug: 'core-4-bundle',
+    slug: 'core-4-sti-test-kit',
     title: 'Core 4 Bundle',
     price: '£44.95',
     compareAt: '£50.85',

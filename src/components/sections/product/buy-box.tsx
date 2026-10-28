@@ -74,15 +74,17 @@ export default function BuyBox({
       {product.hero ? (
         <>
           <HeroIntro hero={product.hero} />
-          {product.hero.priceNote && shopProduct && (
+          {product.hero.priceNote !== undefined && shopProduct && (
             <div className="space-y-1">
               <Price
                 price={shopProduct.price}
                 compareAt={shopProduct.compareAt}
               />
-              <p className="text-muted-foreground text-sm">
-                {product.hero.priceNote}
-              </p>
+              {product.hero.priceNote && (
+                <p className="text-muted-foreground text-sm">
+                  {product.hero.priceNote}
+                </p>
+              )}
             </div>
           )}
         </>
