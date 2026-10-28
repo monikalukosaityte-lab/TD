@@ -158,6 +158,8 @@ export interface ProductPageData {
     days: number;
     initialTitle: string | null;
     strings: Record<string, string> | null;
+    /** A second, longer window (e.g. hepatitis C) checked after `days`. */
+    secondDays?: number;
     /** Shown instead of the date checker for tests with no window period. */
     cards?: { title: string; text: string }[];
     notes?: string;
@@ -170,7 +172,7 @@ export interface ProductPageData {
       intro: string;
       items: ProductResultItem[];
     }[];
-    notes: { title: string; text: string }[];
+    notes: { title?: string; text: string }[];
   } | null;
   reviews?: {
     heading: string;

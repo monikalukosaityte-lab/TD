@@ -163,11 +163,8 @@ function Results({
           </div>
         ))}
         {results.notes.map((note) => (
-          <div
-            key={note.title}
-            className="bg-card rounded-lg border p-5 md:p-6"
-          >
-            <h3 className="mb-1.5 text-lg">{note.title}</h3>
+          <div key={note.text} className="bg-card rounded-lg border p-5 md:p-6">
+            {note.title && <h3 className="mb-1.5 text-lg">{note.title}</h3>}
             <RichText html={note.text} className="text-muted-foreground" />
           </div>
         ))}

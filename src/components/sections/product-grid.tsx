@@ -103,7 +103,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'hep-b-c',
-    slug: 'hepatitis-b-c',
+    slug: 'hepatitis-b-c-home-test-kit',
     title: 'Hepatitis B & C Rapid Test Kit',
     price: '£27.95',
     variantId: 63780180787530,

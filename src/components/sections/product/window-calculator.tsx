@@ -59,17 +59,28 @@ export default function WindowCalculator({ windows }: { windows: Windows }) {
             count: days,
           }),
     );
-    const grace = Math.min(7, Math.floor(windows.days / 4));
-    const retestDate = format(addDays(exposure, windows.days));
+    const grace = (window: number) => Math.min(7, Math.floor(window / 4));
+    const second = windows.secondDays ?? 0;
+    const dates = {
+      date: format(addDays(exposure, windows.days)),
+      date2: second ? format(addDays(exposure, second)) : '',
+      exposure: format(exposure),
+    };
     if (strings.pep_title && days < PEP_DAYS) {
       setSummary({
         title: strings.pep_title,
-        body: fill(strings.pep_body ?? '', { date: retestDate }),
+        body: fill(strings.pep_body ?? '', dates),
       });
-    } else if (windows.days - days > grace) {
+    } else if (windows.days - days > grace(windows.days)) {
       setSummary({
-        title: fill(strings.retest_title, { date: retestDate }),
-        body: fill(strings.retest_body, { exposure: format(exposure) }),
+        title: fill(strings.retest_title, dates),
+        body: fill(strings.retest_body, dates),
+      });
+    } else if (second - days > grace(second)) {
+      // Past the first window but not the second.
+      setSummary({
+        title: fill(strings.middle_title ?? strings.now_title, dates),
+        body: fill(strings.middle_body ?? '', dates),
       });
     } else {
       setSummary({ title: strings.now_title, body: strings.now_body });

@@ -33,7 +33,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/tests/hepatitis-b-c-test',
-        destination: '/rapid-tests/hepatitis-b-c',
+        destination: '/rapid-tests/hepatitis-b-c-home-test-kit',
+        permanent: true,
+      },
+      {
+        source: '/rapid-tests/hepatitis-b-c',
+        destination: '/rapid-tests/hepatitis-b-c-home-test-kit',
         permanent: true,
       },
       {
