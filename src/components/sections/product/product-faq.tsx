@@ -45,6 +45,19 @@ export default function ProductFaq({ faq }: { faq: ProductPageData['faq'] }) {
             </AccordionItem>
           ))}
         </Accordion>
+
+        {faq.references && (
+          <div className="md:col-start-2">
+            <h2 className="mb-3 text-xl">{faq.references.heading}</h2>
+            <ol className="text-muted-foreground list-decimal space-y-1.5 pl-5 text-sm">
+              {faq.references.items.map((item) => (
+                <li key={item}>
+                  <RichText as="span" html={item} />
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
       </div>
     </section>
   );

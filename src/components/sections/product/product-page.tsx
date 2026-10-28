@@ -52,6 +52,9 @@ function ProductHero({ product }: { product: ProductPageData }) {
 }
 
 function HowItWorks({ how }: { how: ProductPageData['how'] }) {
+  // Under a steps heading (h3) the step titles move down a level.
+  const StepTitle = how.stepsHeading ? 'h4' : 'h3';
+
   return (
     <section className="py-10 md:py-12">
       <div className="container">
@@ -60,6 +63,9 @@ function HowItWorks({ how }: { how: ProductPageData['how'] }) {
           html={how.intro}
           className="text-muted-foreground -mt-3 mb-6 max-w-3xl"
         />
+        {how.stepsHeading && (
+          <h3 className="mb-4 text-xl">{how.stepsHeading}</h3>
+        )}
         <ol
           className={cn(
             'grid gap-3 sm:grid-cols-2 md:gap-5',
@@ -88,13 +94,21 @@ function HowItWorks({ how }: { how: ProductPageData['how'] }) {
                   >
                     {index + 1}
                   </span>
-                  <h3 className="text-lg">{step.title}</h3>
+                  <StepTitle className="text-lg">{step.title}</StepTitle>
                 </div>
                 <p className="text-muted-foreground">{step.text}</p>
               </div>
             </li>
           ))}
         </ol>
+        {how.link && (
+          <a
+            href={how.link.href}
+            className="text-primary hover:text-primary-hover mt-6 inline-block text-sm font-bold underline underline-offset-3"
+          >
+            {how.link.label} &rarr;
+          </a>
+        )}
       </div>
     </section>
   );

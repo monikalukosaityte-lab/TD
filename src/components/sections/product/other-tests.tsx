@@ -20,16 +20,15 @@ export default function OtherTests({
 }: {
   content: ProductOtherTestsContent;
 }) {
-  const singles = content.singles
-    .map(findProduct)
-    .filter((p): p is ShopProduct => Boolean(p));
-
   return (
     <section id="tests" className="bg-muted py-12 md:py-16">
       <div className="container">
-        <h2 className="mb-8 text-center text-2xl md:text-3xl">
-          {content.heading}
-        </h2>
+        <div className="mb-8 space-y-2 text-center">
+          <h2 className="text-2xl md:text-3xl">{content.heading}</h2>
+          {content.note && (
+            <p className="text-muted-foreground">{content.note}</p>
+          )}
+        </div>
 
         <ul className="grid gap-4 md:grid-cols-2 md:gap-5">
           {content.bundles.map((bundle, index) => {
@@ -39,7 +38,7 @@ export default function OtherTests({
               <li key={bundle.handle}>
                 <BundleCard
                   product={product}
-                  subtitle={bundle.subtitle}
+                  name={bundle.name}
                   highlight={content.highlight}
                   featured={index === 0}
                 />
@@ -49,11 +48,19 @@ export default function OtherTests({
         </ul>
 
         <ul className="mt-4 grid gap-2.5 sm:grid-cols-2 md:mt-5 lg:grid-cols-5">
-          {singles.map((product) => (
-            <li key={product.handle}>
-              <SingleTestCard product={product} />
-            </li>
-          ))}
+          {content.singles.map((single) => {
+            const product = findProduct(single.handle);
+            if (!product) return null;
+            return (
+              <li key={single.handle}>
+                <SingleTestCard
+                  product={product}
+                  name={single.name}
+                  sample={single.sample}
+                />
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>
@@ -62,12 +69,12 @@ export default function OtherTests({
 
 function BundleCard({
   product,
-  subtitle,
+  name,
   highlight,
   featured,
 }: {
   product: ShopProduct;
-  subtitle: string;
+  name: string;
   highlight: string;
   featured: boolean;
 }) {
@@ -101,12 +108,11 @@ function BundleCard({
             {product.badge}
           </span>
         )}
-        <h3 className="text-lg md:text-xl">
+        <h3 className="mb-3 text-lg md:text-xl">
           <Link href={productUrl(product)} className="no-underline">
-            {product.title}
+            {name}
           </Link>
         </h3>
-        <p className="text-primary mb-3 text-sm font-semibold">{subtitle}</p>
 
         <ul className="mb-3 flex flex-wrap gap-1.5">
           {product.includes.map((test) => (
@@ -124,12 +130,7 @@ function BundleCard({
           ))}
         </ul>
 
-        <p className="text-muted-foreground mb-3 text-xs">
-          {product.sample === 'Blood + swab'
-            ? 'Finger-prick + swab'
-            : product.sample}{' '}
-          · Results in 15 minutes
-        </p>
+        <p className="text-muted-foreground mb-3 text-xs">{product.sample}</p>
 
         <p className="mt-auto mb-3 flex flex-wrap items-baseline gap-x-2 gap-y-1">
           <span className="text-2xl font-extrabold">{product.price}</span>
@@ -155,7 +156,15 @@ function BundleCard({
 
 // Whole card links to the test's page. Mobile: one row (photo, name, arrow).
 // Desktop: photo and arrow on top, name below, so five cards fit side by side.
-function SingleTestCard({ product }: { product: ShopProduct }) {
+function SingleTestCard({
+  product,
+  name,
+  sample,
+}: {
+  product: ShopProduct;
+  name: string;
+  sample: string;
+}) {
   return (
     <Link
       href={productUrl(product)}
@@ -172,10 +181,10 @@ function SingleTestCard({ product }: { product: ShopProduct }) {
       </div>
       <div className="min-w-0 lg:col-span-2 lg:row-start-2">
         <p className="text-sm leading-snug font-bold group-hover:underline">
-          {product.title.replace(/ (Rapid Test Kit|Test)$/, '')}
+          {name}
         </p>
         <p className="text-muted-foreground text-xs">
-          {product.sample} · {product.price}
+          {sample} · {product.price}
         </p>
       </div>
       <span

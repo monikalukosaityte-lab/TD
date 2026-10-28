@@ -24,9 +24,11 @@ export default function AboutTest({
     <section className="bg-card py-12 md:py-16">
       <div className="container grid items-start gap-10 md:grid-cols-[minmax(0,1fr)_18rem] md:gap-14 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-20">
         <div>
-          <h2 className="mb-6 text-3xl md:text-4xl">
-            <RichText as="span" html={about.heading} />
-          </h2>
+          {about.heading && (
+            <h2 className="mb-6 text-3xl md:text-4xl">
+              <RichText as="span" html={about.heading} />
+            </h2>
+          )}
           <Accordion
             type="multiple"
             defaultValue={about.questions
@@ -40,7 +42,10 @@ export default function AboutTest({
                 value={item.question}
                 className="border-b"
               >
-                <AccordionTrigger className="py-4 text-base font-extrabold md:text-lg">
+                <AccordionTrigger
+                  headingAs={about.heading ? 'h3' : 'h2'}
+                  className="py-4 text-base font-extrabold md:text-lg"
+                >
                   {item.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground pb-5 text-base">

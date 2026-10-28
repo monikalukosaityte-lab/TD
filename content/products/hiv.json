@@ -27,15 +27,19 @@
   "hero": {
     "breadcrumb": "HIV Test Kit",
     "heading": "HIV Home Test Kit – Rapid Results in 15 Minutes",
-    "intro": "A rapid HIV self-test you do at home. One finger-prick of blood gives you a result in 15 minutes. Sent in plain packaging across the UK.",
+    "intro": "Test for HIV privately at home with one simple finger-prick blood test. This rapid HIV self-test checks for HIV-1 and HIV-2 antibodies and gives you a result in around 15 minutes. No clinic visit, no sample to post, and discreet delivery across the UK.",
     "highlights": [
+      {
+        "icon": "clock",
+        "label": "Results in 15 minutes"
+      },
+      {
+        "icon": "drop",
+        "label": "Simple finger-prick test"
+      },
       {
         "icon": "lock",
         "label": "Discreet packaging"
-      },
-      {
-        "icon": "clock",
-        "label": "Result in 15 minutes"
       },
       {
         "icon": "home",
@@ -45,7 +49,7 @@
     "specs": [
       {
         "icon": "search",
-        "label": "What it tests for",
+        "label": "Detects",
         "value": "HIV-1 and HIV-2 antibodies"
       },
       {
@@ -54,62 +58,66 @@
         "value": "Finger-prick blood"
       },
       {
+        "icon": "clock",
+        "label": "Results",
+        "value": "In around 15 minutes"
+      },
+      {
         "icon": "users",
-        "label": "For who",
-        "value": "Men and women"
+        "label": "Suitable for",
+        "value": "Anyone aged 16 and over"
       },
       {
         "icon": "package",
         "label": "Delivery",
-        "value": "UK dispatch within 1 working day"
+        "value": "Ships within 1 working day"
       }
     ]
   },
   "about": {
-    "heading": "About HIV <em>and testing</em>",
     "questions": [
       {
         "question": "What is HIV?",
         "open": true,
-        "answer": "<p>HIV (human immunodeficiency virus) is a virus that attacks the immune system, the part of the body that fights infection. Many people have no symptoms for years, so testing is the only way to know your HIV status for sure.</p><p>An HIV home test kit lets you test yourself in private. You use a small finger-prick of blood, and the test looks for antibodies to HIV-1 and HIV-2. Your result shows in around 15 minutes, with nothing to post to a lab.</p>"
+        "answer": "<p>HIV (human immunodeficiency virus) is a virus that attacks the immune system, the part of your body that fights infection. It is passed on mainly through sex without a condom or by sharing needles. HIV can cause no noticeable symptoms for years, so testing is the only way to know your HIV status for sure.</p><p>An HIV home test kit lets you check privately. You use a small finger-prick of blood, the test looks for antibodies to HIV-1 and HIV-2, and your result shows in around 15 minutes, with nothing to post to a lab.</p>"
       },
       {
-        "question": "What are the main symptoms of HIV?",
+        "question": "What are the early symptoms of HIV?",
         "open": false,
-        "answer": "<p>Some people get a short, flu-like illness 2 to 6 weeks after getting HIV. Signs can include:</p><ul><li>High temperature or fever</li><li>Sore throat</li><li>A red rash on the body</li><li>Feeling very tired, or aching muscles</li></ul><p>After this, many people feel completely well for years. You cannot tell if you have HIV by how you feel, which is why testing matters.</p>"
+        "answer": "<p>Some people get early HIV symptoms, a short flu-like illness, 2 to 6 weeks after getting HIV. It usually clears up within 2 to 3 weeks. Symptoms can include:</p><ul><li>High temperature (fever)</li><li>Sore throat</li><li>Swollen glands</li><li>Skin rash</li><li>Aching muscles</li><li>Tiredness</li><li>Mouth ulcers</li></ul><p>These symptoms are common with many other illnesses, and some people get none at all. After this stage, you can have HIV with no symptoms for years while it still affects your immune system. You can’t tell if you have HIV by how you feel, which is why testing matters.</p>"
       },
       {
         "question": "Is HIV treatable?",
         "open": false,
-        "answer": "<p>Yes. HIV treatment is free on the NHS. With treatment, people with HIV live long, healthy lives, and once the virus is undetectable they cannot pass it on to partners. The earlier you know, the better.</p>"
+        "answer": "<p>Yes. There is no cure for HIV yet, but treatment is highly effective and free on the NHS. With treatment, people with HIV can expect a similar life expectancy to people without it, and most never reach late-stage HIV (AIDS). Once treatment brings HIV in the blood to an undetectable level, it can’t be passed on through sex. The earlier you know, the sooner treatment can start.</p>"
       },
       {
         "question": "Who should take an HIV test?",
         "open": false,
-        "answer": "<p>Anyone who is sexually active can get HIV. It is a good idea to test if you have had sex without a condom, have a new partner, have shared needles, or your partner has HIV. If you often have new partners, testing every 3 months is a good habit.</p>"
+        "answer": "<p>You don’t need symptoms to test. It may be worth taking an HIV test if:</p><ul><li>You’ve had sex without a condom</li><li>You have a new sexual partner, or more than one partner</li><li>A sexual partner has told you they have HIV or another STI</li><li>You’ve shared needles or injecting equipment</li><li>You have possible symptoms, such as a flu-like illness</li><li>You’d prefer to test privately</li></ul><p><strong>Had a possible HIV exposure in the last 72 hours?</strong> Don’t wait for a test result. Contact a sexual health clinic or go to A&amp;E as soon as possible and ask about PEP, medication that can help prevent HIV after exposure.</p>"
       }
     ],
     "link": {
-      "label": "Testing for other STIs too? See all our test kits",
-      "href": "/#tests"
+      "label": "Testing for other STIs too? See our 7-in-1 STI test bundle",
+      "href": "/rapid-tests/sti-test-bundle"
     },
     "aside": {
-      "heading": "Why test at home?",
+      "heading": "Why test for HIV at home?",
       "items": [
         {
           "icon": "clock",
           "title": "Fast answer",
-          "text": "Result in 15 minutes, not days."
+          "text": "Results in 15 minutes, not days."
         },
         {
           "icon": "home",
           "title": "No clinic visit",
-          "text": "Test when and where you feel comfortable."
+          "text": "Test when and where suits you."
         },
         {
           "icon": "lock",
           "title": "Completely private",
-          "text": "Plain parcel. Only you see your result."
+          "text": "Plain parcel, and only you see your result."
         }
       ],
       "buttonLabel": "Get my test"
@@ -140,7 +148,7 @@
       {
         "title": "Core 4 bundle",
         "badge": "Most popular",
-        "includes": "<strong>Includes your HIV test</strong> + syphilis, chlamydia and gonorrhoea",
+        "includes": "Your HIV test plus syphilis, chlamydia and gonorrhoea.",
         "price": "£44.95",
         "was": "£50.85",
         "save": "Save £5.90",
@@ -150,7 +158,7 @@
       {
         "title": "7-in-1 bundle",
         "badge": "Best value",
-        "includes": "<strong>Includes your HIV test</strong> + syphilis, chlamydia, gonorrhoea, herpes and hepatitis B and C",
+        "includes": "Your HIV test plus syphilis, chlamydia, gonorrhoea, genital herpes (HSV-2), hepatitis B and hepatitis C.",
         "price": "£64.95",
         "was": "£98.75",
         "save": "Save £33.80",
@@ -217,8 +225,8 @@
     ]
   },
   "how": {
-    "heading": "How does the test work?",
-    "intro": "<p>The test looks for antibodies your body can produce in response to HIV-1 or HIV-2 infection, using a small finger-prick blood sample.</p><p>Your result appears on the test pad in around 15 minutes, with no sample to send to a laboratory.</p>",
+    "heading": "How does the HIV home test work?",
+    "intro": "<p>The test looks for antibodies your body can produce in response to HIV-1 or HIV-2 infection, using a small finger-prick blood sample. Your result appears on the test pad in around 15 minutes, with no sample to send to a laboratory.</p>",
     "steps": [
       {
         "image": {
@@ -234,7 +242,7 @@
           "alt": "Add blood and diluent"
         },
         "title": "Add blood and diluent",
-        "text": "Use the pipette to collect your blood and add 1 drop to the sample well marked S on the test pad. Then add 4 drops of diluent (test liquid) to the same well, immediately after the blood."
+        "text": "Use the pipette to collect your blood and add 1 drop to the sample well marked S on the test pad. Then add 4 drops of diluent (test liquid) to the same well, straight after the blood."
       },
       {
         "image": {
@@ -244,29 +252,38 @@
         "title": "Read your result",
         "text": "Leave the test pad flat and read your result between 15 and 20 minutes. Don't read the test after 20 minutes, as the result may no longer be reliable."
       }
-    ]
+    ],
+    "stepsHeading": "How to use the HIV test kit in 3 steps",
+    "link": {
+      "label": "How to test and read your results",
+      "href": "https://testdiscreet.co.uk/pages/how-to-test?utm_source=stitestkit&utm_medium=referral"
+    }
   },
   "windows": {
-    "heading": "When should I <em>test?</em>",
-    "subheading": "Testing too early can give a negative result even if you have an infection.",
+    "heading": "When should I take an HIV <em>test?</em>",
+    "subheading": "You can test at any time, but when you get tested for HIV matters. Testing too early can give a negative result even if you have HIV. This antibody test has a 90-day window period, so an early negative should be repeated 90 days after your last possible exposure.",
     "days": 90,
-    "initialTitle": "Test now. If negative, repeat in 90 days.",
+    "initialTitle": "Test now. If negative, test again in 90 days.",
     "strings": {
       "today": "Today",
       "days_ago_one": "__COUNT__ day ago",
       "days_ago_other": "__COUNT__ days ago",
       "interval": "90 days",
-      "retest_title": "Test now. If negative, repeat on __DATE__.",
+      "retest_title": "Test now. If negative, test again on __DATE__.",
       "retest_body": "An early negative may miss HIV from this exposure.",
       "now_title": "You can test now.",
-      "now_body": "",
-      "unsure_title": "Test now. If negative, repeat in __INTERVAL__.",
+      "now_body": "A negative result covers this exposure.",
+      "unsure_title": "Test now. If negative, test again in __INTERVAL__.",
       "unsure_body": "",
-      "retest": ""
-    }
+      "retest": "",
+      "pep_title": "Contact a sexual health clinic or A&E today and ask about PEP.",
+      "pep_body": "Then test now, and again at __DATE__.",
+      "privacy": "This checker runs on your device. The date never leaves it: we don’t see it, store it or send it anywhere."
+    },
+    "notes": "<p>If you have symptoms or a partner has tested positive, contact a sexual health clinic now.</p><p><strong>Possible exposure in the last 72 hours?</strong> Contact a sexual health clinic or A&amp;E now and ask about PEP. Don’t wait for a test result.</p>"
   },
   "results": {
-    "heading": "Understanding your result",
+    "heading": "How to read your HIV test result",
     "groups": [
       {
         "title": null,
@@ -286,7 +303,7 @@
               "alt": "HIV test showing a positive result: lines at C and T"
             },
             "title": "Positive",
-            "text": "<p>Lines at C and T, even if the T line is faint. HIV antibodies were detected.</p>"
+            "text": "<p>Lines at C and T, even if the T line is faint. HIV antibodies were detected. Contact a sexual health clinic for a confirmation test.</p>"
           },
           {
             "image": {
@@ -307,7 +324,7 @@
     ]
   },
   "reviews": {
-    "heading": "Don't just take our word for it",
+    "heading": "What customers say about our HIV home test kit",
     "items": [
       {
         "image": {
@@ -344,62 +361,81 @@
     ]
   },
   "faq": {
-    "heading": "Frequently asked questions",
+    "heading": "HIV home test FAQs",
     "tabs": [
       {
         "label": "All",
         "questions": [
           {
             "question": "How soon after sex can I test for HIV?",
-            "answer": "<p>This HIV rapid test gives a conclusive result 90 days (12 weeks) after possible exposure. You can test from <mark>[4 weeks]</mark>, and many people will show a result by then, but you should test again at 90 days to be sure. If you want an earlier answer, a lab test at a sexual health clinic can detect HIV from around 45 days.</p>"
+            "answer": "<p>You can test straight away, but a test taken very soon after exposure may not pick up a new HIV infection. This antibody-only rapid test has a 90-day window period. If your result is negative before 90 days, test again 90 days after your last possible exposure. A sexual health clinic can offer tests that detect HIV earlier.</p>"
           },
           {
             "question": "It’s been less than 72 hours since I may have been exposed to HIV. What should I do?",
-            "answer": "<p>Go to a sexual health clinic or A&amp;E as soon as possible and ask about PEP (post-exposure prophylaxis). PEP is emergency medicine that can stop HIV infection. It must be started within 72 hours and works best within 24 hours. It’s too early to use a home test now, so test at 90 days.</p>"
+            "answer": "<p>Contact a sexual health clinic or go to A&amp;E as soon as possible and ask about PEP (post-exposure prophylaxis). PEP is medication that can help prevent HIV after exposure. It must be started within 72 hours and works best when started as soon as possible. A home test can’t show an infection this early, so test again at 90 days.</p>"
           },
           {
-            "question": "How accurate is the HIV rapid test?",
-            "answer": "<p>This HIV home test is <mark>[99.x%]</mark> accurate when used correctly, 90 days or more after possible exposure. It’s CE marked for self-testing. Testing too early, or not following the instructions, can affect your result, so read the leaflet before you start.</p>"
+            "question": "What are the first signs of HIV?",
+            "answer": "<p>The first signs of HIV, if any, are usually a short flu-like illness 2 to 6 weeks after infection. This can include a fever, sore throat, swollen glands, rash and aching muscles, and it usually passes within 2 to 3 weeks. Many people have no symptoms, so a test is the only way to know.</p>"
+          },
+          {
+            "question": "How reliable is the HIV home test?",
+            "answer": "<p>When used correctly, this test is a reliable way to check for HIV antibodies at home. Testing too soon after exposure can affect your result, so an early negative may need repeating at 90 days. This is a screening test, so a positive result should be followed up with a sexual health clinic.</p>"
           },
           {
             "question": "How do I use the HIV home test kit?",
-            "answer": "<p>Wash and warm your hands, then use the lancet to prick the side of your fingertip. Add one drop of blood to the test, then add the liquid (diluent) from the kit. Wait 15 minutes and read your result. Everything you need is in the box, with step-by-step instructions.</p>"
+            "answer": "<p>Clean your fingertip, prick it with the lancet, add 1 drop of blood to the well marked S, then add 4 drops of diluent. Read your result between 15 and 20 minutes. Everything you need is in the box.</p>"
           },
           {
             "question": "How do I read my HIV test result?",
-            "answer": "<p>Look at the lines on the test after 15 minutes. One line at C means negative. Two lines (C and T) means positive, even if the T line is faint. If no line appears at C, the test is invalid and didn’t work, often because there wasn’t enough blood. Use a new test.</p>"
+            "answer": "<p>One line at C means negative. Lines at C and T mean positive, even if the T line is faint. No line at C means the test is invalid and hasn’t worked. Contact us and we’ll help.</p>"
           },
           {
             "question": "What does a negative HIV test result mean?",
-            "answer": "<p>A negative result means no HIV antibodies were found. If it has been 90 days or more since your last possible exposure, you can trust this result. If it has been less than 90 days, test again at the 90-day mark. Keep testing regularly if you’re sexually active.</p>"
+            "answer": "<p>A negative result means no HIV antibodies were detected. If it’s been 90 days or more since your last possible exposure, this result covers that exposure. If it’s been less than 90 days, test again at the 90-day mark. If you have symptoms or are worried, contact a sexual health clinic about testing sooner.</p>"
           },
           {
             "question": "What if my HIV test result is positive?",
-            "answer": "<p>A positive result means HIV antibodies may be present and needs a follow-up test to confirm it. Book a free, confidential appointment at a sexual health clinic or with your GP. Try not to panic: HIV is very treatable. With treatment, people live long, healthy lives and cannot pass HIV on to partners.</p>"
+            "answer": "<p>A positive result doesn’t necessarily mean you have HIV, so you’ll need another test to confirm it. Contact a sexual health clinic as soon as possible and tell them you’ve had a positive rapid HIV test. NHS sexual health services are free and confidential. If HIV is confirmed, effective treatment is available and people living with HIV can live long, healthy lives. The clinic can also advise you about telling sexual partners.</p>"
           },
           {
             "question": "Can I take an HIV test while pregnant?",
-            "answer": "<p>Yes, you can use this HIV test while pregnant. <mark>[Check this against the kit leaflet.]</mark> In the UK, HIV testing is also offered free as part of routine antenatal care, so speak to your midwife too. If you are pregnant and have HIV, treatment makes the chance of passing it to your baby very low.</p>"
+            "answer": "<p>If you’re pregnant and worried about HIV, speak to your midwife, GP or a sexual health clinic. HIV testing is routinely offered during pregnancy through the NHS. Early diagnosis and treatment can help protect both you and your baby.</p>"
           },
           {
-            "question": "Can I use this test if I take PrEP or HIV medicine?",
-            "answer": "<p>This test isn’t suitable if you take PrEP, PEP or HIV treatment, because these medicines can affect the result. If you take PrEP, your sexual health clinic will give you regular HIV tests as part of your care. <mark>[Check this against the kit leaflet.]</mark></p>"
+            "question": "Can I use this test if I take PrEP or PEP?",
+            "answer": "<p><mark>[Confirm with the kit leaflet before publishing.]</mark> HIV medicines such as PrEP, PEP or HIV treatment can affect antibody test results. If you take PrEP, your clinic will give you regular HIV tests as part of your care.</p>"
           },
           {
-            "question": "How fast is delivery, and is the packaging discreet?",
-            "answer": "<p>We dispatch orders within 1 working day, and most arrive within 2 to 3 working days across the UK. Your HIV test kit arrives in a plain parcel with nothing on the outside to show what’s inside. Your bank statement won’t show “Test Discreet” or the name of the test, so your order stays private.</p>"
+            "question": "What’s the difference between HIV and AIDS?",
+            "answer": "<p>HIV is the virus. AIDS is the late stage of HIV, which can develop if HIV goes untreated for many years and badly damages the immune system. With treatment, most people with HIV in the UK never develop AIDS.</p>"
+          },
+          {
+            "question": "Will anyone know what I ordered?",
+            "answer": "<p>No. Your order arrives in plain, discreet packaging with nothing on the outside to reveal what’s inside. Your bank statement won’t show “Test Discreet” or the name of the test. We ship within 1 working day.</p>"
           },
           {
             "question": "Can I get a free HIV test on the NHS?",
-            "answer": "<p>Yes. HIV tests are free at NHS sexual health clinics, and some areas offer free postal kits. Many people choose to buy a rapid HIV test instead, because it gives a result in 15 minutes at home, with no appointment, no forms and no sample to post to a lab.</p>"
+            "answer": "<p>Yes. HIV tests are free at NHS sexual health clinics, and some areas offer free postal kits. Clinic samples usually go to a lab and take a few days. Many people choose a rapid HIV home test for a result in 15 minutes, with no appointment and no sample to post.</p>"
           },
           {
             "question": "Does this test check for other STIs?",
-            "answer": "<p>No, this kit only tests for HIV. If you may have been exposed to HIV, you may have been exposed to other STIs too, such as chlamydia, gonorrhoea or syphilis. Many STIs have no symptoms. <a href=\"/rapid-tests/sti-test-bundle\">Our 7-in-1 STI test bundle</a> checks for several in one go.</p>"
+            "answer": "<p>No, this kit only tests for HIV. If you may have been exposed to HIV, you may have been exposed to other STIs too, such as chlamydia, gonorrhoea or syphilis. Many STIs have no symptoms, so it helps to know <a href=\"/blog/what-is-an-sti-test\">how STI testing works</a>. Our <a href=\"/rapid-tests/core-4-bundle\">Core 4 bundle</a> and <a href=\"/rapid-tests/sti-test-bundle\">7-in-1 STI test bundle</a> check for several in one order.</p>"
           }
         ]
       }
-    ]
+    ],
+    "references": {
+      "heading": "References",
+      "items": [
+        "Centers for Disease Control and Prevention. “About HIV.” <em>CDC</em>, 14 Jan. 2025, <a href=\"https://www.cdc.gov/hiv/about/index.html\">cdc.gov/hiv/about/index.html</a>.",
+        "GOV.UK / UK Health Security Agency. “New HIV Report Shows Progress but Inequalities Persist in Access to Testing, PrEP and Early Diagnosis.” <em>GOV.UK</em>, 14 May 2026, gov.uk.",
+        "NHS. “HIV and AIDS.” <em>NHS.uk</em>, 9 Jul. 2025, <a href=\"https://www.nhs.uk/conditions/hiv-and-aids/\">nhs.uk/conditions/hiv-and-aids</a>.",
+        "Terrence Higgins Trust (aidsmap). “Early HIV Infection.” <em>aidsmap</em>, Nov. 2025, <a href=\"https://www.aidsmap.com/about-hiv/early-hiv-infection\">aidsmap.com/about-hiv/early-hiv-infection</a>.",
+        "Terrence Higgins Trust (aidsmap). “The Stages of HIV Infection.” <em>aidsmap</em>, Jun. 2025, <a href=\"https://www.aidsmap.com/about-hiv/stages-hiv-infection\">aidsmap.com/about-hiv/stages-hiv-infection</a>.",
+        "Terrence Higgins Trust. “PEP (Post-Exposure Prophylaxis for HIV).” <em>tht.org.uk</em>, 11 Jun. 2026, <a href=\"https://www.tht.org.uk/hiv/protection/pep-post-exposure-prophylaxis-hiv\">tht.org.uk/hiv/protection/pep-post-exposure-prophylaxis-hiv</a>."
+      ]
+    }
   },
   "otherProducts": [
     "sti-bundle",
@@ -411,18 +447,45 @@
     "psa"
   ],
   "otherTests": {
-    "heading": "Other available tests and bundles",
+    "heading": "Other home STI test kits and bundles",
+    "note": "All results in around 15 minutes.",
     "highlight": "HIV 1/2",
     "bundles": [
       {
         "handle": "sti-bundle",
-        "subtitle": "HIV + 6 more STIs"
+        "name": "7-in-1 STI Test Bundle"
       },
       {
         "handle": "core-4",
-        "subtitle": "HIV + 3 more STIs"
+        "name": "Core 4 Bundle"
       }
     ],
-    "singles": ["chlamydia-gonorrhoea", "syphilis", "hsv-2", "hep-b-c", "psa"]
+    "singles": [
+      {
+        "handle": "hep-b-c",
+        "name": "Hepatitis B & C Test Kit",
+        "sample": "Finger-prick"
+      },
+      {
+        "handle": "chlamydia-gonorrhoea",
+        "name": "Chlamydia & Gonorrhoea Test Kit",
+        "sample": "Swab"
+      },
+      {
+        "handle": "hsv-2",
+        "name": "Herpes (HSV-2) Test Kit",
+        "sample": "Finger-prick"
+      },
+      {
+        "handle": "psa",
+        "name": "PSA Prostate Test",
+        "sample": "Finger-prick"
+      },
+      {
+        "handle": "syphilis",
+        "name": "Syphilis Test Kit",
+        "sample": "Finger-prick"
+      }
+    ]
   }
 }

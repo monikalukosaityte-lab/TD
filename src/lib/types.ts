@@ -87,7 +87,8 @@ export interface ProductHeroContent {
 
 /** "About [test] and testing" section shown straight after the hero. */
 export interface ProductAboutContent {
-  heading: string;
+  /** Without a heading, each question is an h2 of its own. */
+  heading?: string;
   questions: { question: string; answer: string; open: boolean }[];
   link: { label: string; href: string };
   aside: {
@@ -102,8 +103,10 @@ export interface ProductOtherTestsContent {
   heading: string;
   /** Chip to highlight on bundle cards: the test this page is about. */
   highlight: string;
-  bundles: { handle: string; subtitle: string }[];
-  singles: string[];
+  /** Line under the heading, e.g. "All results in around 15 minutes." */
+  note?: string;
+  bundles: { handle: string; name: string }[];
+  singles: { handle: string; name: string; sample: string }[];
 }
 
 export interface ProductPageData {
@@ -142,7 +145,9 @@ export interface ProductPageData {
   how: {
     heading: string;
     intro: string;
+    stepsHeading?: string;
     steps: { image: ProductImage; title: string; text: string }[];
+    link?: { label: string; href: string };
   };
   windows?: {
     heading: string;
@@ -172,6 +177,7 @@ export interface ProductPageData {
       label: string;
       questions: { question: string; answer: string }[];
     }[];
+    references?: { heading: string; items: string[] };
   };
   otherProducts: string[];
 }

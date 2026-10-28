@@ -235,6 +235,11 @@ export default function BuyBox({
         <Button asChild size="lg">
           <a href={buyHref}>{buyLabel}</a>
         </Button>
+        {product.hero && product.trust && (
+          <p className="text-muted-foreground text-center text-sm">
+            {product.trust}
+          </p>
+        )}
       </div>
 
       {product.reassurance && (

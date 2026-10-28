@@ -30,6 +30,9 @@ const fill = (text: string, values: Record<string, string | number>) =>
     text,
   );
 
+// Within 72 hours of exposure PEP comes first (pages with a "pep_title" string).
+const PEP_DAYS = 3;
+
 export default function WindowCalculator({ windows }: { windows: Windows }) {
   const strings = windows.strings;
   const hasCalculator = windows.days > 0 && strings !== null;
@@ -57,11 +60,15 @@ export default function WindowCalculator({ windows }: { windows: Windows }) {
           }),
     );
     const grace = Math.min(7, Math.floor(windows.days / 4));
-    if (windows.days - days > grace) {
+    const retestDate = format(addDays(exposure, windows.days));
+    if (strings.pep_title && days < PEP_DAYS) {
       setSummary({
-        title: fill(strings.retest_title, {
-          date: format(addDays(exposure, windows.days)),
-        }),
+        title: strings.pep_title,
+        body: fill(strings.pep_body ?? '', { date: retestDate }),
+      });
+    } else if (windows.days - days > grace) {
+      setSummary({
+        title: fill(strings.retest_title, { date: retestDate }),
         body: fill(strings.retest_body, { exposure: format(exposure) }),
       });
     } else {
@@ -135,8 +142,8 @@ export default function WindowCalculator({ windows }: { windows: Windows }) {
               )}
 
               <p className="text-muted-foreground mt-5 mb-2 text-xs">
-                This runs on your device. The date never leaves it: we
-                don&apos;t see it, store it or send it anywhere.
+                {strings?.privacy ??
+                  'This runs on your device. The date never leaves it: we don’t see it, store it or send it anywhere.'}
               </p>
               <Button type="button" variant="link" size="xs" onClick={onUnsure}>
                 I&apos;m not sure of the date
