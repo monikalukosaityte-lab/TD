@@ -33,7 +33,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/tests/hiv-test',
-        destination: '/rapid-tests/hiv',
+        destination: '/rapid-tests/hiv-home-test-kit',
+        permanent: true,
+      },
+      {
+        source: '/rapid-tests/hiv',
+        destination: '/rapid-tests/hiv-home-test-kit',
         permanent: true,
       },
       {

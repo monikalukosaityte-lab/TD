@@ -112,6 +112,8 @@ export interface ProductOtherTestsContent {
 export interface ProductPageData {
   slug: string;
   handle: string;
+  /** Meta title and description; without it they come from the title and intro. */
+  seo?: { title: string; description: string };
   title: string;
   hero?: ProductHeroContent;
   about?: ProductAboutContent;

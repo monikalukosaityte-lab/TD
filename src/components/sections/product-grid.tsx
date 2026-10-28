@@ -67,7 +67,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'hiv',
-    slug: 'hiv',
+    slug: 'hiv-home-test-kit',
     title: 'HIV Rapid Test Kit',
     price: '£15.95',
     variantId: 63780178592074,

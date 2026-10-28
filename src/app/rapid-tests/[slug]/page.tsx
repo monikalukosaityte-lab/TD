@@ -23,8 +23,12 @@ export async function generateMetadata({
   if (!product) return {};
 
   return {
-    title: { absolute: `${product.title} | STI Test Kits` },
-    description: product.intro.replace(/<[^>]+>/g, '').replace(/\*$/, ''),
+    title: {
+      absolute: product.seo?.title ?? `${product.title} | STI Test Kits`,
+    },
+    description:
+      product.seo?.description ??
+      product.intro.replace(/<[^>]+>/g, '').replace(/\*$/, ''),
     // Same copy as the Shopify product pages, so kept out of search until reviewed.
     robots: { index: false, follow: false },
   };
