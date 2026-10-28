@@ -10,8 +10,11 @@ import {
 import { ProductPageData } from '@/lib/types';
 import { shopUrl } from '@/lib/utils';
 
-export default function ProductFaq({ faq }: { faq: ProductPageData['faq'] }) {
-  const questions = faq.tabs.flatMap((tab) => tab.questions);
+type Faq = ProductPageData['faq'];
+
+// One group shows as a plain list; several groups each get an h3 heading.
+export default function ProductFaq({ faq }: { faq: Faq }) {
+  const grouped = faq.tabs.length > 1;
 
   return (
     <section id="faq" className="bg-card py-14 md:py-16">
@@ -29,22 +32,17 @@ export default function ProductFaq({ faq }: { faq: ProductPageData['faq'] }) {
           </p>
         </div>
 
-        <Accordion type="single" collapsible className="border-t">
-          {questions.map((item) => (
-            <AccordionItem
-              key={item.question}
-              value={item.question}
-              className="border-b"
-            >
-              <AccordionTrigger className="py-4 text-base font-normal md:text-lg">
-                {item.question}
-              </AccordionTrigger>
-              <AccordionContent className="pb-5 text-base">
-                <RichText html={item.answer} />
-              </AccordionContent>
-            </AccordionItem>
+        <div className="space-y-10">
+          {faq.tabs.map((group) => (
+            <div key={group.label}>
+              {grouped && <h3 className="mb-3 text-xl">{group.label}</h3>}
+              <FaqList
+                questions={group.questions}
+                headingAs={grouped ? 'h4' : 'h3'}
+              />
+            </div>
           ))}
-        </Accordion>
+        </div>
 
         {faq.references && (
           <div className="md:col-start-2">
@@ -60,5 +58,35 @@ export default function ProductFaq({ faq }: { faq: ProductPageData['faq'] }) {
         )}
       </div>
     </section>
+  );
+}
+
+function FaqList({
+  questions,
+  headingAs,
+}: {
+  questions: Faq['tabs'][number]['questions'];
+  headingAs: 'h3' | 'h4';
+}) {
+  return (
+    <Accordion type="single" collapsible className="border-t">
+      {questions.map((item) => (
+        <AccordionItem
+          key={item.question}
+          value={item.question}
+          className="border-b"
+        >
+          <AccordionTrigger
+            headingAs={headingAs}
+            className="py-4 text-base font-normal md:text-lg"
+          >
+            {item.question}
+          </AccordionTrigger>
+          <AccordionContent className="pb-5 text-base">
+            <RichText html={item.answer} />
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
   );
 }

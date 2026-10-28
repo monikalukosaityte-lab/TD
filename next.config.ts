@@ -13,7 +13,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/product/syphilis',
-        destination: '/rapid-tests/syphilis',
+        destination: '/rapid-tests/syphilis-home-test-kit',
+        permanent: true,
+      },
+      {
+        source: '/rapid-tests/syphilis',
+        destination: '/rapid-tests/syphilis-home-test-kit',
         permanent: true,
       },
       {
@@ -48,7 +53,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/tests/syphilis-test',
-        destination: '/rapid-tests/syphilis',
+        destination: '/rapid-tests/syphilis-home-test-kit',
         permanent: true,
       },
       {

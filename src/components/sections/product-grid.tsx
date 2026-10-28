@@ -77,7 +77,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'syphilis',
-    slug: 'syphilis',
+    slug: 'syphilis-home-test-kit',
     title: 'Syphilis Rapid Test Kit',
     price: '£14.95',
     variantId: 63780180623690,

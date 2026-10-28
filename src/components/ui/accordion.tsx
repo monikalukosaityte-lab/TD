@@ -38,7 +38,7 @@ function AccordionTrigger({
   headingAs: Heading = 'h3',
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Trigger> & {
-  headingAs?: 'h2' | 'h3';
+  headingAs?: 'h2' | 'h3' | 'h4';
 }) {
   return (
     <AccordionPrimitive.Header asChild>

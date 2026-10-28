@@ -286,4 +286,5 @@ export const PRODUCT_ICONS: Record<
   search: SearchIcon,
   swab: SwabIcon,
   users: UsersIcon,
+  verified: VerifiedIcon,
 };

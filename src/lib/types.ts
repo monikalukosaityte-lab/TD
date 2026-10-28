@@ -74,7 +74,8 @@ export type ProductIconName =
   | 'package'
   | 'search'
   | 'swab'
-  | 'users';
+  | 'users'
+  | 'verified';
 
 /** Rewritten hero copy for stitestkit; pages without it show the Shopify copy. */
 export interface ProductHeroContent {
