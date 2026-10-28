@@ -67,6 +67,23 @@
 - Body text uses `font-text` utility (default via body, no need to specify)
 - Data, labels, and small caps use `font-mono` utility
 
+## Product Pages
+
+- `content/products/hiv-home-test-kit.json` is the template for every product page. New or updated pages copy its structure; only the copy changes
+- URL: `/rapid-tests/<keyword>` (e.g. `hiv-home-test-kit`). The JSON `slug` and the file name match it, `SHOP_PRODUCTS` in `product-grid.tsx` uses the same slug, and every old URL gets a permanent redirect in `next.config.ts`
+- `seo.title` and `seo.description` carry the meta title and description from the copy doc
+- Sections, in order:
+  1. Hero: gallery (product shot first, privacy promise second), breadcrumb, H1, intro, pills, spec table, "Choose your test" (single, Core 4, 7-in-1, with the "exposed to one STI" note after the single), quantity (test + retest), "Get my test", trust line, discreet delivery
+  2. About: four questions as H2 accordions (first open), a link to a bundle, and the "Why test for ... at home?" card with a buy button
+  3. How the test works: H2, intro, H3 over the steps, link to the test's Shopify how-to-test page
+  4. When to test: the window calculator, with notes (and the PEP message for HIV)
+  5. How to read your result
+  6. FAQs, with references underneath
+  7. Other tests: bundles first, then single tests with short names, leaving out the page's own test
+- No reviews section on product pages
+- Copy arrives as an SEO doc (.docx). Use its wording exactly and keep its internal links: guide links go to `/blog/...` anchors on this site, product links go to this site's `/rapid-tests/...` pages, and only buy buttons go to the Shopify checkout
+- Wrap anything the copy says still needs checking in `<mark>`
+
 ## MDX / Articles
 
 ### Setup
