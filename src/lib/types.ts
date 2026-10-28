@@ -102,8 +102,8 @@ export interface ProductAboutContent {
 /** "Other available tests and bundles" — replaces the plain product grid. */
 export interface ProductOtherTestsContent {
   heading: string;
-  /** Chip to highlight on bundle cards: the test this page is about. */
-  highlight: string;
+  /** Chips to highlight on bundle cards: the test(s) this page is about. */
+  highlight: string | string[];
   /** Line under the heading, e.g. "All results in around 15 minutes." */
   note?: string;
   bundles: { handle: string; name: string }[];

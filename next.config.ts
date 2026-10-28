@@ -23,7 +23,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/tests/chlamydia-gonorrhoea-test',
-        destination: '/rapid-tests/chlamydia-gonorrhoea',
+        destination: '/rapid-tests/chlamydia-gonorrhoea-home-test-kit',
+        permanent: true,
+      },
+      {
+        source: '/rapid-tests/chlamydia-gonorrhoea',
+        destination: '/rapid-tests/chlamydia-gonorrhoea-home-test-kit',
         permanent: true,
       },
       {

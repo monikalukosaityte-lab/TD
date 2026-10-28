@@ -54,7 +54,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     handle: 'chlamydia-gonorrhoea',
-    slug: 'chlamydia-gonorrhoea',
+    slug: 'chlamydia-gonorrhoea-home-test-kit',
     title: 'Chlamydia & Gonorrhoea Rapid Test Kit',
     price: '£19.95',
     variantId: 63780180590922,

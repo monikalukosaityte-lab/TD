@@ -75,7 +75,7 @@ function BundleCard({
 }: {
   product: ShopProduct;
   name: string;
-  highlight: string;
+  highlight: string | string[];
   featured: boolean;
 }) {
   const save =
@@ -120,7 +120,7 @@ function BundleCard({
               key={test}
               className={cn(
                 'rounded-full px-2.5 py-0.5 text-xs',
-                test === highlight
+                [highlight].flat().includes(test)
                   ? 'bg-accent text-accent-foreground font-bold'
                   : 'bg-muted',
               )}
