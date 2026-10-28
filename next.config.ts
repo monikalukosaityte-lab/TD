@@ -83,7 +83,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/tests/sti-test-bundle',
-        destination: '/rapid-tests/sti-test-bundle',
+        destination: '/rapid-tests/7-in-1-sti-test-kit',
+        permanent: true,
+      },
+      {
+        source: '/rapid-tests/sti-test-bundle',
+        destination: '/rapid-tests/7-in-1-sti-test-kit',
         permanent: true,
       },
     ];

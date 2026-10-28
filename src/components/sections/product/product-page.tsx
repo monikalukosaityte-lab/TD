@@ -16,6 +16,8 @@ import { cn, shopUrl } from '@/lib/utils';
 // review band and "Test privately". Pages with "about" content get that section
 // straight under the hero.
 export default function ProductPage({ product }: { product: ProductPageData }) {
+  const buyHref = shopUrl(`/cart/add?id=${product.variantId}&quantity=1`);
+
   return (
     <>
       <ProductHero product={product} />
@@ -27,15 +29,19 @@ export default function ProductPage({ product }: { product: ProductPageData }) {
             SHOP_PRODUCTS.find((p) => p.handle === product.handle)?.price ??
             ''
           }
-          buyHref={shopUrl(`/cart/add?id=${product.variantId}&quantity=1`)}
+          buyHref={buyHref}
         />
       )}
       <HowItWorks how={product.how} />
       {product.windows && <WindowCalculator windows={product.windows} />}
-      {product.results && <Results results={product.results} />}
+      {product.results && (
+        <Results results={product.results} buyHref={buyHref} />
+      )}
       {product.reviews && <PhotoReviews reviews={product.reviews} />}
       <ProductFaq faq={product.faq} />
-      {product.otherTests ? (
+      {product.compare ? (
+        <Compare compare={product.compare} buyHref={buyHref} />
+      ) : product.otherTests ? (
         <OtherTests content={product.otherTests} />
       ) : (
         <ProductGrid handles={product.otherProducts} featureFirst={false} />
@@ -105,6 +111,7 @@ function HowItWorks({ how }: { how: ProductPageData['how'] }) {
             </li>
           ))}
         </ol>
+        {how.after && <RichText html={how.after} className="mt-6 max-w-3xl" />}
         {how.link && (
           <a
             href={how.link.href}
@@ -120,8 +127,10 @@ function HowItWorks({ how }: { how: ProductPageData['how'] }) {
 
 function Results({
   results,
+  buyHref,
 }: {
   results: NonNullable<ProductPageData['results']>;
+  buyHref: string;
 }) {
   return (
     <section className="pt-6 pb-14">
@@ -134,36 +143,40 @@ function Results({
               html={group.intro}
               className="text-muted-foreground -mt-3 mb-6 max-w-3xl"
             />
-            <ul
-              className={cn(
-                'grid gap-3 sm:grid-cols-2 md:gap-5',
-                group.items.length === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3',
-              )}
-            >
-              {group.items.map((item) => (
-                <li
-                  key={item.title}
-                  className="bg-card flex flex-col overflow-hidden rounded-lg border"
-                >
-                  <div className="bg-secondary relative aspect-4/3 border-b">
-                    <Image
-                      src={item.image.src}
-                      alt={item.image.alt}
-                      fill
-                      sizes="(min-width: 990px) 30vw, (min-width: 640px) 45vw, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="flex-1 p-5 md:p-6">
-                    <h3 className="text-lg">{item.title}</h3>
-                    <RichText
-                      html={item.text}
-                      className="text-muted-foreground mt-1.5"
-                    />
-                  </div>
-                </li>
-              ))}
-            </ul>
+            {group.items.length > 0 && (
+              <ul
+                className={cn(
+                  'grid gap-3 sm:grid-cols-2 md:gap-5',
+                  group.items.length === 4
+                    ? 'lg:grid-cols-4'
+                    : 'lg:grid-cols-3',
+                )}
+              >
+                {group.items.map((item) => (
+                  <li
+                    key={item.title}
+                    className="bg-card flex flex-col overflow-hidden rounded-lg border"
+                  >
+                    <div className="bg-secondary relative aspect-4/3 border-b">
+                      <Image
+                        src={item.image.src}
+                        alt={item.image.alt}
+                        fill
+                        sizes="(min-width: 990px) 30vw, (min-width: 640px) 45vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex-1 p-5 md:p-6">
+                      <h3 className="text-lg">{item.title}</h3>
+                      <RichText
+                        html={item.text}
+                        className="text-muted-foreground mt-1.5"
+                      />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
         {results.notes.map((note) => (
@@ -175,7 +188,38 @@ function Results({
         <div className="flex justify-center pt-5">
           <div className="grid w-full sm:w-auto sm:min-w-64">
             <Button asChild variant="brand-deep">
-              <a href="#buy">Shop now</a>
+              {results.buttonLabel ? (
+                <a href={buyHref}>{results.buttonLabel}</a>
+              ) : (
+                <a href="#buy">Shop now</a>
+              )}
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Bundles: a comparison table of kits and single tests instead of the cards.
+function Compare({
+  compare,
+  buyHref,
+}: {
+  compare: NonNullable<ProductPageData['compare']>;
+  buyHref: string;
+}) {
+  return (
+    <section id="tests" className="bg-muted py-12 md:py-16">
+      <div className="container max-w-4xl">
+        <h2 className="mb-6 text-center text-2xl md:text-3xl">
+          {compare.heading}
+        </h2>
+        <RichText html={compare.html} />
+        <div className="mt-8 flex justify-center">
+          <div className="grid w-full sm:w-auto sm:min-w-64">
+            <Button asChild>
+              <a href={buyHref}>{compare.buttonLabel}</a>
             </Button>
           </div>
         </div>

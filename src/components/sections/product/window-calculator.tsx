@@ -30,6 +30,12 @@ const fill = (text: string, values: Record<string, string | number>) =>
     text,
   );
 
+// "__DATE_14__" becomes the exposure date plus 14 days.
+const fillDates = (text: string, exposure: Date) =>
+  text.replace(/__DATE_(\d+)__/g, (_, n) =>
+    format(addDays(exposure, Number(n))),
+  );
+
 // Within 72 hours of exposure PEP comes first (pages with a "pep_title" string).
 const PEP_DAYS = 3;
 
@@ -60,6 +66,18 @@ export default function WindowCalculator({ windows }: { windows: Windows }) {
           }),
     );
     const grace = (window: number) => Math.min(7, Math.floor(window / 4));
+    if (windows.stages) {
+      const stage = windows.stages.find(
+        (s) => s.until === null || days < s.until - grace(s.until),
+      );
+      if (stage) {
+        setSummary({
+          title: fillDates(stage.title, exposure),
+          body: fillDates(stage.body, exposure),
+        });
+      }
+      return;
+    }
     const second = windows.secondDays ?? 0;
     const dates = {
       date: format(addDays(exposure, windows.days)),
@@ -174,6 +192,13 @@ export default function WindowCalculator({ windows }: { windows: Windows }) {
                 I&apos;m not sure of the date
               </Button>
             </>
+          )}
+
+          {windows.after && (
+            <RichText
+              html={windows.after}
+              className="text-muted-foreground mt-6 text-sm"
+            />
           )}
         </div>
       </div>

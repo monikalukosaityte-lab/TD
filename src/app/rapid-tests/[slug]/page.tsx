@@ -80,6 +80,9 @@ const plainText = (html: string) =>
 function structuredData(product: ProductPageData) {
   const url = `${SITE_URL}/rapid-tests/${product.slug}`;
   const shop = SHOP_PRODUCTS.find((p) => p.handle === product.handle);
+  const related = SHOP_PRODUCTS.filter((p) =>
+    product.seo?.related?.includes(p.handle),
+  );
 
   return {
     '@context': 'https://schema.org',
@@ -91,6 +94,13 @@ function structuredData(product: ProductPageData) {
         url,
         image: product.gallery.map((image) => `${SITE_URL}${image.src}`),
         brand: { '@type': 'Brand', name: 'Test Discreet' },
+        ...(related.length > 0 && {
+          isRelatedTo: related.map((item) => ({
+            '@type': 'Product',
+            name: item.title,
+            url: `${SITE_URL}/rapid-tests/${item.slug}`,
+          })),
+        }),
         ...(shop && {
           offers: {
             '@type': 'Offer',
@@ -135,6 +145,20 @@ function structuredData(product: ProductPageData) {
           image: `${SITE_URL}${step.image.src}`,
         })),
       },
+      ...(product.seo?.itemList
+        ? [
+            {
+              '@type': 'ItemList',
+              name: `Tests in the ${product.title}`,
+              itemListElement: product.seo.itemList.map((item, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                name: item.name,
+                url: `${SITE_URL}${item.url}`,
+              })),
+            },
+          ]
+        : []),
     ],
   };
 }

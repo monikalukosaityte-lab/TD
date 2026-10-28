@@ -19,7 +19,7 @@ import { cn, shopUrl } from '@/lib/utils';
 export const SHOP_PRODUCTS: ShopProduct[] = [
   {
     handle: 'sti-bundle',
-    slug: 'sti-test-bundle',
+    slug: '7-in-1-sti-test-kit',
     title: '7-in-1 STI Test Bundle',
     price: '£64.95',
     compareAt: '£98.75',

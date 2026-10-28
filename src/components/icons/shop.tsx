@@ -274,6 +274,21 @@ export const InfoIcon = (props: SVGProps<SVGSVGElement>) => (
 );
 
 /** Icons that product page content (content/products/*.json) can refer to by name. */
+export const TagIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinejoin="round"
+    aria-hidden
+    {...props}
+  >
+    <path d="M3 12.6V4a1 1 0 0 1 1-1h8.6a1 1 0 0 1 .7.3l7.4 7.4a1 1 0 0 1 0 1.4l-8.6 8.6a1 1 0 0 1-1.4 0l-7.4-7.4a1 1 0 0 1-.3-.7Z" />
+    <circle cx="8" cy="8" r="1.5" />
+  </svg>
+);
+
 export const PRODUCT_ICONS: Record<
   ProductIconName,
   (props: SVGProps<SVGSVGElement>) => ReactElement
@@ -285,6 +300,7 @@ export const PRODUCT_ICONS: Record<
   package: PackageIcon,
   search: SearchIcon,
   swab: SwabIcon,
+  tag: TagIcon,
   users: UsersIcon,
   verified: VerifiedIcon,
 };

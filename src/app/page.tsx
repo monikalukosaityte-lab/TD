@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const bundle = await getProductBySlug('sti-test-bundle');
+  const bundle = await getProductBySlug('7-in-1-sti-test-kit');
   if (!bundle) notFound();
 
   return <HomePage bundle={bundle} />;

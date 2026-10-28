@@ -50,9 +50,12 @@ export default function BuyBox({
   const variantId = isBundle ? selected.variantId! : product.variantId;
   const unitPence = toPence(selected?.price ?? shopProduct?.price ?? '0');
   const discount = product.retest?.discount ?? 0;
-  const buyLabel = isBundle
-    ? (selected.buttonLabel ?? product.buyLabel)
-    : product.buyLabel;
+  const totalPence =
+    quantity === 1 ? unitPence : unitPence * 2 * (1 - discount / 100);
+  // "__PRICE__" in the label shows the current total.
+  const buyLabel = (
+    isBundle ? (selected.buttonLabel ?? product.buyLabel) : product.buyLabel
+  ).replace('__PRICE__', formatPence(Math.round(totalPence)));
   const buyHref = shopUrl(`/cart/add?id=${variantId}&quantity=${quantity}`);
 
   // Mobile: keep a buy button on screen once the main one scrolls away.
@@ -69,7 +72,20 @@ export default function BuyBox({
   return (
     <div className="space-y-5">
       {product.hero ? (
-        <HeroIntro hero={product.hero} />
+        <>
+          <HeroIntro hero={product.hero} />
+          {product.hero.priceNote && shopProduct && (
+            <div className="space-y-1">
+              <Price
+                price={shopProduct.price}
+                compareAt={shopProduct.compareAt}
+              />
+              <p className="text-muted-foreground text-sm">
+                {product.hero.priceNote}
+              </p>
+            </div>
+          )}
+        </>
       ) : (
         <>
           {!featured && <Breadcrumb current={product.title} />}
@@ -188,7 +204,9 @@ export default function BuyBox({
             {[1, 2].map((qty) => {
               const pence =
                 qty === 1 ? unitPence : unitPence * 2 * (1 - discount / 100);
-              const unit = isBundle ? 'bundle' : 'test';
+              const unit = isBundle
+                ? 'bundle'
+                : (product.retest!.unit ?? 'test');
               return (
                 <label
                   key={qty}
@@ -249,6 +267,8 @@ export default function BuyBox({
         </p>
       )}
 
+      {product.hero?.after && <RichText html={product.hero.after} />}
+
       <RichText
         html={product.footnote}
         className="text-muted-foreground text-sm"
@@ -306,6 +326,12 @@ function HeroIntro({ hero }: { hero: ProductHeroContent }) {
   return (
     <>
       <Breadcrumb current={hero.breadcrumb} />
+
+      {hero.badge && (
+        <p className="bg-accent-deep text-accent-foreground inline-block rounded-full px-3 py-1 text-xs font-semibold tracking-wider uppercase">
+          {hero.badge}
+        </p>
+      )}
 
       <h1 className="text-3xl lg:text-4xl">{hero.heading}</h1>
 

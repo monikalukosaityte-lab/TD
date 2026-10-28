@@ -113,7 +113,7 @@
     ],
     "link": {
       "label": "Testing for other STIs too? See our 7-in-1 STI test bundle",
-      "href": "/rapid-tests/sti-test-bundle"
+      "href": "/rapid-tests/7-in-1-sti-test-kit"
     },
     "aside": {
       "heading": "Why test for hepatitis at home?",
@@ -445,7 +445,7 @@
           },
           {
             "question": "Does this test check for other STIs?",
-            "answer": "<p>No, this kit only tests for hepatitis B and C. If you may have been exposed to one infection, you may have been exposed to others, such as <a href=\"/rapid-tests/hiv-home-test-kit\">HIV</a>, which can also spread through shared needles, or <a href=\"/rapid-tests/syphilis-home-test-kit\">syphilis</a>, <a href=\"/rapid-tests/chlamydia-gonorrhoea-home-test-kit\">chlamydia and gonorrhoea</a> and <a href=\"/rapid-tests/herpes-hsv-2-home-test-kit\">genital herpes</a>. Our <a href=\"/rapid-tests/sti-test-bundle\">7-in-1 STI test bundle</a> checks for 7 infections in one order.</p>"
+            "answer": "<p>No, this kit only tests for hepatitis B and C. If you may have been exposed to one infection, you may have been exposed to others, such as <a href=\"/rapid-tests/hiv-home-test-kit\">HIV</a>, which can also spread through shared needles, or <a href=\"/rapid-tests/syphilis-home-test-kit\">syphilis</a>, <a href=\"/rapid-tests/chlamydia-gonorrhoea-home-test-kit\">chlamydia and gonorrhoea</a> and <a href=\"/rapid-tests/herpes-hsv-2-home-test-kit\">genital herpes</a>. Our <a href=\"/rapid-tests/7-in-1-sti-test-kit\">7-in-1 STI test bundle</a> checks for 7 infections in one order.</p>"
           }
         ]
       }

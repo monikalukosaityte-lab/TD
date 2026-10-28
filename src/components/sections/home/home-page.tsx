@@ -112,11 +112,20 @@ const FAQ: ProductPageData['faq'] = {
   ],
 };
 
-// The homepage version of the 7-in-1 bundle differs a little from its product
-// page: shorter intro, facts, retest note and accordions.
+// The homepage version of the 7-in-1 bundle keeps the Shopify homepage copy:
+// no product-page hero or About section, and its own intro, facts, retest note
+// and accordions.
 function homeBundle(product: ProductPageData): ProductPageData {
   return {
     ...product,
+    hero: undefined,
+    about: undefined,
+    title: '7-in-1 STI Test Bundle',
+    buyLabel: 'Get my test',
+    reassurance: {
+      title: 'Discreet delivery',
+      text: 'Plain packaging with nothing on the outside to reveal what’s inside.',
+    },
     intro:
       '<p>Worried you may have been exposed to an STI? Check for seven infections privately at home with four simple finger-prick tests and one swab test.</p>',
     keyFacts: [

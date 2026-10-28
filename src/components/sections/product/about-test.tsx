@@ -82,6 +82,9 @@ function WhyTestCard({
   return (
     <aside className="bg-muted rounded-2xl p-6 md:sticky md:top-28">
       <h3 className="mb-4 text-lg">{aside.heading}</h3>
+      {aside.text && (
+        <p className="text-muted-foreground -mt-2 mb-5 text-sm">{aside.text}</p>
+      )}
       <ul className="mb-6 space-y-4">
         {aside.items.map((item) => {
           const Icon = PRODUCT_ICONS[item.icon];

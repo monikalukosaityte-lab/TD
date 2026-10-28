@@ -74,18 +74,25 @@ export type ProductIconName =
   | 'package'
   | 'search'
   | 'swab'
+  | 'tag'
   | 'users'
   | 'verified';
 
 /** Rewritten hero copy for stitestkit; pages without it show the Shopify copy. */
 export interface ProductHeroContent {
   breadcrumb: string;
+  /** Small label above the H1, e.g. "Best value · Our most complete test". */
+  badge?: string;
   heading: string;
   intro: string;
   highlights: { icon: ProductIconName; label: string }[];
   specs: { icon: ProductIconName; label: string; value: string }[];
   /** "What's in the box" line under the specs (HTML). */
   inBox?: string;
+  /** Shows the price block (price, was-price, saving) with this line under it. */
+  priceNote?: string;
+  /** HTML under the discreet delivery box, e.g. a mini comparison table. */
+  after?: string;
 }
 
 /** "About [test] and testing" section shown straight after the hero. */
@@ -96,6 +103,7 @@ export interface ProductAboutContent {
   link?: { label: string; href: string };
   aside: {
     heading: string;
+    text?: string;
     items: { icon: ProductIconName; title: string; text: string }[];
     buttonLabel: string;
   };
@@ -116,7 +124,20 @@ export interface ProductPageData {
   slug: string;
   handle: string;
   /** Meta title and description; without it they come from the title and intro. */
-  seo?: { title: string; description: string };
+  seo?: {
+    title: string;
+    description: string;
+    /** Schema ItemList, e.g. the tests inside a bundle. */
+    itemList?: { name: string; url: string }[];
+    /** Handles of related products (schema isRelatedTo). */
+    related?: string[];
+  };
+  /** Comparison table that replaces the "Other tests" cards (bundles). */
+  compare?: {
+    heading: string;
+    html: string;
+    buttonLabel: string;
+  };
   title: string;
   hero?: ProductHeroContent;
   about?: ProductAboutContent;
@@ -137,6 +158,8 @@ export interface ProductPageData {
     badge: string;
     discount: number;
     note: string;
+    /** What one of these is called in the quantity picker; defaults to "test". */
+    unit?: string;
   } | null;
   buyLabel: string;
   trust: string;
@@ -153,6 +176,8 @@ export interface ProductPageData {
     stepsHeading?: string;
     steps: { image: ProductImage; title: string; text: string }[];
     link?: { label: string; href: string };
+    /** HTML after the steps, e.g. a reading-times table. */
+    after?: string;
   };
   windows?: {
     heading: string;
@@ -160,6 +185,14 @@ export interface ProductPageData {
     days: number;
     initialTitle: string | null;
     strings: Record<string, string> | null;
+    /**
+     * Retest plan for kits with several windows: the first stage whose `until`
+     * (days since exposure) hasn't passed wins; null means "any time after".
+     * __DATE_<n>__ in the text becomes the exposure date plus n days.
+     */
+    stages?: { until: number | null; title: string; body: string }[];
+    /** HTML after the date checker. */
+    after?: string;
     /** A second, longer window (e.g. hepatitis C) checked after `days`. */
     secondDays?: number;
     /** Shown instead of the date checker for tests with no window period. */
@@ -175,6 +208,8 @@ export interface ProductPageData {
       items: ProductResultItem[];
     }[];
     notes: { title?: string; text: string }[];
+    /** Button under the results; defaults to "Shop now" (scrolls to the hero). */
+    buttonLabel?: string;
   } | null;
   reviews?: {
     heading: string;
