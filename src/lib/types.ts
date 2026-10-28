@@ -31,8 +31,10 @@ export interface ShopProduct {
   compareAt?: string;
   variantId: number;
   badge?: string;
+  /** What the card says it checks for. */
+  checks: string;
   includes: string[];
-  sample: 'Blood + swab' | 'Swab' | 'Fingerprick';
+  sample: 'Blood + swab' | 'Swab' | 'Finger-prick';
   image: { src: string; alt: string };
 }
 

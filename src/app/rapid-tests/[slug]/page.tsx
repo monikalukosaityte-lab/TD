@@ -28,7 +28,7 @@ export async function generateMetadata({
 
   return {
     title: {
-      absolute: product.seo?.title ?? `${product.title} | STI Test Kits`,
+      absolute: product.seo?.title ?? `${product.title} | STI Test Kit`,
     },
     description:
       product.seo?.description ??

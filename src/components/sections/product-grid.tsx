@@ -1,12 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import {
-  CheckIcon,
-  ClockIcon,
-  DropIcon,
-  SwabIcon,
-} from '@/components/icons/shop';
+import { ClockIcon, DropIcon, SwabIcon } from '@/components/icons/shop';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -20,11 +15,12 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   {
     handle: 'sti-bundle',
     slug: '7-in-1-sti-test-kit',
-    title: '7-in-1 STI Test Bundle',
+    title: '7-in-1 STI Test Kit',
     price: '£64.95',
     compareAt: '£98.75',
     variantId: 63780179870026,
     badge: 'Best value',
+    checks: 'HIV, syphilis, chlamydia, gonorrhoea, herpes, hepatitis B and C',
     includes: [
       'Chlamydia',
       'Gonorrhoea',
@@ -37,81 +33,90 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     sample: 'Blood + swab',
     image: {
       src: '/images/products/shop-sti-bundle.webp',
-      alt: '7-in-1 STI Test Bundle',
+      alt: '7-in-1 STI home test kit',
     },
   },
   {
     handle: 'core-4',
     slug: 'core-4-sti-test-kit',
-    title: 'Core 4 Bundle',
+    title: 'Core 4 STI Test Kit',
     price: '£44.95',
     compareAt: '£50.85',
     variantId: 63780180492618,
     badge: 'Most popular',
+    checks: 'Chlamydia, gonorrhoea, HIV, syphilis',
     includes: ['Chlamydia', 'Gonorrhoea', 'HIV 1/2', 'Syphilis'],
     sample: 'Blood + swab',
-    image: { src: '/images/products/shop-core-4.webp', alt: 'Core 4 Bundle' },
+    image: {
+      src: '/images/products/shop-core-4.webp',
+      alt: 'Core 4 STI home test kit',
+    },
   },
   {
     handle: 'chlamydia-gonorrhoea',
     slug: 'chlamydia-gonorrhoea-home-test-kit',
-    title: 'Chlamydia & Gonorrhoea Rapid Test Kit',
+    title: 'Chlamydia & Gonorrhoea Test',
     price: '£19.95',
     variantId: 63780180590922,
+    checks: 'Chlamydia, gonorrhoea',
     includes: ['Chlamydia', 'Gonorrhoea'],
     sample: 'Swab',
     image: {
       src: '/images/products/shop-chlamydia-gonorrhoea.webp',
-      alt: 'Chlamydia & Gonorrhoea Rapid Test Kit',
+      alt: 'Chlamydia and gonorrhoea home test kit',
     },
   },
   {
     handle: 'hiv',
     slug: 'hiv-home-test-kit',
-    title: 'HIV Rapid Test Kit',
+    title: 'HIV Test',
     price: '£15.95',
     variantId: 63780178592074,
+    checks: 'HIV-1 and HIV-2',
     includes: ['HIV-1', 'HIV-2'],
-    sample: 'Fingerprick',
-    image: { src: '/images/products/shop-hiv.webp', alt: 'HIV Rapid Test Kit' },
+    sample: 'Finger-prick',
+    image: { src: '/images/products/shop-hiv.webp', alt: 'HIV home test kit' },
   },
   {
     handle: 'syphilis',
     slug: 'syphilis-home-test-kit',
-    title: 'Syphilis Rapid Test Kit',
+    title: 'Syphilis Test',
     price: '£14.95',
     variantId: 63780180623690,
+    checks: 'Syphilis',
     includes: ['Syphilis (Treponema pallidum)'],
-    sample: 'Fingerprick',
+    sample: 'Finger-prick',
     image: {
       src: '/images/products/shop-syphilis.webp',
-      alt: 'Syphilis Rapid Test Kit',
+      alt: 'Syphilis home test kit',
     },
   },
   {
     handle: 'hsv-2',
     slug: 'herpes-hsv-2-home-test-kit',
-    title: 'Herpes (HSV-2) Rapid Test Kit',
+    title: 'Herpes (HSV-2) Test',
     price: '£19.95',
     variantId: 63780180656458,
+    checks: 'Genital herpes (HSV-2)',
     includes: ['Genital herpes (HSV-2)'],
-    sample: 'Fingerprick',
+    sample: 'Finger-prick',
     image: {
       src: '/images/products/shop-hsv-2.webp',
-      alt: 'Herpes (HSV-2) Rapid Test Kit',
+      alt: 'Herpes (HSV-2) home test kit',
     },
   },
   {
     handle: 'hep-b-c',
     slug: 'hepatitis-b-c-home-test-kit',
-    title: 'Hepatitis B & C Rapid Test Kit',
+    title: 'Hepatitis B & C Test',
     price: '£27.95',
     variantId: 63780180787530,
+    checks: 'Hepatitis B, hepatitis C',
     includes: ['Hepatitis B', 'Hepatitis C'],
-    sample: 'Fingerprick',
+    sample: 'Finger-prick',
     image: {
       src: '/images/products/shop-hep-b-c.webp',
-      alt: 'Hepatitis B & C Rapid Test Kit',
+      alt: 'Hepatitis B and C home test kit',
     },
   },
   {
@@ -120,9 +125,13 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     title: 'PSA Prostate Test',
     price: '£19.95',
     variantId: 63780180820298,
+    checks: 'Prostate health (PSA)',
     includes: ['Prostate specific antigen (PSA)'],
-    sample: 'Fingerprick',
-    image: { src: '/images/products/shop-psa.webp', alt: 'PSA Prostate Test' },
+    sample: 'Finger-prick',
+    image: {
+      src: '/images/products/shop-psa.webp',
+      alt: 'PSA prostate home test kit',
+    },
   },
 ];
 
@@ -226,21 +235,9 @@ function ProductCard({
             {product.title}
           </Link>
         </h3>
-        <ul
-          className={cn(
-            'mb-3 grid gap-1.5 text-sm',
-            hero && 'md:mb-4 md:grid-cols-2 md:gap-x-6 md:gap-y-2 md:text-base',
-          )}
-        >
-          {product.includes.map((item) => (
-            <li key={item} className="flex items-start gap-2">
-              <span className="bg-primary text-primary-foreground mt-0.5 grid size-4 shrink-0 place-items-center rounded-xs">
-                <CheckIcon className="size-3" />
-              </span>
-              {item}
-            </li>
-          ))}
-        </ul>
+        <p className={cn('mb-3 text-sm', hero && 'md:mb-4 md:text-base')}>
+          <span className="font-bold">Checks for:</span> {product.checks}
+        </p>
         <ul className="mb-3 flex flex-wrap gap-1.5">
           <li className="bg-muted inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs">
             <SampleIcon className="size-4" />
@@ -248,7 +245,7 @@ function ProductCard({
           </li>
           <li className="bg-muted inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs">
             <ClockIcon className="size-4" />
-            15 min result
+            Results in around 15 minutes
           </li>
         </ul>
         <p

@@ -45,22 +45,14 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://stitestkit.co.uk'),
   title: {
-    default: 'Test Discreet | Fast STD & STI Test Kits',
-    template: '%s | Test Discreet',
+    default: 'Home STI Test Kits UK – 15 Minute Results | STI Test Kit',
+    template: '%s | STI Test Kit',
   },
   description:
-    'Private, rapid STD and STI test kits from Test Discreet. Discreet delivery, clear results, and trusted support for confident health decisions.',
-  keywords: [
-    'STD test kit',
-    'STI test kit',
-    'discreet STI testing',
-    'rapid STD testing UK',
-    'private home test kit',
-    'sexual health test',
-  ],
-  authors: [{ name: 'Test Discreet' }],
-  creator: 'Test Discreet',
-  publisher: 'Test Discreet',
+    'Private home STI test kits for HIV, syphilis, chlamydia, gonorrhoea, herpes and hepatitis. Results in 15 minutes, discreet UK delivery.',
+  authors: [{ name: 'STI Test Kit' }],
+  creator: 'STI Test Kit',
+  publisher: 'STI Test Kit',
   robots: {
     index: true,
     follow: true,
@@ -86,24 +78,24 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     url: 'https://stitestkit.co.uk',
-    siteName: 'Test Discreet',
-    title: 'Test Discreet | Fast STD & STI Test Kits',
+    siteName: 'STI Test Kit',
+    title: 'Home STI Test Kits UK – 15 Minute Results | STI Test Kit',
     description:
-      'Private, rapid STD and STI test kits from Test Discreet. Discreet delivery, clear results, and trusted support for confident health decisions.',
+      'Private home STI test kits for HIV, syphilis, chlamydia, gonorrhoea, herpes and hepatitis. Results in 15 minutes, discreet UK delivery.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Test Discreet',
+        alt: 'STI Test Kit',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Test Discreet | Fast STD & STI Test Kits',
+    title: 'Home STI Test Kits UK – 15 Minute Results | STI Test Kit',
     description:
-      'Private, rapid STD and STI test kits from Test Discreet. Discreet delivery, clear results, and trusted support for confident health decisions.',
+      'Private home STI test kits for HIV, syphilis, chlamydia, gonorrhoea, herpes and hepatitis. Results in 15 minutes, discreet UK delivery.',
     images: ['/og-image.jpg'],
     creator: '@testdiscreet',
   },

@@ -23,7 +23,7 @@ export function Logo({ className }: { className?: string }) {
   );
 }
 
-/** Text logo in the testdiscreet.co.uk style: "STI Test Kits" over a spaced "by Test Discreet". */
+/** Text logo in the testdiscreet.co.uk style: "STI Test Kit" over a spaced "by Test Discreet". */
 export function BrandLockup({
   inverted = false,
   align = 'center',
@@ -45,7 +45,7 @@ export function BrandLockup({
           !inverted && 'text-muted-foreground',
         )}
       >
-        STI Test Kits
+        STI Test Kit
       </span>
       <span className="-mr-[0.28em] text-[0.625rem] leading-none tracking-[0.28em] whitespace-nowrap uppercase">
         by Test Discreet

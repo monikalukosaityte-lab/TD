@@ -4,7 +4,7 @@ import { BlogListing } from '@/components/sections/blog/blog-page';
 import { getAllArticles } from '@/lib/articles';
 
 export const metadata: Metadata = {
-  title: { absolute: 'STI & Sexual Health Blog | STI Test Kits' },
+  title: { absolute: 'STI & Sexual Health Blog | STI Test Kit' },
   description:
     'Medically reviewed articles on STI symptoms, testing and sexual health - clear answers to the questions people are often too embarrassed to ask.',
 };

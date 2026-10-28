@@ -1,185 +1,235 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import {
+  ArrowRightIcon,
   CheckIcon,
   ClockIcon,
   HomeIcon,
+  InfoIcon,
+  LockIcon,
   PackageIcon,
   VerifiedIcon,
 } from '@/components/icons/shop';
-import BuyBox from '@/components/sections/product/buy-box';
 import ProductFaq from '@/components/sections/product/product-faq';
-import ProductGallery from '@/components/sections/product/product-gallery';
-import WindowCalculator from '@/components/sections/product/window-calculator';
 import ProductGrid from '@/components/sections/product-grid';
 import { Button } from '@/components/ui/button';
 import { ProductPageData } from '@/lib/types';
+import { shopUrl } from '@/lib/utils';
 
-// Same sections, in the same order, as the testdiscreet.co.uk homepage.
+// Copy from the STI Test Kit homepage SEO doc. Sections follow the doc's order.
+const BUNDLE_URL = '/rapid-tests/7-in-1-sti-test-kit';
+const CORE_4_URL = '/rapid-tests/core-4-sti-test-kit';
+
+const PILLS = [
+  'Results in 15 minutes',
+  'No clinic visit',
+  'Discreet packaging',
+  'Ships within 1 working day',
+];
+
 const BENEFITS = [
-  { icon: ClockIcon, label: 'Results in 15 minutes' },
-  { icon: CheckIcon, label: 'Simple to use' },
-  { icon: PackageIcon, label: 'Discreet packaging' },
-  { icon: HomeIcon, label: 'No clinic visit' },
-];
-
-const TESTIMONIALS = [
   {
-    title: 'Clear instructions',
-    text: 'Really simple to use and the instructions were very clear.',
+    icon: ClockIcon,
+    title: 'Results in 15 minutes',
+    text: 'Read your result at home, the same day. No posting samples to a lab and no waiting days.',
   },
   {
-    title: 'Really discreet',
-    text: 'Arrived quickly and the packaging was completely discreet.',
+    icon: CheckIcon,
+    title: 'Simple to use',
+    text: 'A small finger-prick or a quick swab. Everything you need is in the box, with clear instructions.',
   },
   {
-    title: 'Peace of mind',
-    text: 'It was straightforward and having the result there and then gave me peace of mind.',
+    icon: PackageIcon,
+    title: 'Completely discreet',
+    text: 'Plain parcel with nothing on the outside, and your bank statement won’t show the name of the test.',
   },
   {
-    title: 'Less stressful',
-    text: 'Much less stressful than I expected. Would definitely recommend.',
+    icon: HomeIcon,
+    title: 'No clinic visit',
+    text: 'No appointment, no waiting room. Test when and where suits you.',
   },
 ];
 
-const WINDOWS: NonNullable<ProductPageData['windows']> = {
-  heading: 'When can I <em>test?</em>',
-  subheading:
-    'Testing too early can give a negative result even if you have an infection.',
-  notes:
-    '<p><strong>Possible HIV exposure within 72 hours?</strong> Contact a sexual health clinic or A&amp;E immediately and ask about PEP.</p><p>If you have symptoms or a partner has syphilis, contact a sexual health clinic now.</p><p><strong>Hepatitis C:</strong> an early negative result may need repeating at six months. Contact your GP or a sexual health clinic for advice about testing sooner.</p><p>There is no reliable time after exposure when the HSV-2 IgM test becomes conclusive.</p>',
-  scope: 'HIV repeat testing',
-  days: 90,
-  initialTitle: 'Test now. If negative, repeat in 90 days.',
-  strings: {
-    today: 'Today',
-    days_ago_one: '__COUNT__ day ago',
-    days_ago_other: '__COUNT__ days ago',
-    interval: '90 days',
-    retest_title: 'Test now. If negative, repeat on __DATE__.',
-    retest_body: 'An early negative may miss HIV from this exposure.',
-    now_title: 'You can test now.',
-    now_body: '',
-    unsure_title: 'Test now. If negative, repeat in __INTERVAL__.',
-    unsure_body: '',
-    retest: '',
+const CHOOSER = [
+  {
+    title: 'I want a full check',
+    text: 'Test for 7 STIs in one kit.',
+    link: { label: '7-in-1 STI test kit', href: BUNDLE_URL, price: '£64.95' },
   },
-};
+  {
+    title: 'I want the essentials',
+    text: 'Chlamydia, gonorrhoea, HIV and syphilis.',
+    link: { label: 'Core 4 STI test kit', href: CORE_4_URL, price: '£44.95' },
+  },
+  {
+    title: 'I’m worried about one infection',
+    text: 'Choose a single test below.',
+  },
+];
 
-const FAQ: ProductPageData['faq'] = {
-  heading: 'Frequently asked questions',
+const FEATURED_POINTS = [
+  '7 STIs, 5 tests, 1 order',
+  '4 finger-prick tests and 1 swab',
+];
+
+const STEPS = [
+  {
+    title: 'Take your sample',
+    text: 'A small finger-prick of blood, or a quick swab for chlamydia and gonorrhoea. Each test comes with everything you need.',
+  },
+  {
+    title: 'Add it to the test',
+    text: 'Follow the leaflet to add your sample and a few drops of test liquid.',
+  },
+  {
+    title: 'Read your result',
+    text: 'Most tests are read between 15 and 20 minutes. Check your test’s leaflet for its exact time.',
+  },
+];
+
+const WINDOWS = [
+  {
+    infection: 'Chlamydia and gonorrhoea',
+    href: '/rapid-tests/chlamydia-gonorrhoea-home-test-kit',
+    retest: '2 weeks after possible exposure',
+  },
+  {
+    infection: 'Syphilis',
+    href: '/rapid-tests/syphilis-home-test-kit',
+    retest: '12 weeks',
+  },
+  {
+    infection: 'Hepatitis B',
+    href: '/rapid-tests/hepatitis-b-c-home-test-kit',
+    retest: '12 weeks',
+  },
+  {
+    infection: 'HIV',
+    href: '/rapid-tests/hiv-home-test-kit',
+    retest: '90 days',
+  },
+  { infection: 'Hepatitis C', retest: '6 months' },
+  {
+    infection: 'Genital herpes (HSV-2)',
+    href: '/rapid-tests/herpes-hsv-2-home-test-kit',
+    retest: 'No set time. If you have sores, a clinic can swab them',
+  },
+];
+
+// Newest first. Add "What are the symptoms of genital herpes?"
+// (/blog/genital-herpes-symptoms) at the top once that guide is live.
+const GUIDES = [
+  {
+    title: 'What are the symptoms of HIV?',
+    text: 'The 3 stages of HIV, and why most people on treatment never develop AIDS.',
+    href: '/blog/hiv-symptoms-stages',
+    image: '/images/blog/hiv-symptoms-stages-td.webp',
+  },
+  {
+    title: 'What is an STI test?',
+    text: 'How STI testing works, what it checks for and what happens next.',
+    href: '/blog/what-is-an-sti-test',
+    image: '/images/blog/what-is-sti-test-td.webp',
+  },
+  {
+    title: 'What are the symptoms of chlamydia and gonorrhoea?',
+    text: 'Symptoms in men and women, and why most people have none.',
+    href: '/blog/chlamydia-gonorrhoea-symptoms',
+    image: '/images/blog/chlamydia-gonorrhoea-symptoms-td.webp',
+  },
+  {
+    title: 'What are the symptoms of syphilis?',
+    text: 'The 4 stages, how soon symptoms appear and how it’s cured.',
+    href: '/blog/syphilis-symptoms-stages',
+    image: '/images/blog/syphilis-symptoms-stages-td.webp',
+  },
+];
+
+const TRUST = [
+  { icon: LockIcon, label: 'Private payment' },
+  { icon: PackageIcon, label: 'Discreet delivery' },
+  { icon: CheckIcon, label: 'Confidential results' },
+  { icon: VerifiedIcon, label: 'Medically reviewed guides' },
+];
+
+export const HOME_FAQ: ProductPageData['faq'] = {
+  heading: 'Home STI testing FAQs',
   tabs: [
     {
       label: 'All',
       questions: [
         {
+          question: 'Which STI test should I get?',
+          answer: `<p>If you want to check everything at once, choose the <a href="${BUNDLE_URL}">7-in-1 STI test kit</a>. For the most commonly tested STIs, choose the <a href="${CORE_4_URL}">Core 4</a>. If you’re only worried about one infection, pick a single test.</p>`,
+        },
+        {
+          question: 'Are home STI tests accurate?',
+          answer:
+            '<p>When used correctly and read at the right time, our rapid tests are a reliable way to screen for STIs at home. Testing too soon after exposure can affect results, and any positive result should be confirmed by a sexual health clinic or GP. Each product page lists its own accuracy details.</p>',
+        },
+        {
+          question: 'How soon after sex can I test?',
+          answer:
+            '<p>You can test at any time, but each STI takes a different time to show up, from 2 weeks for chlamydia and gonorrhoea to 6 months for hepatitis C. See “When can I test?” above, and read more about <a href="/blog/what-is-an-sti-test">how STI testing works</a>.</p>',
+        },
+        {
+          question: 'Do I need to send anything to a lab?',
+          answer:
+            '<p>No. Our rapid tests are read at home, with results in around 15 minutes. There’s nothing to post.</p>',
+        },
+        {
           question: 'How do I read my result?',
           answer:
-            '<p>Read it at 15 minutes. One line at C is negative. Lines at C and T are positive, even if the T line is faint. No line at C means the test is invalid.</p>',
+            '<p>Most tests have a C (control) line and a T (test) line. C only means negative. C and T mean positive, even if T is faint. No C line means the test hasn’t worked. Read within the time shown on your test’s leaflet.</p>',
         },
         {
           question: 'What if my result is positive?',
           answer:
-            '<p>Take a photo of the test and see your GP or a sexual health clinic. They’ll confirm the result with a laboratory test and start treatment.</p>',
+            '<p>Don’t panic. Take a photo of the test and contact a sexual health clinic or your GP for a confirmation test and treatment. Many STIs are curable, and the rest can be treated or managed.</p>',
         },
         {
-          question: 'How fast is delivery?',
+          question: 'Can you have an STI without symptoms?',
           answer:
-            '<p>Orders ship within 1 working day. Free Tracked 48 delivery usually arrives in 2 to 3 working days, or choose Tracked 24 at checkout for £1.99.</p>',
+            '<p>Yes, it’s very common. Most people with chlamydia have no symptoms, and HIV, hepatitis and herpes can cause no symptoms for years. Testing is the only way to know.</p>',
         },
         {
           question: 'What does the parcel look like?',
           answer:
-            '<p>A plain outer box with a standard shipping label. Nothing on the outside names the product or the shop.</p>',
+            '<p>A plain box with a standard shipping label. There’s nothing on the outside naming the product or the shop, and your bank statement won’t show the name of the test.</p>',
         },
         {
-          question: 'How accurate are the tests?',
+          question: 'How fast is delivery?',
           answer:
-            '<p>Every kit uses the colloidal gold method, the same technology used for rapid testing in clinics. Performance data for each kit is printed in its instructions for use. Confirm any positive result with a laboratory test through your GP or a sexual health clinic.</p>',
+            '<p>We ship within 1 working day, with discreet delivery across the UK.</p>',
         },
         {
           question: 'Can I return my test?',
-          answer:
-            '<p>You can return unopened kits within 14 days of delivery. For health and hygiene reasons, we can’t take a kit back once its seal is broken.</p><p>If there’s a problem with your order or your test arrives damaged, contact us and we’ll help.</p><p>For more information, see our <a href="https://testdiscreet.co.uk/policies/refund-policy?utm_source=stitestkit&amp;utm_medium=referral">Returns Policy</a>.</p>',
+          answer: `<p>You can cancel within 14 days of delivery by emailing us, then return unopened kits within 14 days. The sealed inner pouch must be unopened. Faulty or wrongly described kits aren’t affected. See our <a href="${shopUrl('/policies/refund-policy')}">Returns Policy</a> for details.</p>`,
         },
         {
-          question: 'Is free testing available?',
+          question: 'Is free STI testing available?',
           answer:
-            '<p>Yes. Free, confidential testing is also available from NHS sexual health services.</p>',
+            '<p>Yes. NHS sexual health clinics offer free, confidential testing, and some areas offer free postal kits. Our home tests are an option if you’d like results in minutes, with no appointment.</p>',
         },
       ],
     },
   ],
 };
 
-// The homepage version of the 7-in-1 bundle keeps the Shopify homepage copy:
-// no product-page hero or About section, and its own intro, facts, retest note
-// and accordions.
-function homeBundle(product: ProductPageData): ProductPageData {
-  return {
-    ...product,
-    hero: undefined,
-    about: undefined,
-    title: '7-in-1 STI Test Bundle',
-    buyLabel: 'Get my test',
-    reassurance: {
-      title: 'Discreet delivery',
-      text: 'Plain packaging with nothing on the outside to reveal what’s inside.',
-    },
-    intro:
-      '<p>Worried you may have been exposed to an STI? Check for seven infections privately at home with four simple finger-prick tests and one swab test.</p>',
-    keyFacts: [
-      '<strong>Screens for:</strong> Chlamydia, gonorrhoea, syphilis, HIV 1/2, genital herpes (HSV-2), hepatitis B, hepatitis C',
-      '<strong>Sample:</strong> 4 fingerprick tests, 1 swab test',
-      'Results in 15 minutes',
-    ],
-    retest: product.retest && {
-      ...product.retest,
-      note: 'Testing early? HIV may need a repeat at 90 days, syphilis at 12 weeks, and hepatitis C at six months.',
-    },
-    accordions: [
-      {
-        heading: 'Is this for you?',
-        open: true,
-        content: '<p>If <em>any</em> of these apply, it’s worth testing:</p>',
-        checklist: [
-          'You’ve had <strong>sex without a condom</strong>',
-          'You have a <strong>new partner</strong>, or more than one',
-          'It’s been <strong>at least 2 weeks</strong> since you might have been exposed',
-          'You’d rather <strong>test privately</strong>, without a clinic visit',
-        ],
-        after: '',
-      },
-      {
-        heading: 'What’s in the kit',
-        open: false,
-        content:
-          '<ul><li>Chlamydia &amp; Gonorrhoea Combo Rapid Test Kit</li><li>HIV 1/2 Ab Rapid Test Kit</li><li>Syphilis (TP) Ab Rapid Test Kit</li><li>Herpes Simplex Virus II Rapid Test Kit</li><li>HbsAg/HCV Ab Combo Rapid Test Kit</li><li>Lancets, pipettes, buffers, swab, alcohol pads, plasters and instructions for every test</li></ul>',
-        checklist: [],
-        after: '',
-      },
-      {
-        heading: 'How to test',
-        open: false,
-        content:
-          '<ol><li>Run the four blood tests from fingerprick samples: lancet, pipette, two drops of buffer.</li><li>Run the chlamydia and gonorrhoea test from a swab sample.</li><li>Read each result at 15 minutes. Two lines means positive, one line at C means negative.</li></ol>',
-        checklist: [],
-        after: '',
-      },
-    ],
-  };
-}
-
-export default function HomePage({ bundle }: { bundle: ProductPageData }) {
+export default function HomePage() {
   return (
     <>
       <Hero />
-      <TestPrivately />
-      <Testimonials />
-      <ProductGrid />
-      <FeaturedProduct product={homeBundle(bundle)} />
-      <WindowCalculator windows={WINDOWS} />
-      <ProductFaq faq={FAQ} />
+      <WhyTestAtHome />
+      <Chooser />
+      <ProductGrid heading="All home test kits" featureFirst={false} />
+      <Featured />
+      <HowItWorks />
+      <WhenToTest />
+      <Guides />
+      <ProductFaq faq={HOME_FAQ} />
+      <TrustStrip />
     </>
   );
 }
@@ -187,21 +237,13 @@ export default function HomePage({ bundle }: { bundle: ProductPageData }) {
 // Navy band with a soft glow and the kit in hand, as on testdiscreet.co.uk.
 function Hero() {
   return (
-    <section className="bg-accent-deep text-accent-foreground relative flex min-h-130 items-start overflow-hidden md:min-h-112 md:items-center">
+    <section className="bg-accent-deep text-accent-foreground relative overflow-hidden">
       <div className="from-primary absolute inset-0 bg-radial-[90%_50%_at_50%_35%] to-transparent md:bg-radial-[45%_85%_at_72%_50%]" />
-      <Image
-        src="/images/home/hero-mobile.webp"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover md:hidden"
-      />
       <div className="absolute inset-0 container hidden pt-6 md:block">
         <div className="relative size-full">
           <Image
             src="/images/home/hero-desktop.webp"
-            alt=""
+            alt="Hand holding a home STI test kit"
             fill
             priority
             sizes="(min-width: 1248px) 1200px, 100vw"
@@ -210,47 +252,91 @@ function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 container py-8 md:py-12">
-        <div className="max-w-3xl text-center md:text-left">
-          <h1 className="mb-6 text-4xl leading-none md:text-5xl lg:text-6xl">
-            <span className="block">STI tests at home</span>
+      <div className="relative z-10 container py-10 md:py-16">
+        <div className="max-w-xl space-y-6 text-center md:text-left">
+          <h1 className="text-4xl leading-none md:text-5xl">
+            <span className="block">Home STI Test Kits</span>
+            <span className="sr-only"> – </span>
             <span className="mt-2 block font-serif text-2xl font-bold md:text-3xl">
-              Private results in minutes
+              Private Results in 15 Minutes
             </span>
           </h1>
-          <Button asChild variant="light">
-            <a href="#buy">Shop now</a>
-          </Button>
+          <p className="text-lg">
+            Test for HIV, syphilis, chlamydia, gonorrhoea, herpes and hepatitis
+            at home. Simple finger-prick and swab tests, results in around 15
+            minutes, and nothing to post to a lab.
+          </p>
+          <ul className="flex flex-wrap justify-center gap-2 md:justify-start">
+            {PILLS.map((pill) => (
+              <li
+                key={pill}
+                className="inline-flex items-center gap-1.5 rounded-full border border-current/30 px-3 py-1 text-sm"
+              >
+                <CheckIcon className="size-4" />
+                {pill}
+              </li>
+            ))}
+          </ul>
+          <div className="grid gap-3 sm:flex sm:justify-center md:justify-start">
+            <Button asChild variant="light">
+              <Link href={BUNDLE_URL}>Get the full 7-in-1 kit – £64.95</Link>
+            </Button>
+            <Button asChild variant="outline-invert">
+              <a href="#tests">See all tests</a>
+            </Button>
+          </div>
+          <p className="text-sm opacity-85">
+            Free, confidential testing is also available from NHS sexual health
+            services.
+          </p>
         </div>
+      </div>
+
+      <div className="relative aspect-4/3 md:hidden">
+        <Image
+          src="/images/home/hero-mobile.webp"
+          alt="Hand holding a home STI test kit"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-bottom"
+        />
       </div>
     </section>
   );
 }
 
-function TestPrivately() {
+function WhyTestAtHome() {
   return (
     <section className="bg-muted">
-      <div className="container max-w-5xl py-10 text-center md:py-16">
-        <h2 className="mb-3 text-3xl md:text-4xl">
-          Test <em>privately</em>
-        </h2>
-        <p className="mb-7 text-lg">Everything you need to test at home:</p>
-        <ul className="mb-8 grid grid-cols-2 gap-x-6 gap-y-5 md:grid-cols-4">
-          {BENEFITS.map(({ icon: Icon, label }) => (
+      <div className="container py-12 md:py-16">
+        <div className="mx-auto mb-10 max-w-2xl space-y-3 text-center">
+          <h2 className="text-3xl md:text-4xl">
+            Why test for STIs <em>at home?</em>
+          </h2>
+          <p className="text-lg">
+            Many STIs have no symptoms, so testing is the only way to know. Our
+            rapid home tests make it simple to check, privately and on your own
+            schedule.
+          </p>
+        </div>
+        <ul className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {BENEFITS.map(({ icon: Icon, title, text }) => (
             <li
-              key={label}
-              className="font-display flex flex-col items-center gap-3 font-bold md:text-lg"
+              key={title}
+              className="bg-background space-y-3 rounded-lg p-6 text-center"
             >
-              <span className="bg-background grid size-13 place-items-center rounded-full">
-                <Icon className="text-primary size-1/2" />
+              <span className="bg-muted mx-auto grid size-13 place-items-center rounded-full">
+                <Icon aria-hidden className="text-primary size-1/2" />
               </span>
-              {label}
+              <h3 className="text-lg">{title}</h3>
+              <p>{text}</p>
             </li>
           ))}
         </ul>
-        <div className="grid md:inline-grid md:min-w-64">
+        <div className="grid sm:flex sm:justify-center">
           <Button asChild>
-            <a href="#buy">Shop now</a>
+            <a href="#tests">Shop all tests</a>
           </Button>
         </div>
       </div>
@@ -258,33 +344,38 @@ function TestPrivately() {
   );
 }
 
-function Testimonials() {
+function Chooser() {
   return (
-    <section className="bg-accent-deep text-accent-foreground py-10 md:py-14">
+    <section className="pt-12 md:pt-16">
       <div className="container">
-        <ul className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-4 md:gap-5 md:overflow-visible md:px-0">
-          {TESTIMONIALS.map((testimonial) => (
+        <div className="mx-auto mb-8 max-w-2xl space-y-3 text-center">
+          <h2 className="text-3xl md:text-4xl">
+            Which STI test do I <em>need?</em>
+          </h2>
+          <p className="text-lg">
+            Not sure where to start? Pick the option that fits you best.
+          </p>
+        </div>
+        <ul className="grid gap-4 md:grid-cols-3">
+          {CHOOSER.map((option) => (
             <li
-              key={testimonial.title}
-              className="flex w-4/5 shrink-0 snap-start flex-col gap-3 rounded-lg border border-current/20 p-5 sm:w-2/5 md:w-auto"
+              key={option.title}
+              className="bg-card flex flex-col gap-2 rounded-lg border p-6"
             >
-              <div className="space-y-1">
-                <span
-                  role="img"
-                  aria-label="Rated 5 out of 5"
-                  className="block tracking-widest"
-                >
-                  ★★★★★
-                </span>
-                <p className="font-display text-lg font-bold">
-                  {testimonial.title}
+              <h3 className="text-xl">{option.title}</h3>
+              <p className="flex-1">{option.text}</p>
+              {option.link && (
+                <p className="flex flex-wrap items-center justify-between gap-2 pt-2">
+                  <Link
+                    href={option.link.href}
+                    className="text-primary hover:text-primary-hover inline-flex items-center gap-1.5 font-bold underline underline-offset-3"
+                  >
+                    {option.link.label}
+                    <ArrowRightIcon aria-hidden className="size-4" />
+                  </Link>
+                  <span className="font-bold">{option.link.price}</span>
                 </p>
-              </div>
-              <p className="flex-1">{testimonial.text}</p>
-              <p className="flex items-center gap-1.5 text-sm opacity-80">
-                <VerifiedIcon className="size-4" />
-                Verified customer
-              </p>
+              )}
             </li>
           ))}
         </ul>
@@ -293,13 +384,262 @@ function Testimonials() {
   );
 }
 
-function FeaturedProduct({ product }: { product: ProductPageData }) {
+// A short feature box rather than the full 7-in-1 product section, so the
+// homepage doesn't compete with the 7-in-1 page in search.
+function Featured() {
   return (
-    <section id="buy" className="scroll-mt-24 py-8 md:py-12">
-      <div className="container grid items-start gap-6 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:gap-14">
-        <ProductGallery images={product.gallery} />
-        <BuyBox product={product} featured />
+    <section className="bg-muted py-12 md:py-16">
+      <div className="container grid items-center gap-8 md:grid-cols-2 md:gap-14">
+        <Link
+          href={BUNDLE_URL}
+          tabIndex={-1}
+          aria-hidden
+          className="bg-secondary relative block aspect-10/9 rounded-lg"
+        >
+          <Image
+            src="/images/products/shop-sti-bundle.webp"
+            alt="7-in-1 STI home test kit"
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-contain p-4"
+          />
+        </Link>
+        <div className="space-y-5">
+          <h2 className="text-3xl md:text-4xl">
+            Our most complete <em>STI test</em>
+          </h2>
+          <p className="text-lg">
+            Check for 7 infections in one private order: HIV, syphilis,
+            chlamydia, gonorrhoea, genital herpes, hepatitis B and hepatitis C.
+            Five rapid tests, results in around 15 minutes each.
+          </p>
+          <ul className="space-y-2">
+            {FEATURED_POINTS.map((point) => (
+              <li key={point} className="flex items-start gap-2">
+                <span className="bg-primary text-primary-foreground mt-1 grid size-4 shrink-0 place-items-center rounded-xs">
+                  <CheckIcon className="size-3" />
+                </span>
+                {point}
+              </li>
+            ))}
+          </ul>
+          <p className="text-lg">
+            <s className="text-muted-foreground">£98.75</s>{' '}
+            <strong className="text-2xl">£64.95</strong>, save £33.80
+          </p>
+          <div className="grid sm:inline-grid">
+            <Button asChild>
+              <Link href={BUNDLE_URL}>See the 7-in-1 kit</Link>
+            </Button>
+          </div>
+        </div>
       </div>
+    </section>
+  );
+}
+
+function HowItWorks() {
+  return (
+    <section id="how-it-works" className="py-12 md:py-16">
+      <div className="container max-w-5xl space-y-8">
+        <div className="mx-auto max-w-2xl space-y-3 text-center">
+          <h2 className="text-3xl md:text-4xl">
+            How does a home STI test <em>work?</em>
+          </h2>
+          <p className="text-lg">
+            Our rapid tests work in a similar way to a home pregnancy test. You
+            add a small sample, and lines appear on the test to show your
+            result.
+          </p>
+        </div>
+        <ol className="grid gap-4 md:grid-cols-3">
+          {STEPS.map((step, index) => (
+            <li
+              key={step.title}
+              className="bg-card space-y-2 rounded-lg border p-6"
+            >
+              <span className="bg-primary text-primary-foreground font-display grid size-9 place-items-center rounded-full font-bold">
+                {index + 1}
+              </span>
+              <h3 className="text-lg">{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="bg-muted space-y-2 rounded-lg p-6">
+            <h3 className="text-lg">Reading your result</h3>
+            <p>
+              C is the control line and T is the test line. One line at C
+              usually means negative. Lines at C and T usually mean positive,
+              even if T is faint. No line at C means the test hasn&apos;t
+              worked. (The PSA test is read differently.{' '}
+              <Link
+                href="/rapid-tests/psa-prostate-home-test-kit"
+                className="text-primary hover:text-primary-hover underline underline-offset-3"
+              >
+                See its page
+              </Link>
+              .)
+            </p>
+            <p>
+              <a
+                href={shopUrl('/pages/how-to-test')}
+                className="text-primary hover:text-primary-hover inline-flex items-center gap-1.5 font-bold underline underline-offset-3"
+              >
+                How to test and read your results
+                <ArrowRightIcon aria-hidden className="size-4" />
+              </a>
+            </p>
+          </div>
+          <div className="bg-muted space-y-2 rounded-lg p-6">
+            <h3 className="text-lg">If a result is positive</h3>
+            <p>
+              Take a photo of the test and contact a sexual health clinic or
+              your GP for a confirmation test and treatment. NHS sexual health
+              services are free and confidential.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhenToTest() {
+  return (
+    <section id="when-to-test" className="bg-muted scroll-mt-24 py-12 md:py-16">
+      <div className="container max-w-4xl space-y-8">
+        <div className="space-y-3 text-center">
+          <h2 className="text-3xl md:text-4xl">
+            How soon after sex can I test for <em>STIs?</em>
+          </h2>
+          <p className="text-lg">
+            You can test at any time, but testing too early can give a negative
+            result even if you have an infection. Each STI takes a different
+            amount of time to show up. If you test early and get a negative
+            result, test again once the window period has passed.
+          </p>
+        </div>
+        <table className="bg-card w-full overflow-hidden rounded-lg text-left">
+          <thead>
+            <tr>
+              <th className="p-4 font-bold">Infection</th>
+              <th className="p-4 font-bold">Retest an early negative at</th>
+            </tr>
+          </thead>
+          <tbody>
+            {WINDOWS.map((row) => (
+              <tr key={row.infection} className="border-t">
+                <td className="p-4 font-bold">
+                  {row.href ? (
+                    <Link
+                      href={row.href}
+                      className="text-primary hover:text-primary-hover underline underline-offset-3"
+                    >
+                      {row.infection}
+                    </Link>
+                  ) : (
+                    row.infection
+                  )}
+                </td>
+                <td className="p-4">{row.retest}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="grid gap-4 md:grid-cols-2">
+          <p className="bg-card rounded-lg p-6">
+            <strong>Need help now?</strong> If you have symptoms or a partner
+            has tested positive, contact a sexual health clinic now.
+          </p>
+          <p className="bg-card border-l-primary flex gap-3 rounded-lg border-l-4 p-6">
+            <InfoIcon aria-hidden className="text-primary size-6 shrink-0" />
+            <span>
+              <strong>PEP alert:</strong> Possible HIV exposure in the last 72
+              hours? Contact a sexual health clinic or A&amp;E straight away and
+              ask about PEP, medicine that can help prevent HIV. Don&apos;t wait
+              for a test result.
+            </span>
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Guides() {
+  return (
+    <section className="py-12 md:py-16">
+      <div className="container space-y-8">
+        <div className="mx-auto max-w-2xl space-y-3 text-center">
+          <h2 className="text-3xl md:text-4xl">
+            STI guides, <em>medically reviewed</em>
+          </h2>
+          <p className="text-lg">
+            Clear, simple guides to symptoms, testing and treatment.
+          </p>
+        </div>
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {GUIDES.map((guide) => (
+            <li
+              key={guide.href}
+              className="bg-card relative flex flex-col overflow-hidden rounded-lg border"
+            >
+              <div className="bg-muted relative aspect-16/9">
+                <Image
+                  src={guide.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex flex-1 flex-col gap-2 p-5">
+                <h3 className="text-lg">
+                  <Link
+                    href={guide.href}
+                    className="no-underline after:absolute after:inset-0"
+                  >
+                    {guide.title}
+                  </Link>
+                </h3>
+                <p className="flex-1">{guide.text}</p>
+                <p className="text-muted-foreground text-xs">
+                  <mark>Medically reviewed by [name], [date]</mark>
+                </p>
+                <p className="text-primary inline-flex items-center gap-1.5 font-bold">
+                  Read guide
+                  <ArrowRightIcon aria-hidden className="size-4" />
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div className="grid sm:flex sm:justify-center">
+          <Button asChild variant="outline">
+            <Link href="/blog">See all guides</Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TrustStrip() {
+  return (
+    <section className="bg-muted py-6">
+      <ul className="container grid grid-cols-2 gap-4 md:grid-cols-4">
+        {TRUST.map(({ icon: Icon, label }) => (
+          <li
+            key={label}
+            className="font-display flex items-center justify-center gap-2 text-sm font-bold"
+          >
+            <Icon aria-hidden className="text-primary size-5 shrink-0" />
+            {label}
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

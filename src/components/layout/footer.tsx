@@ -9,35 +9,57 @@ import { shopUrl } from '@/lib/utils';
 
 const AUTH_ROUTES = ['/login', '/signup'];
 
-// Same columns, policies and disclaimer as the testdiscreet.co.uk footer.
+// Order and names from the homepage SEO doc.
+const FOOTER_TESTS = [
+  { href: '/rapid-tests/7-in-1-sti-test-kit', label: '7-in-1 STI Test Kit' },
+  { href: '/rapid-tests/core-4-sti-test-kit', label: 'Core 4 STI Test Kit' },
+  { href: '/rapid-tests/hiv-home-test-kit', label: 'HIV' },
+  { href: '/rapid-tests/syphilis-home-test-kit', label: 'Syphilis' },
+  {
+    href: '/rapid-tests/chlamydia-gonorrhoea-home-test-kit',
+    label: 'Chlamydia & Gonorrhoea',
+  },
+  { href: '/rapid-tests/herpes-hsv-2-home-test-kit', label: 'Herpes (HSV-2)' },
+  {
+    href: '/rapid-tests/hepatitis-b-c-home-test-kit',
+    label: 'Hepatitis B & C',
+  },
+  { href: '/rapid-tests/psa-prostate-home-test-kit', label: 'PSA Prostate' },
+];
+
+// Columns from the homepage SEO doc. Each test links to its product page.
 const FOOTER_COLUMNS = [
   {
-    heading: 'Explore',
+    heading: 'Tests',
+    links: FOOTER_TESTS,
+  },
+  {
+    heading: 'Learn',
     links: [
-      { label: 'Home', href: '/' },
       { label: 'STI guides', href: '/blog' },
-      { label: 'All tests', href: '/#tests' },
       { label: 'How to test', href: shopUrl('/pages/how-to-test') },
+      { label: 'When can I test?', href: '/#when-to-test' },
+      { label: 'FAQs', href: '/#faq' },
     ],
   },
   {
     heading: 'Help',
     links: [
       { label: 'Contact', href: shopUrl('/pages/contact') },
-      { label: 'FAQ', href: '/#faq' },
-      { label: 'When can I test?', href: '/#when-to-test' },
+      { label: 'Returns', href: shopUrl('/policies/refund-policy') },
+      { label: 'Shipping', href: shopUrl('/policies/shipping-policy') },
     ],
   },
-];
-
-const LEGAL_LINKS = [
-  { label: 'Privacy policy', href: shopUrl('/policies/privacy-policy') },
-  { label: 'Terms of service', href: shopUrl('/policies/terms-of-service') },
-  { label: 'Refund policy', href: shopUrl('/policies/refund-policy') },
-  { label: 'Shipping policy', href: shopUrl('/policies/shipping-policy') },
   {
-    label: 'Contact information',
-    href: shopUrl('/policies/contact-information'),
+    heading: 'About',
+    links: [
+      { label: 'About us', href: '/about' },
+      { label: 'Privacy policy', href: shopUrl('/policies/privacy-policy') },
+      {
+        label: 'Terms of service',
+        href: shopUrl('/policies/terms-of-service'),
+      },
+    ],
   },
 ];
 
@@ -63,7 +85,7 @@ export default function Footer() {
   return (
     <footer className="bg-accent-deep text-accent-foreground pt-14 pb-6">
       <div className="container">
-        <div className="grid md:grid-cols-2 md:gap-8">
+        <div className="grid md:grid-cols-4 md:gap-8">
           {FOOTER_COLUMNS.map((column) => (
             <details
               key={column.heading}
@@ -105,14 +127,7 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-1.5">
-            {LEGAL_LINKS.map((link) => (
-              <li key={link.label}>
-                <FooterLink href={link.href}>{link.label}</FooterLink>
-              </li>
-            ))}
-          </ul>
-          <p>&copy; 2026 Test Discreet. All rights reserved.</p>
+          <p>&copy; 2026 STI Test Kit</p>
           <p className="max-w-3xl opacity-85">
             Our tests don&apos;t replace advice from a doctor or nurse. For ages
             16 and over. Free, confidential testing is also available from NHS
