@@ -72,9 +72,12 @@ function AccordionContent({
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Content>) {
   return (
+    // Always rendered, so closed answers are still in the HTML for search
+    // engines; closed items are hidden with CSS instead of being removed.
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="data-open:animate-accordion-down data-closed:animate-accordion-up overflow-hidden text-sm"
+      forceMount
+      className="data-open:animate-accordion-down overflow-hidden text-sm data-[state=closed]:hidden"
       {...props}
     >
       <div

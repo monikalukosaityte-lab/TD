@@ -82,6 +82,7 @@
   7. Other tests: bundles first, then single tests with short names, leaving out the page's own test
 - No reviews section on product pages
 - FAQ groups (H3s in the copy doc) become separate `faq.tabs`; a single group shows no heading. Tables in the copy (e.g. infection stages) go into the answer HTML as a `<table>`
+- Dropdown (accordion) answers are always in the HTML, hidden with CSS when closed, so search engines can read them. Keep it that way: never let closed content unmount
 - Pages with `seo` automatically get Product, BreadcrumbList, FAQPage and HowTo schema. Copy-doc notes such as "(New)" are left out of the page
 - Copy arrives as an SEO doc (.docx). Use its wording exactly and keep its internal links: guide links go to `/blog/...` anchors on this site, product links go to this site's `/rapid-tests/...` pages, and only buy buttons go to the Shopify checkout
 - Wrap anything the copy says still needs checking in `<mark>`
